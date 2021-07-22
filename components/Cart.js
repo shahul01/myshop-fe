@@ -1,29 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Cart = ({ cart, totalPrice, updatedPrice, onClick }) => {
+const Cart = ({ cart, totalPrice, setTotalPrice, updatedPrice, setUpdatedPrice, onClick }) => {
 
-  // let [cart, setCart] = useState([]);
-  // let [totalPrice, setTotalPrice] = useState(0);
-  // let [updatedPrice, setUpdatedPrice] = useState(0);
-
-  // function handleDelFromCart(id) {
-  //   setCart(cart => cart.filter(item => item.id !== id));
-  //   console.log('handleDelFromCart :>> ', cart);
-  // }
+  // useEffect(() => {
+  //   setUpdatedPrice(totalPrice)
+  //   console.log('updatedPrice :>> ', updatedPrice);
+  // },[totalPrice])
 
   return (
     <div>
+      <hr />
+      <h3 className="center-this">Total Price: {updatedPrice}</h3>
 
       <hr />
-      <h2 className="center-this">Cart</h2>
+      <h4 className="center-this">Cart</h4>
       <div className="cart-container">
         {cart.length > 0 ? cart.map((currCart) => {
           totalPrice = totalPrice + currCart.price
-          updatedPrice = totalPrice
+          // updatedPrice = totalPrice
+          setUpdatedPrice(totalPrice)
+          // setUpdatedPrice(updatedPrice)
+
+          // totalPrice = totalPrice + currCart.price
+          // setTotalPrice(totalPrice);
+          // setUpdatedPrice(totalPrice)
 
 
           return (
-            <div key={currCart.key} className="cart" onClick={() => onClick(currCart.id)}>
+            <div key={currCart.key} className="cart"
+              onClick={() => onClick(currCart.id)}>
 
 
               <p className="center-this">Item: {currCart.id}</p>
@@ -33,7 +38,6 @@ const Cart = ({ cart, totalPrice, updatedPrice, onClick }) => {
             </div>
           )
         }) : ''}
-        <h4 className="center-this">Total Price: {updatedPrice}</h4>
       </div>
 
     </div>

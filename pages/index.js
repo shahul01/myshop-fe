@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cart from "../components/Cart";
 
 export default function App() {
@@ -29,6 +29,11 @@ export default function App() {
   let [cart, setCart] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
   let [updatedPrice, setUpdatedPrice] = useState(0);
+
+  // useEffect(() => {
+  //   setUpdatedPrice(totalPrice)
+  //   console.log('updatedPrice :>> ', updatedPrice);
+  // },[totalPrice])
 
   function handleAddToCart(id, price) {
     setCart([...cart, {
@@ -68,7 +73,9 @@ export default function App() {
       <Cart
         cart={cart}
         totalPrice={totalPrice}
+        setTotalPrice={setTotalPrice}
         updatedPrice={updatedPrice}
+        setUpdatedPrice={setUpdatedPrice}
         onClick={handleDelFromCart}
       />
 
