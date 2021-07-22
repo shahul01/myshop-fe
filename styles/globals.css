@@ -27,14 +27,21 @@ a {
   justify-content: center;
 }
 
+.center-this {
+  display: flex;
+  justify-content: center;
+}
+
 .item {
   cursor: pointer;
 }
 
-.title {
-  /* position: relative;
-  right: 150px;
-  top: 10px; */
+.title,
+.price
+{
+  position: relative;
+  left: 40px;
+  top: 10px;
 
 }
 
@@ -52,6 +59,10 @@ img {
 
 }
 
+.cart {
+  cursor: pointer;
+}
+
 hr {
   /* margin-top: 40px; */
   width: 70%;
@@ -59,9 +70,4 @@ hr {
 
 .short-hr {
   width: 100px;
-}
-
-.center-this {
-  display: flex;
-  justify-content: center;
 }

@@ -37,16 +37,20 @@ export default function App() {
   //   handleUpdateTotalPrice()
   // }, [])
 
-  function handleCart(id, price) {
+  function handleAddToCart(id, price) {
     setCart([...cart, {
       key:(Math.random()*10000).toFixed(0),
       'id': id,
       'price': price
     }])
-    // console.log("clicked: ", id)
-    // console.log("cart", cart)
-    // console.log("data", data)
+    console.log("cart", JSON.stringify(cart, null, 2))
+    console.log("updatedPrice", JSON.stringify(updatedPrice, null, 2))
   };
+
+  function handleDelFromCart(id) {
+    setCart(cart => cart.filter(item => item.id !== id));
+    console.log('handleDelFromCart :>> ', cart);
+  }
 
   return (
     <div className="App">
@@ -55,10 +59,11 @@ export default function App() {
 
         {data.map((currData) => {
           return (
-            <div key={currData.id} className="item" onClick={() => handleCart(currData.id, currData.price)}>
+            <div key={currData.id} className="item" onClick={() => handleAddToCart(currData.id, currData.price)}>
 
               <img src={currData.imgSrc} alt="" />
               <p className="title">{currData.title}</p>
+              <p className="price">{currData.price}</p>
 
             </div>
           );
@@ -66,12 +71,6 @@ export default function App() {
 
       </div>
       <div>
-        {/* // TODO:
-          When already added item clicked, add it again(?)
-          Loop data from data's id than send data to cart
-          On click on a cart, run for loop, update totalPrice.
-          delete cart
-        */}
         <hr />
         <h2 className="center-this">Cart</h2>
 
@@ -83,11 +82,11 @@ export default function App() {
             // setTotalPrice = totalPrice
             updatedPrice = totalPrice
             // setUpdatedPrice = updatedPrice
-            console.log("updatedPrice", updatedPrice)
+            // console.log("updatedPrice", updatedPrice)
 
 
             return (
-              <div key={currCart.key} className="cart">
+              <div key={currCart.key} className="cart" onClick={() => handleDelFromCart(currCart.id)}>
 
 
                 <p className="center-this">Item: {currCart.id}</p>
