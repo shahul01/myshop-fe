@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-// import uuid from "uuid/v1";
-// import "./styles.css";
+import { useState } from "react";
+import Cart from "../components/Cart";
 
 export default function App() {
   let [data, setData] = useState([
@@ -30,12 +29,6 @@ export default function App() {
   let [cart, setCart] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
   let [updatedPrice, setUpdatedPrice] = useState(0);
-  // let totalPrice = 0;
-
-  // useEffect(() => {
-  //   // totalPrice
-  //   handleUpdateTotalPrice()
-  // }, [])
 
   function handleAddToCart(id, price) {
     setCart([...cart, {
@@ -43,7 +36,7 @@ export default function App() {
       'id': id,
       'price': price
     }])
-    console.log("cart", JSON.stringify(cart, null, 2))
+    // console.log("cart", JSON.stringify(cart, null, 2))
     console.log("updatedPrice", JSON.stringify(updatedPrice, null, 2))
   };
 
@@ -59,7 +52,8 @@ export default function App() {
 
         {data.map((currData) => {
           return (
-            <div key={currData.id} className="item" onClick={() => handleAddToCart(currData.id, currData.price)}>
+            <div key={currData.id} className="item"
+             onClick={() => handleAddToCart(currData.id, currData.price)}>
 
               <img src={currData.imgSrc} alt="" />
               <p className="title">{currData.title}</p>
@@ -70,36 +64,13 @@ export default function App() {
         })}
 
       </div>
-      <div>
-        <hr />
-        <h2 className="center-this">Cart</h2>
 
-        {/* <h4>Total Price: {updatedPrice}</h4> */}
-        <div className="cart-container">
-          {cart.map((currCart) => {
-            // const handleUpdateTotalPrice = () =>
-            totalPrice = totalPrice + currCart.price
-            // setTotalPrice = totalPrice
-            updatedPrice = totalPrice
-            // setUpdatedPrice = updatedPrice
-            // console.log("updatedPrice", updatedPrice)
-
-
-            return (
-              <div key={currCart.key} className="cart" onClick={() => handleDelFromCart(currCart.id)}>
-
-
-                <p className="center-this">Item: {currCart.id}</p>
-                <p className="center-this">Price: {currCart.price}</p>
-                <hr className="short-hr"/>
-
-              </div>
-            )
-          })}
-          <h4 className="center-this">Total Price: {updatedPrice}</h4>
-        </div>
-      </div>
-
+      <Cart
+        cart={cart}
+        totalPrice={totalPrice}
+        updatedPrice={updatedPrice}
+        onClick={handleDelFromCart}
+      />
 
     </div>
   );
