@@ -45,7 +45,7 @@ a {
 
 }
 
-img {
+.item-image {
   height: 200px;
   max-width: 200px;
   /* display: flex; */
@@ -70,4 +70,24 @@ hr {
 
 .short-hr {
   width: 100px;
+}
+
+.products-link-btn {
+  padding: 10px;
+  border-radius: 4px;
+  outline: none;
+  color: white;
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+.home-btn-container {
+  position: relative;
+  top: 50vh;
+  left: 50vw;
+}
+
+.back-btn {
+  text-decoration: underline;
+  cursor: pointer;
 }
