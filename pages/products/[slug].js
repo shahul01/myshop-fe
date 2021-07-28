@@ -1,31 +1,21 @@
+import axios from "axios";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const Detail = () => {
   const router = useRouter();
   const pageId = router.query.slug;
-  let myData = [
-    {
-      id: 1,
-      imgSrc:
-        "https://images-na.ssl-images-amazon.com/images/I/815g8Uo656S._AC_UL200_SR200,200_.jpg",
-      title: "iTV Apple",
-      price: 200.00
-    },
-    {
-      id: 2,
-      imgSrc:
-        "https://images-na.ssl-images-amazon.com/images/I/713mzPe9SwS._AC_UL200_SR200,200_.jpg",
-      title: "Atomic Habits Book",
-      price: 10.00
-    },
-    {
-      id: 3,
-      imgSrc:
-        "https://images-na.ssl-images-amazon.com/images/I/710o0VupScL._AC_UL320_SR320,320_.jpg",
-      title: "TShirt",
-      price: 20.00
-    }]
+  // let myData =
+  const [productsList, setProductsList] = useState([]);
+  let retreivedData = [];
+
+  useEffect( async () => {
+    retreivedData = await axios.get('http://localhost:8000/products/')
+    setProductsList(retreivedData.data)
+    console.log('retreivedData :>> ', retreivedData);
+  }, [])
+
 
 
   return (
@@ -36,11 +26,11 @@ const Detail = () => {
           Go Back
         </a>
       </Link>
-      <h1>Title: {myData[pageId-1]?.title}</h1>
-      <img src={myData[pageId-1]?.imgSrc} alt="" className="item-image"/>
-      <h3>Price: {myData[pageId-1]?.price}</h3>
-
-
+        <div>
+          <h1>Title: {productsList[pageId-1]?.title}</h1>
+          <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>
+          <h3>Price: {productsList[pageId-1]?.price}</h3>
+        </div>
     </div>
   )
 }
