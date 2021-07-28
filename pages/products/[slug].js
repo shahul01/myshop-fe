@@ -1,20 +1,18 @@
-import axios from "axios";
+// import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import useFetch from "../../components/useFetch";
 
 const Detail = () => {
   const router = useRouter();
   const pageId = router.query.slug;
-  // let myData =
   const [productsList, setProductsList] = useState([]);
-  let retreivedData = [];
+  const {data: retreivedData, error, isPending} = useFetch('http://localhost:8000/products/');
 
   useEffect( async () => {
-    retreivedData = await axios.get('http://localhost:8000/products/')
-    setProductsList(retreivedData.data)
-    console.log('retreivedData :>> ', retreivedData);
-  }, [])
+    if (retreivedData) setProductsList(retreivedData);
+  }, [retreivedData])
 
 
 
@@ -26,11 +24,15 @@ const Detail = () => {
           Go Back
         </a>
       </Link>
-        <div>
-          <h1>Title: {productsList[pageId-1]?.title}</h1>
-          <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>
-          <h3>Price: {productsList[pageId-1]?.price}</h3>
-        </div>
+      {productsList && (
+          <div>
+            <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>
+            <h1>Title: {productsList[pageId-1]?.title}</h1>
+            <h3>Price: {productsList[pageId-1]?.price}</h3>
+          </div>
+        )
+
+      }
     </div>
   )
 }
