@@ -8,20 +8,20 @@ const Products = () => {
   const router = useRouter();
   // let [data, setData] = useState([]);
 
-  let [cart, setCart] = useState([]);
-  let [totalPrice, setTotalPrice] = useState(0);
-  let [updatedPrice, setUpdatedPrice] = useState(0);
+  // let [cart, setCart] = useState([]);
+  // let [totalPrice, setTotalPrice] = useState(0);
+  // let [updatedPrice, setUpdatedPrice] = useState(0);
   const [productsList, setProductsList] = useState([]);
-  const {data: retreivedData, error, isPending} = useFetch('http://localhost:1337/products/');
+  const {data: retrievedData, error, isPending} = useFetch('http://localhost:1337/products/');
 
-  useEffect( async () => {
-    if (retreivedData) setProductsList(retreivedData);
-  }, [retreivedData])
+  useEffect( () => {
+    if (retrievedData) setProductsList(retrievedData);
+  }, [retrievedData])
 
-  useEffect(() => {
-    setUpdatedPrice(totalPrice)
-    // console.log('updatedPrice :>> ', updatedPrice);
-  },[totalPrice])
+  // useEffect(() => {
+  //   setUpdatedPrice(totalPrice)
+  //   // console.log('updatedPrice :>> ', updatedPrice);
+  // },[totalPrice])
 
   // function handleAddToCart(id, price) {
   //   setCart([...cart, {
@@ -33,22 +33,22 @@ const Products = () => {
   //   console.log("updatedPrice", JSON.stringify(updatedPrice, null, 2))
   // };
 
-  function handleDelFromCart(id) {
-    setCart(cart => cart.filter(item => item.id !== id));
-    console.log('handleDelFromCart :>> ', cart);
-  }
+  // function handleDelFromCart(id) {
+  //   setCart(cart => cart.filter(item => item.id !== id));
+  //   console.log('handleDelFromCart :>> ', cart);
+  // }
 
   return (
     <div className="App">
       <h1 className="center-this">My Shop</h1>
       <div className="item-container">
 
-        {retreivedData && productsList.map((currProduct) => {
+        {retrievedData && productsList.map((currProduct) => {
           return (
             // onClick={() => handleAddToCart(currProduct.id, currProduct.price)}
             <div
-                key={currProduct.id} className="item"
-                onClick={() => router.push(`products/${currProduct.id}`)}
+                key={currProduct.productId} className="item"
+                onClick={() => router.push(`products/${currProduct.productId}`)}
                 >
 
               <img src={currProduct.imgSrc} alt="" className="item-image"/>
@@ -61,7 +61,7 @@ const Products = () => {
 
       </div>
 
-      <Cart
+      {/* <Cart
         cart={cart}
         setCart={setCart}
         totalPrice={totalPrice}
@@ -69,7 +69,7 @@ const Products = () => {
         updatedPrice={updatedPrice}
         setUpdatedPrice={setUpdatedPrice}
         onClick={handleDelFromCart}
-      />
+      /> */}
 
     </div>
   );

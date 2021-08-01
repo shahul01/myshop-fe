@@ -5,24 +5,29 @@ import Link from "next/link";
 import useFetch from "../../components/useFetch";
 import Cart from "../../components/Cart";
 
-const Detail = () => {
+const Slug = () => {
   const router = useRouter();
   const pageId = router.query.slug;
   const [productsList, setProductsList] = useState([]);
-  const {data: retreivedData, error, isPending} = useFetch('http://localhost:1337/products/');
+  const {data: retrievedData, error, isPending} = useFetch('http://localhost:1337/products/');
 
   let [cart, setCart] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
   let [updatedPrice, setUpdatedPrice] = useState(0);
+  let [mounted, setMounted] = useState(false);
 
-  useEffect( async () => {
-    if (retreivedData) setProductsList(retreivedData);
-  }, [retreivedData])
+  useEffect( () => {
+    setMounted(true);
+  }, []);
 
-  function handleAddToCart(id, price) {
+  useEffect( () => {
+    if (retrievedData) setProductsList(retrievedData);
+  }, [retrievedData]);
+
+  function handleAddToCart(productId, price) {
+    // key:(Math.random()*10000).toFixed(0),
     setCart([...cart, {
-      key:(Math.random()*10000).toFixed(0),
-      'id': id,
+      'productId': productId,
       'price': price
     }])
     // console.log("cart", JSON.stringify(cart, null, 2))
@@ -31,9 +36,9 @@ const Detail = () => {
 
 
   function handleDelFromCart(id) {
-    setCart(cart => cart.filter(item => item.id !== id));
+    setCart(cart => cart.filter(item => item.productId !== id));
     console.log('handleDelFromCart :>> ', cart);
-  }
+  };
 
 
   return (
@@ -44,18 +49,17 @@ const Detail = () => {
           Go Back
         </a>
       </Link>
-      {retreivedData && (
+      {retrievedData && (
           <div>
-            {/* why '-2' in pageId-2 */}
-            <img src={productsList[pageId-2]?.imgSrc} alt="" className="item-image"/>
-            <h1>Title: {productsList[pageId-2]?.title}</h1>
-            <h3>Price: {productsList[pageId-2]?.price}</h3>
+            <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>
+            <h1>Title: {productsList[pageId-1]?.title}</h1>
+            <h3>Price: {productsList[pageId-1]?.price}</h3>
             <button
-                onClick={() => handleAddToCart(
-                  productsList[pageId-2]?.id,
-                  productsList[pageId-2]?.price
-                )}
-              >
+                  onClick={() => handleAddToCart(
+                    productsList[pageId-1]?.productId,
+                    productsList[pageId-1]?.price
+                  )}
+                  >
                 Add to Cart
             </button>
           </div>
@@ -63,7 +67,7 @@ const Detail = () => {
 
       }
 
-      <Cart
+      {mounted && <Cart
         cart={cart}
         setCart={setCart}
         totalPrice={totalPrice}
@@ -71,7 +75,7 @@ const Detail = () => {
         updatedPrice={updatedPrice}
         setUpdatedPrice={setUpdatedPrice}
         onClick={handleDelFromCart}
-      />
+      />}
 
 
     </div>
@@ -79,4 +83,4 @@ const Detail = () => {
   )
 }
 
-export default Detail;
+export default Slug;

@@ -4,9 +4,13 @@ import useFetch from "./useFetch";
 const Cart = ({ cart, setCart, totalPrice, setTotalPrice, updatedPrice, setUpdatedPrice, onClick }) => {
   // const [ cart, setCart ] = useState([])
   const {data: cartData, error, isPending} = useFetch('http://localhost:1337/carts/');
+  const [mounted, setMounted] = useState(false);
 
   console.log(`cartData`, cartData)
 
+  useEffect( () => {
+    setMounted(true);
+  })
   useEffect( () => {
     if (cartData) setCart(cartData)
   }, [cartData])
@@ -19,16 +23,17 @@ const Cart = ({ cart, setCart, totalPrice, setTotalPrice, updatedPrice, setUpdat
       <hr />
       <h4 className="center-this">Cart</h4>
       <div className="cart-container">
-        {cartData && cart.length > 0 ? cart.map((currCart) => {
+
+        {mounted && cartData && cart.length > 0 ? cart.map((currCart) => {
           totalPrice = totalPrice + currCart.price
           setUpdatedPrice(totalPrice)
 
           return (
-            <div key={currCart.key} className="cart"
-              onClick={() => onClick(currCart.id)}>
+            <div key={currCart.productId} className="cart"
+              onClick={() => onClick(currCart.productId)}>
 
 
-              <p className="center-this">Item: {currCart.id}</p>
+              <p className="center-this">Item: {currCart.productId}</p>
               <p className="center-this">Price: {currCart.price}</p>
               <hr className="short-hr"/>
 
