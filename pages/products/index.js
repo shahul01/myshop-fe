@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import useFetch from "../../components/useFetch";
 import Cart from "../../components/Cart";
 
-const products = () => {
+const Products = () => {
 
   const router = useRouter();
   // let [data, setData] = useState([]);
@@ -12,26 +12,26 @@ const products = () => {
   let [totalPrice, setTotalPrice] = useState(0);
   let [updatedPrice, setUpdatedPrice] = useState(0);
   const [productsList, setProductsList] = useState([]);
-  const {data: retreivedData, error, isPending} = useFetch('http://localhost:8000/products/');
+  const {data: retreivedData, error, isPending} = useFetch('http://localhost:1337/products/');
 
   useEffect( async () => {
     if (retreivedData) setProductsList(retreivedData);
   }, [retreivedData])
 
-  // useEffect(() => {
-  //   setUpdatedPrice(totalPrice)
-  //   console.log('updatedPrice :>> ', updatedPrice);
-  // },[totalPrice])
+  useEffect(() => {
+    setUpdatedPrice(totalPrice)
+    // console.log('updatedPrice :>> ', updatedPrice);
+  },[totalPrice])
 
-  function handleAddToCart(id, price) {
-    setCart([...cart, {
-      key:(Math.random()*10000).toFixed(0),
-      'id': id,
-      'price': price
-    }])
-    // console.log("cart", JSON.stringify(cart, null, 2))
-    console.log("updatedPrice", JSON.stringify(updatedPrice, null, 2))
-  };
+  // function handleAddToCart(id, price) {
+  //   setCart([...cart, {
+  //     key:(Math.random()*10000).toFixed(0),
+  //     'id': id,
+  //     'price': price
+  //   }])
+  //   // console.log("cart", JSON.stringify(cart, null, 2))
+  //   console.log("updatedPrice", JSON.stringify(updatedPrice, null, 2))
+  // };
 
   function handleDelFromCart(id) {
     setCart(cart => cart.filter(item => item.id !== id));
@@ -43,7 +43,7 @@ const products = () => {
       <h1 className="center-this">My Shop</h1>
       <div className="item-container">
 
-        {productsList.map((currProduct) => {
+        {retreivedData && productsList.map((currProduct) => {
           return (
             // onClick={() => handleAddToCart(currProduct.id, currProduct.price)}
             <div
@@ -63,6 +63,7 @@ const products = () => {
 
       <Cart
         cart={cart}
+        setCart={setCart}
         totalPrice={totalPrice}
         setTotalPrice={setTotalPrice}
         updatedPrice={updatedPrice}
@@ -74,4 +75,4 @@ const products = () => {
   );
 }
 
-export default products;
+export default Products;

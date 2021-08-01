@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
+import useFetch from "./useFetch";
 
-const Cart = ({ cart, totalPrice, setTotalPrice, updatedPrice, setUpdatedPrice, onClick }) => {
+const Cart = ({ cart, setCart, totalPrice, setTotalPrice, updatedPrice, setUpdatedPrice, onClick }) => {
+  // const [ cart, setCart ] = useState([])
+  const {data: cartData, error, isPending} = useFetch('http://localhost:1337/carts/');
 
-  // useEffect(() => {
-  //   setUpdatedPrice(totalPrice)
-  //   console.log('updatedPrice :>> ', updatedPrice);
-  // },[totalPrice])
+  console.log(`cartData`, cartData)
+
+  useEffect( () => {
+    if (cartData) setCart(cartData)
+  }, [cartData])
 
   return (
     <div>
@@ -15,16 +19,9 @@ const Cart = ({ cart, totalPrice, setTotalPrice, updatedPrice, setUpdatedPrice, 
       <hr />
       <h4 className="center-this">Cart</h4>
       <div className="cart-container">
-        {cart.length > 0 ? cart.map((currCart) => {
+        {cartData && cart.length > 0 ? cart.map((currCart) => {
           totalPrice = totalPrice + currCart.price
-          // updatedPrice = totalPrice
           setUpdatedPrice(totalPrice)
-          // setUpdatedPrice(updatedPrice)
-
-          // totalPrice = totalPrice + currCart.price
-          // setTotalPrice(totalPrice);
-          // setUpdatedPrice(totalPrice)
-
 
           return (
             <div key={currCart.key} className="cart"
