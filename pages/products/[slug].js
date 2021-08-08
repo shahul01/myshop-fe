@@ -26,6 +26,8 @@ const Slug = () => {
 
   function handleAddToCart(productId, price) {
     // key:(Math.random()*10000).toFixed(0),
+    if (!mounted) return;
+
     setCart([...cart, {
       'productId': productId,
       'price': price
@@ -36,6 +38,7 @@ const Slug = () => {
 
 
   function handleDelFromCart(id) {
+    if (!mounted) return;
     setCart(cart => cart.filter(item => item.productId !== id));
     console.log('handleDelFromCart :>> ', cart);
   };
@@ -50,22 +53,21 @@ const Slug = () => {
         </a>
       </Link>
       {retrievedData && (
-          <div>
-            <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>
-            <h1>Title: {productsList[pageId-1]?.title}</h1>
-            <h3>Price: {productsList[pageId-1]?.price}</h3>
-            <button
-                  onClick={() => handleAddToCart(
-                    productsList[pageId-1]?.productId,
-                    productsList[pageId-1]?.price
-                  )}
-                  >
-                Add to Cart
-            </button>
-          </div>
-        )
+        <div>
+          <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>
+          <h1>Title: {productsList[pageId-1]?.title}</h1>
+          <h3>Price: {productsList[pageId-1]?.price}</h3>
+          <button
+                onClick={() => handleAddToCart(
+                  productsList[pageId-1]?.productId,
+                  productsList[pageId-1]?.price
+                )}
+                >
+              Add to Cart
+          </button>
+        </div>
 
-      }
+      )}
 
       {mounted && <Cart
         cart={cart}

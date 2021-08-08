@@ -6,7 +6,7 @@
     "dev": "next dev -p 7000",
     "build": "next build",
     "start": "next start",
-    "jserv": "json-server --watch backend/db.json --port 8000"
+    "jserv": "json-server --watch json-server/db.json --port 8000"
   },
   "dependencies": {
     "axios": "^0.21.1",
