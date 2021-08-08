@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import useFetch from "../../components/useFetch";
-import Cart from "../../components/Cart";
+import Cart from "../../components/CartOld";
 
 const Slug = () => {
   const router = useRouter();

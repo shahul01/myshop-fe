@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../components/useFetch";
-import Cart from "../../components/Cart";
+import Cart from "../../components/CartOld";
 
 const Products = () => {
 

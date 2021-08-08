@@ -51,7 +51,7 @@ a {
   /* display: flex; */
 }
 
-.cart-container {
+.cart-container-old {
   /* display: flex; */
   justify-content: center;
   gap: 20px;
@@ -90,4 +90,15 @@ hr {
 .back-btn {
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* Cart */
+
+.cart-container {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-left: 1px solid black;
+  height: 100%;
+  padding: 3px;
 }
