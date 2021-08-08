@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../components/useFetch";
-import Cart from "../../components/CartOld";
+import CartOld from "../../components/CartOld";
 
 const Products = () => {
 
@@ -61,7 +61,7 @@ const Products = () => {
 
       </div>
 
-      {/* <Cart
+      {/* <CartOld
         cart={cart}
         setCart={setCart}
         totalPrice={totalPrice}

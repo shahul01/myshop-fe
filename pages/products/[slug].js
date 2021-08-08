@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import useFetch from "../../components/useFetch";
-import Cart from "../../components/CartOld";
+import CartOld from "../../components/CartOld";
 
 const Slug = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const Slug = () => {
     if (retrievedData) setProductsList(retrievedData);
   }, [retrievedData]);
 
-  function handleAddToCart(productId, price) {
+  function handleAddToCartOld(productId, price) {
     // key:(Math.random()*10000).toFixed(0),
     if (!mounted) return;
 
@@ -57,19 +57,19 @@ const Slug = () => {
           <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>
           <h1>Title: {productsList[pageId-1]?.title}</h1>
           <h3>Price: {productsList[pageId-1]?.price}</h3>
-          <button
-                onClick={() => handleAddToCart(
+          {/* <button
+                onClick={() => handleAddToCartOld(
                   productsList[pageId-1]?.productId,
                   productsList[pageId-1]?.price
                 )}
                 >
-              Add to Cart
-          </button>
+              Add to Cart (Old)
+          </button> */}
         </div>
 
       )}
 
-      {mounted && <Cart
+      {/* {mounted && <CartOld
         cart={cart}
         setCart={setCart}
         totalPrice={totalPrice}
@@ -77,7 +77,7 @@ const Slug = () => {
         updatedPrice={updatedPrice}
         setUpdatedPrice={setUpdatedPrice}
         onClick={handleDelFromCart}
-      />}
+      />} */}
 
 
     </div>

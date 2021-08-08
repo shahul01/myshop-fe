@@ -1,10 +1,13 @@
-// import styles from "./Cart.css";
+import styles from "./Cart.module.css";
 
 const Cart = () => {
   return (
-    <div className='cart-container'>
+    <div className={styles.cartContainer}>
       <h2>Cart: </h2>
-      <img src="https://images-na.ssl-images-amazon.com/images/I/815g8Uo656S._AC_UL200_SR200,200_.jpg" alt="" />
+      <div className={styles.imageContainer}>
+        {/* <img src="https://images-na.ssl-images-amazon.com/images/I/815g8Uo656S._AC_UL200_SR200,200_.jpg" alt="" className={styles.img}/>
+        <img src="https://images-na.ssl-images-amazon.com/images/I/815g8Uo656S._AC_UL200_SR200,200_.jpg" alt="" className={styles.img}/> */}
+      </div>
     </div>
   )
 }
