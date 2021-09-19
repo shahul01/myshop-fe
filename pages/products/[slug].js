@@ -69,15 +69,17 @@ const Slug = () => {
 
       )}
 
-      {/* {mounted && <CartOld
-        cart={cart}
-        setCart={setCart}
-        totalPrice={totalPrice}
-        setTotalPrice={setTotalPrice}
-        updatedPrice={updatedPrice}
-        setUpdatedPrice={setUpdatedPrice}
-        onClick={handleDelFromCart}
-      />} */}
+      {/* {mounted && (
+        <CartOld
+          cart={cart}
+          setCart={setCart}
+          totalPrice={totalPrice}
+          setTotalPrice={setTotalPrice}
+          updatedPrice={updatedPrice}
+          setUpdatedPrice={setUpdatedPrice}
+          onClick={handleDelFromCart}
+        />
+      )} */}
 
 
     </div>
