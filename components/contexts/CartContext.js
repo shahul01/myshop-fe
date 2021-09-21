@@ -1,40 +1,49 @@
 import React, { createContext, useReducer, useState, useEffect } from 'react';
-import { cartReducer } from "../reducers/cartReducer";
+import cartReducer from "../reducers/cartReducer";
 import useFetch from '../useFetch';
 
 export const CartContext = createContext();
 
-// https://www.c-sharpcorner.com/article/usereducer-hook-in-reactjs-part-three/
-
 const CartContextProvider = (props) => {
   const { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/')
   const [ cartState, setCartState ] = useState([]);
-  // console.log('cartFetch :>> ', cartFetch);
-  console.log('cartState 3 :>> ', cartState);
-  console.log('cartReducer :>> ', cartReducer);
+  if (!cartState) return;
+  const [ carts, dispatch ] = useReducer(cartReducer, [], () => {
+    console.log('cartState 2 :>> ', cartState);
+    return cartState;
+  });
 
-  // if (cartState) {
-    const [ carts, dispatch ] = useReducer(cartReducer, [], () => {
-      console.log('cartState 2 :>> ', cartState);
-      return cartState ? cartState : [];
-      // return cartState ? JSON.parse(cartState) : [];
-      // return cartState ? console.log('cartState :>> ', cartState) : [];
+  useEffect( async () => {
+    if (cartFetch) {
 
-      // const localCart =  localStorage.getItem('myshopCart');
-      // return localCart ? JSON.parse(localCart) : [];
-    })
-  // }
-  console.log('carts :>> ', carts);
-  useEffect(() => {
-    if (cartFetch) setCartState(cartFetch);
-    // dispatch({ type: 'ADD_TO_CART', cart: [{ productId: cartState?.productId }]})
-    // console.log('cartFetch :>> ', cartFetch);
-    // localStorage.setItem('myshopCart', JSON.stringify(cartFetch));
-    console.log('cartState 1 :>> ', cartState);
+      // await setCartState(cartFetch);
+      // await setTimeout(() => {
+      //   setCartState(cartFetch)
+      //   console.log(`cartState 99`, cartState);
+      // }, 4000);
+      console.log(`cartFetch 99`, cartFetch);
+
+      // dispatch({ type: 'ADD_TO_CART', cart: [{ productId: cartState?.productId }] });
+      // dispatch({ type: 'ADD_TO_CART', productId: cartState[0]?.productId });
+      // dispatch({ type: 'ADD_TO_CART', productId: cartFetch[0]?.productId });
+
+      // if refreshed same data is added unnecessarily
+      cartFetch.forEach(currCart => {
+        console.log('map productId :>> ', currCart.productId);
+        dispatch({ type: 'ADD_TO_CART', cart: {
+          productId: currCart?.productId,
+          title: currCart?.title,
+          imgSrc: currCart?.imgSrc,
+          price: currCart?.price
+        } });
+
+      })
+
+      // console.log('productId :>> ', cartFetch[0]?.productId);
+      console.log('carts :>> ', carts);
+
+    }
   }, [cartFetch]);
-
-
-
 
   return (
     <CartContext.Provider value={{ carts, dispatch }}>
