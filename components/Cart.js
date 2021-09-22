@@ -9,7 +9,7 @@ const Cart = () => {
 
   const cartList = carts?.map(currCart => (
     // console.log(`currCart `, currCart)
-    <div key={currCart.productId}>
+    <div key={currCart.id}>
       <img src={currCart.imgSrc} alt='' />
     </div>
   ));
