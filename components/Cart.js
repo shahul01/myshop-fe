@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import styles from "./Cart.module.css";
 import { CartContext } from './contexts/CartContext';
+import styles from "./Cart.module.css";
 
 const Cart = () => {
 
@@ -12,15 +12,16 @@ const Cart = () => {
       <img
         src={currCart.imgSrc}
         alt={currCart.title}
-        className={styles.img}
+        className={styles['img']}
       />
     </div>
   ));
 
   return (
-    <div className={styles.cartContainer}>
-      <h2>Cart: </h2>
-      <div className={styles.imageContainer}>
+    <div className={styles['cart-container']}>
+      <h2>Cart</h2>
+      <hr className='short-hr' />
+      <div className={styles['image-container']}>
         {cartList ? cartList : ''}
       </div>
     </div>

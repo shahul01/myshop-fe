@@ -1,4 +1,4 @@
-.cartContainer {
+.cart-container {
   position: absolute;
   right: 0px;
   top: 21px;
@@ -10,7 +10,11 @@
 
 }
 
-.imageContainer {
+.cart-container h2 {
+  text-align: center;
+}
+
+.image-container {
   display: flex;
   flex-direction: column;
   justify-content: center;

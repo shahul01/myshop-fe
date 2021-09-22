@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useState, useEffect } from 'react';
+import { createContext, useReducer, useState, useEffect } from 'react';
 import cartReducer from "../reducers/cartReducer";
 import useFetch from '../useFetch';
 
@@ -7,9 +7,10 @@ export const CartContext = createContext();
 const CartContextProvider = (props) => {
   const { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/')
   const [ cartState, setCartState ] = useState([]);
+
   if (!cartState) return;
   const [ carts, dispatch ] = useReducer(cartReducer, [], () => {
-    console.log('cartState 2 :>> ', cartState);
+    // console.log('cartState 2 :>> ', cartState);
     return cartState;
   });
 
@@ -21,15 +22,10 @@ const CartContextProvider = (props) => {
       //   setCartState(cartFetch)
       //   console.log(`cartState 99`, cartState);
       // }, 4000);
-      console.log(`cartFetch 99`, cartFetch);
+      // console.log(`cartFetch 99`, cartFetch);
 
-      // dispatch({ type: 'ADD_TO_CART', cart: [{ productId: cartState?.productId }] });
-      // dispatch({ type: 'ADD_TO_CART', productId: cartState[0]?.productId });
-      // dispatch({ type: 'ADD_TO_CART', productId: cartFetch[0]?.productId });
-
-      // if refreshed same data is added unnecessarily
+      // COMMT: if refreshed same data is added unnecessarily
       cartFetch.forEach(currCart => {
-        console.log('map productId :>> ', currCart.productId);
         dispatch({ type: 'ADD_TO_CART', cart: {
           productId: currCart?.productId,
           title: currCart?.title,
@@ -39,8 +35,7 @@ const CartContextProvider = (props) => {
 
       })
 
-      // console.log('productId :>> ', cartFetch[0]?.productId);
-      console.log('carts :>> ', carts);
+      // console.log('carts :>> ', carts);
 
     }
   }, [cartFetch]);
