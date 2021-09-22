@@ -15,11 +15,7 @@ const Slug = () => {
   let [cart, setCart] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
   let [updatedPrice, setUpdatedPrice] = useState(0);
-  // let [mounted, setMounted] = useState(false);
 
-  // useEffect( () => {
-  //   setMounted(true);
-  // }, []);
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
@@ -31,11 +27,10 @@ const Slug = () => {
     // refreshCart();
   }
 
-  function handleDelFromCart(id) {
-    // if (!mounted) return;
-    setCart(cart => cart.filter(item => item.productId !== id));
-    console.log('handleDelFromCart :>> ', cart);
-  };
+  // function handleDelFromCart(id) {
+  //   setCart(cart => cart.filter(item => item.productId !== id));
+  //   console.log('handleDelFromCart :>> ', cart);
+  // };
 
 
   return (

@@ -7,11 +7,12 @@ const cartReducer = (state, action) => {
       return [
         ...state,
         {
+          id: action.cart.id,
           productId: action.cart.productId,
           title: action.cart.title,
           imgSrc: action.cart.imgSrc,
           price: action.cart.price,
-          id: uuid()
+          key: uuid()
         }
       ]
 

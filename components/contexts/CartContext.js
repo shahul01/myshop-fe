@@ -26,7 +26,9 @@ const CartContextProvider = (props) => {
 
       // COMMT: if refreshed same data is added unnecessarily
       cartFetch.forEach(currCart => {
+        // console.log(`currCart`, currCart)
         dispatch({ type: 'ADD_TO_CART', cart: {
+          id: currCart?.id,
           productId: currCart?.productId,
           title: currCart?.title,
           imgSrc: currCart?.imgSrc,

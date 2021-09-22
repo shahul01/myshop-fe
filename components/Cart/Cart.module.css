@@ -21,8 +21,23 @@
   align-items: center;
 }
 
-.img {
+.cart-product span{
+  color: red;
   cursor: pointer;
+  position: relative;
+  float: right;
+  right: 16px;
+  top: 16px;
+  z-index: 1;
+}
+
+.cart-product span:hover{
+  transform: scale(1.5);
+  transition: transform 400ms;
+}
+
+.img {
+  /* cursor: pointer; */
   width: 140px;
   margin-top: 14px;
 }
