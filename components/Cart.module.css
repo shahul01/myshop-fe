@@ -1,21 +1,25 @@
 .cartContainer {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  padding: 3px;
-  /* border-left: 1px solid black; */
-  height: 100%;
+  right: 0px;
+  top: 21px;
+  padding: 14px;
+  height: 97vh;
   min-width: 200px;
-  background-color: #ccc;
+  background-color: #444;
+  color: #eee;
 
 }
 
 .imageContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .img {
   cursor: pointer;
+  width: 140px;
+  margin-top: 14px;
 }
 

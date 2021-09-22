@@ -2,8 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Roboto, Arial, Ubuntu, sans-serif;
+  background-color: #333;
+  color: #eee;
 }
 
 a {
@@ -17,6 +18,9 @@ a {
 
 
 /* */
+.App {
+  min-height: 97vh;
+}
 
 .item-container {
   display: flex;
@@ -48,6 +52,7 @@ a {
 .item-image {
   height: 200px;
   max-width: 200px;
+  margin-top: 14px;
   /* display: flex; */
 }
 

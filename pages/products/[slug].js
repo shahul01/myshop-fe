@@ -32,12 +32,12 @@ const Slug = () => {
 
   return (
     <div>
-      {/* <p className="back-btn" onClick={() => router.push('/products')}>Go Back</p> */}
       <Link href="/products">
         <a className="back-btn">
           Go Back
         </a>
       </Link>
+
       {retrievedData && (
         <div>
           <img src={productsList[pageId-1]?.imgSrc} alt="" className="item-image"/>

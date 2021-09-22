@@ -5,12 +5,15 @@ import { CartContext } from './contexts/CartContext';
 const Cart = () => {
 
   const { carts } = useContext(CartContext);
-  console.log(`carts redux`, carts);
+  // console.log(`carts context`, carts);
 
   const cartList = carts?.map(currCart => (
-    // console.log(`currCart `, currCart)
-    <div key={currCart.id}>
-      <img src={currCart.imgSrc} alt='' />
+    <div key={currCart.id} title={currCart.title}>
+      <img
+        src={currCart.imgSrc}
+        alt={currCart.title}
+        className={styles.img}
+      />
     </div>
   ));
 
@@ -18,10 +21,7 @@ const Cart = () => {
     <div className={styles.cartContainer}>
       <h2>Cart: </h2>
       <div className={styles.imageContainer}>
-        {/* <img src="https://images-na.ssl-images-amazon.com/images/I/815g8Uo656S._AC_UL200_SR200,200_.jpg" alt="" className={styles.img}/>
-        <img src="https://images-na.ssl-images-amazon.com/images/I/815g8Uo656S._AC_UL200_SR200,200_.jpg" alt="" className={styles.img}/> */}
-
-        {cartList}
+        {cartList ? cartList : ''}
       </div>
     </div>
   )
