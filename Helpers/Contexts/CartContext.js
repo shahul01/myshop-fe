@@ -1,6 +1,6 @@
 import { createContext, useReducer, useState, useEffect } from 'react';
-import cartReducer, { ADD_TO_CART } from "../reducers/cartReducer";
-import useFetch from '../useFetch';
+import cartReducer, { ADD_TO_CART } from "../Reducers/cartReducer";
+import useFetch from '../Hooks/useFetch';
 
 export const CartContext = createContext();
 // export let [isRefresh, setIsRefresh] = useState(false);

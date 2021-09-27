@@ -2,9 +2,9 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import { ADD_TO_CART } from "../../components/reducers/cartReducer";
-import { CartContext } from "../../components/contexts/CartContext";
-import useFetch from "../../components/useFetch";
+import { ADD_TO_CART } from "../../Helpers/Reducers/cartReducer";
+import { CartContext } from "../../Helpers/Contexts/CartContext";
+import useFetch from "../../Helpers/Hooks/useFetch";
 import { addToCart } from "./api";
 
 const Slug = () => {

@@ -1,4 +1,4 @@
-import CartContextProvider from '../components/contexts/CartContext';
+import CartContextProvider from '../Helpers/Contexts/CartContext';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 

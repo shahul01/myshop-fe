@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import useFetch from "../../components/useFetch";
+import useFetch from "../../Helpers/Hooks/useFetch";
 
 const Products = () => {
 

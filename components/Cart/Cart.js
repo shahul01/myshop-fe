@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { CartContext } from '../contexts/CartContext';
-import { REMOVE_PRODUCT } from '../reducers/cartReducer';
+import { CartContext } from '../../Helpers/Contexts/CartContext';
+import { REMOVE_PRODUCT } from '../../Helpers/Reducers/cartReducer';
 import { deleteCart } from './api';
 import styles from "./Cart.module.css";
 
