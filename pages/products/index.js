@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../Helpers/Hooks/useFetch";
 
+export let pageId = 0;
+
 const Products = () => {
 
   const router = useRouter();
@@ -12,6 +14,11 @@ const Products = () => {
     if (retrievedData) setProductsList(retrievedData);
   }, [retrievedData])
 
+  function handleGoToProductDetail(id, productId) {
+    pageId = id;
+    router.push(`products/${productId}`)
+  };
+
   return (
     <div className="App">
       <h1 className="center-this">My Shop</h1>
@@ -21,10 +28,10 @@ const Products = () => {
           return (
             <div
               key={currProduct.productId} className="item"
-              onClick={() => router.push(`products/${currProduct.productId}`)}
+              onClick={() => handleGoToProductDetail(currProduct.id, currProduct.productId)}
               >
 
-              <img src={currProduct.imgSrc} alt="" className="item-image"/>
+              <img src={currProduct.imgSrc} alt={currProduct.title} className="item-image"/>
               <p className="title">{currProduct.title}</p>
               <p className="price">{currProduct.price}</p>
 

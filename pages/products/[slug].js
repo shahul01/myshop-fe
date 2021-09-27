@@ -5,24 +5,22 @@ import Link from "next/link";
 import { ADD_TO_CART } from "../../Helpers/Reducers/cartReducer";
 import { CartContext } from "../../Helpers/Contexts/CartContext";
 import useFetch from "../../Helpers/Hooks/useFetch";
+import { pageId } from "./index";
 import { addToCart } from "./api";
 
 const Slug = () => {
   const router = useRouter();
-  const pageId = router.query.slug;
+  // const pageId = router.query.slug;
   const [productsList, setProductsList] = useState([]);
-  const {data: retrievedData, error, isPending} = useFetch('http://localhost:1337/products/');
-  const currProduct = productsList[pageId-1];
+  const pageUrl = `http://localhost:1337/products/${pageId}`;
+  const {data: retrievedData, error, isPending} = useFetch(pageUrl);
+  // const currProduct = productsList[pageId-1];
+  const currProduct = productsList;
   const { dispatch } = useContext(CartContext);
-
-
-  let [cart, setCart] = useState([]);
-  let [totalPrice, setTotalPrice] = useState(0);
-  let [updatedPrice, setUpdatedPrice] = useState(0);
-
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
+    console.log('retrievedData :>> ', retrievedData);
   }, [retrievedData]);
 
   function handleAddToCart(product) {
@@ -63,13 +61,13 @@ const Slug = () => {
       {retrievedData && (
         <div>
 
-          <img src={currProduct?.imgSrc} alt="" className="item-image"/>
+          <img src={currProduct?.imgSrc} alt={currProduct?.title} className="item-image"/>
           <h1>Title: {currProduct?.title}</h1>
           <h3>Price: {currProduct?.price}</h3>
 
           <button
             className='add-to-cart'
-            onClick={() =>handleAddToCart(currProduct)}
+            onClick={() => handleAddToCart(currProduct)}
           >
             Add to Cart
           </button>
