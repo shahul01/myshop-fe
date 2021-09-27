@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { ADD_TO_CART } from "../../components/reducers/cartReducer";
-import cartContext from "../../components/contexts/CartContext";
+import { CartContext } from "../../components/contexts/CartContext";
 import useFetch from "../../components/useFetch";
 import { addToCart } from "./api";
 
@@ -13,7 +13,7 @@ const Slug = () => {
   const [productsList, setProductsList] = useState([]);
   const {data: retrievedData, error, isPending} = useFetch('http://localhost:1337/products/');
   const currProduct = productsList[pageId-1];
-  // const { dispatch } = useContext(cartContext);
+  const { dispatch } = useContext(CartContext);
 
 
   let [cart, setCart] = useState([]);
@@ -27,14 +27,27 @@ const Slug = () => {
 
   function handleAddToCart(product) {
     // console.log('product :>> ', product);
-    addToCart(product);
-    // refreshCart();
+    //is there any way to auto refresh cart w/o dispatch once data submitted
 
-    //is there any way to auto refresh once called
-    // dispatch({
-    //   type: ADD_TO_CART,
-    //   cart: { product }
-    // })
+    new Promise((res, req) => {
+
+      res( addToCart(product) );
+
+    }).then((res) => {
+      dispatch({
+
+        type: ADD_TO_CART,
+        cart: {
+          id: res.id,
+          productId: product.productId,
+          title: product.title,
+          imgSrc: product.imgSrc,
+          price: product.price,
+        }
+      })
+
+    });
+
 
   }
 

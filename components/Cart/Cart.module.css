@@ -21,6 +21,10 @@
   align-items: center;
 }
 
+.cart-product {
+  user-select: none;
+}
+
 .cart-product span{
   color: red;
   cursor: pointer;

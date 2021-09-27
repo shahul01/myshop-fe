@@ -7,7 +7,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       // should this be array or object type?
-      return [
+      let stateArr = [
         ...state,
         {
           id: action.cart.id,
@@ -18,6 +18,9 @@ const cartReducer = (state, action) => {
           key: uuid()
         }
       ];
+
+      // console.log('stateArr :>> ', stateArr);
+      return stateArr;
 
     case REMOVE_PRODUCT:
       return state.filter(currCart => currCart.id !== action.id);

@@ -12,7 +12,7 @@ const Cart = () => {
     // COMMT: made this a promise so it deletes from cart only if there is no error in fetch delete.
     new Promise((res, req) => {
 
-      res(deleteCart(id));
+      res( deleteCart(id) );
     }).then((res) => {
       dispatch({type: REMOVE_PRODUCT, id:res.id});
     });
