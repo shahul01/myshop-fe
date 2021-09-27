@@ -1,17 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { REMOVE_PRODUCT } from '../reducers/cartReducer';
 import { deleteCart } from './api';
 import styles from "./Cart.module.css";
 
 const Cart = () => {
 
-  const { carts } = useContext(CartContext);
-  // console.log(`carts context`, carts);
+  const { carts, dispatch } = useContext(CartContext);
 
-  function handleDelete(id) {
-    // console.log('id :>> ', id);
-    deleteCart(id);
-    // refreshCart();
+  async function handleDelete(id) {
+    // COMMT: made this a promise so it deletes from cart only if there is no error in fetch delete.
+    new Promise((res, req) => {
+
+      res(deleteCart(id));
+    }).then((res) => {
+      dispatch({type: REMOVE_PRODUCT, id:res.id});
+    });
+
   }
 
   const cartList = carts?.map(currCart => (
