@@ -1,14 +1,26 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../Helpers/Hooks/useFetch";
+import styles from "./allProducts.module.css";
 
 export let pageId = 0;
 
 const Products = () => {
 
   const router = useRouter();
-  const [productsList, setProductsList] = useState([]);
-  const {data: retrievedData, error, isPending} = useFetch('http://localhost:1337/products/');
+  const [ productsList, setProductsList ] = useState([]);
+
+  // COMMT: TODO: Add ability to search price etc
+  // COMMT: TODO: Add auto correct to search etc
+
+  const  [ searchTitle, setSearchTitle ] = useState("");
+  let fetchUrl = `http://localhost:1337/products/`;
+
+  if (searchTitle.length >= 1) {
+    fetchUrl = `http://localhost:1337/products?title_contains=${searchTitle}`;
+  };
+
+  const {data: retrievedData, error, isPending} = useFetch(fetchUrl);
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
@@ -21,7 +33,19 @@ const Products = () => {
 
   return (
     <div className="App">
-      <h1 className="center-this">My Shop</h1>
+
+      {/* // COMMT: Make this a component */}
+      <div className={styles['title-area']}>
+        <span className={styles['title-name']}>My Shop</span>
+        <div className={styles['search-box-container']}>
+          <input
+            className={styles['search-box']}
+            value={searchTitle}
+            onChange={(e) => setSearchTitle(e.target?.value)}
+          />
+        </div>
+
+      </div>
       <div className="item-container">
 
         {retrievedData && productsList.map((currProduct) => {

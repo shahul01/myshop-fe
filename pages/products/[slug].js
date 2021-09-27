@@ -1,7 +1,6 @@
 // import axios from "axios";
-import { useRouter } from "next/router";
-import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { useState, useEffect, useContext } from "react";
 import { ADD_TO_CART } from "../../Helpers/Reducers/cartReducer";
 import { CartContext } from "../../Helpers/Contexts/CartContext";
 import useFetch from "../../Helpers/Hooks/useFetch";
@@ -9,18 +8,15 @@ import { pageId } from "./index";
 import { addToCart } from "./api";
 
 const Slug = () => {
-  const router = useRouter();
-  // const pageId = router.query.slug;
   const [productsList, setProductsList] = useState([]);
   const pageUrl = `http://localhost:1337/products/${pageId}`;
   const {data: retrievedData, error, isPending} = useFetch(pageUrl);
-  // const currProduct = productsList[pageId-1];
   const currProduct = productsList;
   const { dispatch } = useContext(CartContext);
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
-    console.log('retrievedData :>> ', retrievedData);
+    // console.log('retrievedData :>> ', retrievedData);
   }, [retrievedData]);
 
   function handleAddToCart(product) {

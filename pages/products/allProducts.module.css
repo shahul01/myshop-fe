@@ -1,0 +1,22 @@
+.title-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title-name {
+  font-size: 1.9rem;
+}
+
+.search-box-container {
+  z-index: 1;
+}
+
+.search-box {
+  margin: 0px 4px 14px 14px;
+  padding: 4px;
+  width: 70vw;
+  height: 46px;
+  outline: none;
+  font-size: 1.4rem;
+}
