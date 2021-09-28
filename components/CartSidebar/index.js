@@ -4,7 +4,7 @@ import { REMOVE_PRODUCT } from '../../Helpers/Reducers/cartReducer';
 import { deleteCart } from './api';
 import styles from "./cart.module.css";
 
-const Cart = () => {
+const CartSidebar = () => {
 
   const { carts, dispatch } = useContext(CartContext);
 
@@ -48,4 +48,4 @@ const Cart = () => {
   )
 }
 
-export default Cart;
+export default CartSidebar;

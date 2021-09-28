@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function App() {
-  const Route = useRouter();
+  // const Route = useRouter();
 
   return (
     <div>

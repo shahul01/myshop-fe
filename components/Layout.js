@@ -1,10 +1,10 @@
-import Cart from "./Cart/Cart";
+import CartSidebar from "./CartSidebar/index";
 
 const Layout = ({ children }) => {
   return (
     <div>
       { children }
-      <Cart />
+      <CartSidebar />
     </div>
   )
 }
