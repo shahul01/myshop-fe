@@ -99,3 +99,13 @@ button.add-to-cart {
   cursor: pointer;
   font-size: 18px;
 }
+
+.basic-material-btn {
+  min-width: 8rem;
+  min-height: 2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  color: white;
+  background-color: dodgerblue;
+  cursor: pointer;
+}

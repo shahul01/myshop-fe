@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../Helpers/Hooks/useFetch";
@@ -34,12 +35,17 @@ const Products = () => {
   return (
     <div className="App">
 
+      <Head>
+        <title>Products - MyShop</title>
+      </Head>
+
       {/* // COMMT: Make this a component */}
       <div className={styles['title-area']}>
         <span className={styles['title-name']}>My Shop</span>
         <div className={styles['search-box-container']}>
           <input
             className={styles['search-box']}
+            placeholder="Search"
             value={searchTitle}
             onChange={(e) => setSearchTitle(e.target?.value)}
           />

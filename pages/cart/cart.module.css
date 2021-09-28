@@ -1,0 +1,26 @@
+.cart {
+  display: flex;
+  margin: 0.6rem;
+}
+
+.img {
+
+}
+
+.cart-detail {
+  margin: 0.6rem;
+}
+
+
+.title {
+
+}
+
+.price {
+
+}
+
+.checkout-btn {
+  width: 16rem;
+  height: 3rem;
+}
