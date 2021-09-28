@@ -50,7 +50,7 @@ const Slug = () => {
     <div className='product-details-page'>
       <Link href="/products">
         <a className="back-btn">
-          Go Back
+          Go back
         </a>
       </Link>
 

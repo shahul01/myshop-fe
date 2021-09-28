@@ -1,26 +1,44 @@
-.cart {
-  display: flex;
-  margin: 0.6rem;
+.cart-body-container {
+  margin: 4rem 5rem;
 }
 
-.img {
+.cart-body {
+  display: flex;
+  margin: 2.4rem;
+}
 
+.title {
+  text-align: center;
+}
+
+.body-img {
+  height: 140px;
 }
 
 .cart-detail {
-  margin: 0.6rem;
+  margin: 1.4rem;
 }
 
 
-.title {
+.prod-title {
 
 }
 
-.price {
+.prod-price {
 
+}
+
+.checkout-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 11rem);
 }
 
 .checkout-btn {
-  width: 16rem;
+  width: 22rem;
   height: 3rem;
 }

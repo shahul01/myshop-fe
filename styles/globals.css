@@ -65,6 +65,11 @@ hr {
   height: 1px;
 }
 
+.medium-hr {
+  width:500px;
+  height: 1px;
+}
+
 .products-link-btn {
   padding: 10px;
   border-radius: 4px;
@@ -107,5 +112,13 @@ button.add-to-cart {
   border-radius: 4px;
   color: white;
   background-color: dodgerblue;
+  cursor: pointer;
+}
+
+.button {
+  margin: 4px;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 4px;
   cursor: pointer;
 }

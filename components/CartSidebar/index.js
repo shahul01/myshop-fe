@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../Helpers/Contexts/CartContext';
 import { REMOVE_PRODUCT } from '../../Helpers/Reducers/cartReducer';
@@ -43,6 +44,12 @@ const CartSidebar = () => {
       <div className={styles['image-container']}>
         {cartList}
       </div>
+
+      <Link href="/cart">
+        <button className="button">
+          Proceed
+        </button>
+      </Link>
 
     </div>
   )
