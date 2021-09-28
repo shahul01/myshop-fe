@@ -5,9 +5,9 @@
 
 <!-- ![main](./images/readme/main.png) -->
 #### All Products
-![products](./images/readme/products.png)
+![products](./images/readme/prod.png)
 
 ---
 
 #### Selected Product
-![selectedProduct](./images/readme/selectedProduct.png)
+![selectedProduct](./images/readme/selectedProd.png)
