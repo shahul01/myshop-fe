@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../Helpers/Contexts/CartContext';
 import { REMOVE_PRODUCT } from '../../Helpers/Reducers/cartReducer';
 import { deleteCart } from './api';
-import styles from "./cart.module.css";
+import styles from "./cartSidebar.module.css";
 
 const CartSidebar = () => {
 
