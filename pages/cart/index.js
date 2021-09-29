@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {isCartSidebar} from "../../components/CartSidebar/index";
 import useFetch from "../../Helpers/Hooks/useFetch";
 import styles from "./cart.module.css";
 
@@ -25,9 +26,10 @@ const Cart = () => {
   return (
     <div >
       <Link href="/products">
-        <a className="back-btn">
+        {/* onClick={() => isCartSidebar = true} */}
+        <p className="back-btn" >
           Go back
-        </a>
+        </p>
       </Link>
 
       <h1 className={styles['title']}>Cart</h1>

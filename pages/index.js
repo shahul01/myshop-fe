@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 export default function App() {
-  // const Route = useRouter();
+  // const router = useRouter();
 
   return (
     <div>

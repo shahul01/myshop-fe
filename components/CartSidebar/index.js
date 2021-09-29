@@ -5,8 +5,9 @@ import { REMOVE_PRODUCT } from '../../Helpers/Reducers/cartReducer';
 import { deleteCart } from './api';
 import styles from "./cartSidebar.module.css";
 
-const CartSidebar = () => {
+const CartSidebar = (props) => {
 
+  // const [ isCartSidebar, setIsCartSidebar ] = useState(true);
   const { carts, dispatch } = useContext(CartContext);
 
   async function handleDelete(id) {
@@ -37,19 +38,34 @@ const CartSidebar = () => {
   ));
 
   return (
-    <div className={styles['cart-container']}>
-      <h2>Cart</h2>
-      <hr className='short-hr' />
+    <div className={styles['cart-container']} >
 
-      <div className={styles['image-container']}>
-        {cartList}
-      </div>
+      {(props.isCartSidebar || false) && (
+        <>
 
-      <Link href="/cart">
-        <button className="button">
-          Proceed
-        </button>
-      </Link>
+          <h2>Cart</h2>
+          <hr className='short-hr' />
+
+          <div className={styles['image-container']}>
+            {cartList}
+          </div>
+
+          <div className={styles['footer']}>
+            <div className={styles['total-price']}>
+              Price:
+            </div>
+
+            <Link href="/cart" >
+              {/* onClick={() => isCartSidebar = false} */}
+              <button className="button" >
+                Proceed
+              </button>
+            </Link>
+
+          </div>
+        </>
+
+      )}
 
     </div>
   )
