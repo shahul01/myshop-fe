@@ -10,7 +10,7 @@ const CartContextProvider = (props) => {
   const [ cartState, setCartState ] = useState([]);
 
   if (!cartState) return;
-  const [ carts, dispatch ] = useReducer(cartReducer, [], () => {
+  const [ cart, dispatch ] = useReducer(cartReducer, [], () => {
     // console.log('cartState 2 :>> ', cartState);
     return cartState;
   });
@@ -44,13 +44,13 @@ const CartContextProvider = (props) => {
 
       })
 
-      // console.log('carts :>> ', carts);
+      // console.log('cart :>> ', cart);
 
     }
   }, [cartFetch]);
 
   return (
-    <CartContext.Provider value={{ carts, dispatch }}>
+    <CartContext.Provider value={{ cart, dispatch }}>
       {props.children}
     </CartContext.Provider>
   )

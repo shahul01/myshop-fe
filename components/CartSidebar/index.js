@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../Helpers/Contexts/CartContext';
 import { REMOVE_PRODUCT } from '../../Helpers/Reducers/cartReducer';
 import { deleteCart } from './api';
@@ -7,8 +7,11 @@ import styles from "./cartSidebar.module.css";
 
 const CartSidebar = (props) => {
 
+  let totalPrice = 0;
+
   // const [ isCartSidebar, setIsCartSidebar ] = useState(true);
-  const { carts, dispatch } = useContext(CartContext);
+  const { cart, dispatch } = useContext(CartContext);
+  console.log('cart :>> ', cart);
 
   async function handleDelete(id) {
     // COMMT: made this a promise so it deletes from cart only if there is no error in fetch delete.
@@ -19,9 +22,13 @@ const CartSidebar = (props) => {
       dispatch({type: REMOVE_PRODUCT, id:res.id});
     });
 
-  }
+  };
 
-  const cartList = carts?.map(currCart => (
+  const getPrice = cart?.map(currCart => {
+    totalPrice += currCart.price;
+  })
+
+  const cartList = cart?.map(currCart => (
     <div key={currCart.key} className={styles['cart-product']} title={currCart.title} >
 
       <span
@@ -40,7 +47,7 @@ const CartSidebar = (props) => {
   return (
     <div className={styles['cart-container']} >
 
-      {(props.isCartSidebar || false) && (
+      {props.isCartSidebar && (
         <>
 
           <h2>Cart</h2>
@@ -52,7 +59,7 @@ const CartSidebar = (props) => {
 
           <div className={styles['footer']}>
             <div className={styles['total-price']}>
-              Price:
+              Price: {totalPrice}
             </div>
 
             <Link href="/cart" >

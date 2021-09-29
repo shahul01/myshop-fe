@@ -3,7 +3,6 @@ import CartSidebar from "./CartSidebar/index";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  console.log('router :>> ', router);
 
   return (
     <div>
