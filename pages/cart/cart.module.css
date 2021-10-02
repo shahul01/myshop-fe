@@ -35,7 +35,9 @@
 
   position: absolute;
   bottom: 20px;
-  left: calc(50% - 11rem);
+  /* left: calc(80% - 11rem); */
+  right: 60px;
+  z-index: 2;
 }
 
 .checkout-btn {

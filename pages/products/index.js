@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import useFetch from "../../Helpers/Hooks/useFetch";
 import styles from "./allProducts.module.css";
 
-export let pageId = 0;
+export let sentPageId = 0;
 
 const Products = () => {
 
   const router = useRouter();
   const [ productsList, setProductsList ] = useState([]);
 
-  // COMMT: TODO: Add ability to search price etc
+  // COMMT: TODO: Add ability to search price, tags etc
   // COMMT: TODO: Add auto correct to search etc
 
   const  [ searchTitle, setSearchTitle ] = useState("");
@@ -28,7 +28,7 @@ const Products = () => {
   }, [retrievedData])
 
   function handleGoToProductDetail(id, productId) {
-    pageId = id;
+    sentPageId = id;
     router.push(`products/${productId}`)
   };
 

@@ -3,7 +3,7 @@
   right: 0px;
   top: 21px;
   padding: 14px;
-  height: 97vh;
+  min-height: 97vh;
   /* min-width: 200px; */
   background-color: #444;
   color: #eee;
