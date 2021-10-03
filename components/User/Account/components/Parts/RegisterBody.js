@@ -1,36 +1,38 @@
-import Styles from "./styles/RegisterBody.module.css";
+import RegInput from "./Elements/RegInput";
+import Styles from "./Styles/RegisterBody.module.css";
 
 const RegisterBody = () => {
 
 
   return (
-    <div className={Styles["container"]} >
+    <div className={Styles["reg-container"]} >
 
       <div className={Styles["name-container"]}>
-        <input
-          className={Styles["acc-val-ipt"]}
+        <RegInput
+          className="acc-val-ipt"
           title="First name"
         />
-        <input
-          className={Styles["acc-val-ipt"]}
+        <RegInput
+          className="acc-val-ipt"
           title="Last name"
         />
 
       </div>
       <div>
 
-        <input
-          className={Styles["acc-val-ipt"]}
+        <RegInput
+          className="acc-val-ipt"
           type="email"
           title="Email"
         />
-        <input
-          className={Styles["acc-val-ipt"]}
+
+        <RegInput
+          className="acc-val-ipt"
           type="password"
           title="Password"
         />
-        <input
-          className={Styles["acc-val-ipt"]}
+        <RegInput
+          className="acc-val-ipt"
           type="password"
           title="Re enter password"
         />
