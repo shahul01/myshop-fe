@@ -6,7 +6,7 @@ import { ADD_TO_CART } from "../../Helpers/Reducers/cartReducer";
 import { CartContext } from "../../Helpers/Contexts/CartContext";
 import useFetch from "../../Helpers/Hooks/useFetch";
 import { sentPageId } from "./index";
-import { addToCart } from "./api";
+import { addToCart } from "./_api";
 
 const Slug = () => {
 
@@ -77,7 +77,7 @@ const Slug = () => {
 
   return (
     <div className='product-details-page'>
-      <Link href="/products">
+      <Link href="/product">
         <a className="back-btn">
           Go back
         </a>

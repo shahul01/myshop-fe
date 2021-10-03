@@ -1,4 +1,4 @@
-import Head from "next/head";
+// import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../Helpers/Hooks/useFetch";
@@ -6,7 +6,7 @@ import styles from "./allProducts.module.css";
 
 export let sentPageId = 0;
 
-const Products = () => {
+const Product = () => {
 
   const router = useRouter();
   const [ productsList, setProductsList ] = useState([]);
@@ -29,15 +29,15 @@ const Products = () => {
 
   function handleGoToProductDetail(id, productId) {
     sentPageId = id;
-    router.push(`products/${productId}`)
+    router.push(`/product/${productId}`)
   };
 
   return (
     <div className="App">
 
-      <Head>
-        <title>Products - MyShop</title>
-      </Head>
+      {/* <Head>
+        <title>MyShop</title>
+      </Head> */}
 
       {/* // COMMT: Make this a component */}
       <div className={styles['title-area']}>
@@ -75,4 +75,4 @@ const Products = () => {
   );
 }
 
-export default Products;
+export default Product;

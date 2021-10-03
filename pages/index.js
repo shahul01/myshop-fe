@@ -1,7 +1,7 @@
 import Head from "next/head";
 // import { useRouter } from "next/router";
 // import Link from "next/link";
-import Home from "./Home/index";
+import Home from "./product/index";
 
 export default function App() {
   // const router = useRouter();
@@ -13,9 +13,9 @@ export default function App() {
       </Head>
 
       {/* <div className="home-btn-container">
-        <Link href="/products">
-          <a className="products-link-btn">
-            Products
+        <Link href="/product">
+          <a className="product-link-btn">
+            Product
           </a>
         </Link>
       </div> */}
