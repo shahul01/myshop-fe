@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  min-height: 400px;
+}
+
+.name-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.acc-val-ipt {
+  display: block;
+  height: 30px;
+  width: 300px;
+  outline: none;
+
+}
