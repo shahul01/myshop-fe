@@ -1,8 +1,11 @@
-import Styles from "./RegisterSignInForm.module.css";
+import Styles from "./RegSignInForm.module.css";
 import Header from "./components/Parts/Header";
 import RegisterBody from "./components/Parts/RegisterBody";
+import regSignInApi from "./api/regSignInApi";
 
-const RegisterSignInForm = () => {
+const RegSignInForm = () => {
+
+
 
   return (
     <div className={Styles["form-container"]}>
@@ -17,4 +20,4 @@ const RegisterSignInForm = () => {
 };
 
 
-export default RegisterSignInForm;
+export default RegSignInForm;

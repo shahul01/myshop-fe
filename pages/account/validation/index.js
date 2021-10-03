@@ -1,11 +1,11 @@
-import RegisterSignInForm from "../../../components/User/Account/RegisterSignInForm";
-// '@/components/User/Account/RegisterSignInForm'
+import RegSignInForm from "../../../components/User/Account/RegSignInForm";
+// '@/components/User/Account/RegSignInForm'
 
 
 const Validation = () => {
   return (
     <div>
-      <RegisterSignInForm />
+      <RegSignInForm />
     </div>
   )
 
