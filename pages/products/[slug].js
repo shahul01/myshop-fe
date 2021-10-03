@@ -18,19 +18,17 @@ const Slug = () => {
 
   // LclStrg SET
   useEffect(() => {
-    if (sentPageId === 0) return;
-    if (typeof window !== 'undefined') {
-      newHistoryProduct = { 'clickedDetails': sentPageId };
-      histArrUnparsed = localStorage.getItem('historyProduct');
-      if (histArrUnparsed) histArr = JSON.parse(histArrUnparsed);
-      histArr.push(newHistoryProduct);
-    }
+    if (sentPageId === 0 || typeof window === 'undefined') return;
+    newHistoryProduct = { 'clickedDetails': sentPageId };
+    histArrUnparsed = localStorage.getItem('historyProduct');
+    if (histArrUnparsed) histArr = JSON.parse(histArrUnparsed);
+    histArr.push(newHistoryProduct);
     localStorage.setItem('historyProduct', JSON.stringify(histArr) );
   }, []);
 
 
   if (sentPageId >= 1) {
-    pageId = sentPageId
+    pageId = sentPageId;
   } else if (sentPageId === 0 && typeof window !== 'undefined') {
     // LclStrg GET
     histArrUnparsed = localStorage.getItem('historyProduct');
