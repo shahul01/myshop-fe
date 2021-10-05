@@ -5,7 +5,7 @@ import styles from "./cart.module.css";
 
 const Cart = () => {
 
-  const { data: cartData, isPending, error }= useFetch(`http://localhost:1337/carts`);
+  const { data: cartData, isPending, error }= useFetch(`http://localhost:1337/carts`, 'get', null);
 
   let cartList = cartData?.map(currData => (
     <div className={styles['cart-body']} key={currData.id}>

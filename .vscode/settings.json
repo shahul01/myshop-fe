@@ -1,6 +1,9 @@
 {
   "print.colourScheme": "nnfx",
-  "workbench.colorTheme": "Winter is Coming (Dark Black - No Italics)"
+  "workbench.colorTheme": "Winter is Coming (Dark Black - No Italics)",
+  "cSpell.words": [
+    "registr"
+  ]
 
 
 }

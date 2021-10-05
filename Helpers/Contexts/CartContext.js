@@ -6,7 +6,7 @@ export const CartContext = createContext();
 // export let [isRefresh, setIsRefresh] = useState(false);
 
 const CartContextProvider = (props) => {
-  let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/')
+  let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'get', null);
   const [ cartState, setCartState ] = useState([]);
 
   if (!cartState) return;

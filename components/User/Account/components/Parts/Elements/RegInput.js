@@ -10,9 +10,14 @@ const RegInput = (props) => {
       </p>
       <input
         className={Styles[props.className]}
+        name={props.name} /* Important Part */
         type={props.type}
         title={props.title}
+        // placeholder={props.title}
+        value={props.value}
+        onChange={props.onChange}
       />
+      <p>{props.iptValue}</p>
       {/* {isDetail} */}
     </div>
   )

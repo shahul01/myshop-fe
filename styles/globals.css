@@ -121,4 +121,5 @@ button.add-to-cart {
   height: 2rem;
   border-radius: 4px;
   cursor: pointer;
+  outline: none;
 }
