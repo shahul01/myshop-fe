@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RegInput from "./Elements/RegInput";
+import { postRegister } from "../../api/regSignInApi.js";
 import Styles from "./Styles/RegisterBody.module.css";
 
 const RegisterBody = () => {
-
 
   const [ registrForm, setRegistrForm  ] = useState({
     firstName: '',
@@ -14,8 +14,6 @@ const RegisterBody = () => {
   });
 
   function handleChange(e) {
-    // console.log('e.target :>> ', e.target.value);
-    // if (!e.target) return;
     setRegistrForm({
       ...registrForm,
       [e.target.name]: e.target.value
@@ -23,8 +21,10 @@ const RegisterBody = () => {
   };
 
 
-  function handleSubmit(submittedValue) {
-    console.log('submittedValue', submittedValue);
+  async function handleSubmit(submittedValue) {
+    submittedValue.username = submittedValue.firstName + submittedValue.lastName;
+    const resSubmit = await postRegister(submittedValue);
+    console.log(`resSubmit: `, resSubmit);
     resetForm();
   };
 
@@ -43,6 +43,7 @@ const RegisterBody = () => {
     <div className={Styles["reg-container"]} >
 
       <div className={Styles["name-container"]}>
+
         <RegInput
           className="acc-val-ipt"
           name="firstName"
@@ -50,6 +51,7 @@ const RegisterBody = () => {
           value={registrForm.firstName}
           onChange={handleChange}
         />
+
         <RegInput
           className="acc-val-ipt"
           name="lastName"
@@ -78,6 +80,7 @@ const RegisterBody = () => {
           value={registrForm.password}
           onChange={handleChange}
         />
+
         <RegInput
           className="acc-val-ipt"
           name="rePassword"

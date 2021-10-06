@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = (url, fetchMethod='get', formData=null) => {
+const useFetch = (url, fetchMethod='GET', formData=null) => {
   const [data, setData] = useState([]);
-  const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
   useEffect(() => {
     const abortCont = new AbortController();
@@ -21,9 +21,9 @@ const useFetch = (url, fetchMethod='get', formData=null) => {
     })
     .then(data => {
       // console.log('data :>> ', data);
-      setIsPending(false);
       setData(data);
       setError(null);
+      setIsPending(false);
     })
     .catch(err => {
       if (err.name === 'AbortError') {

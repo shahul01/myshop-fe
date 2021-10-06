@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./components/Parts/Header";
 import RegisterBody from "./components/Parts/RegisterBody";
 import regSignInApi from "./api/regSignInApi";
-import useFetch from "../../../Helpers/Hooks/useFetch";
+import useFetch from "Helpers/Hooks/useFetch";
 import Styles from "./RegSignInForm.module.css";
 
 const RegSignInForm = () => {
