@@ -9,7 +9,11 @@ const Layout = ({ children }) => {
       { children }
       <CartSidebar
         isCartSidebar={
-          router?.route === "/cart" ? false : true
+
+          (router?.route !== "/cart"
+            && router?.route !== "/account/validation")
+              ? true
+              : false
         }
       />
     </div>

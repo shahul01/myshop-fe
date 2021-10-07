@@ -28,7 +28,7 @@ const Cart = () => {
       <Link href="/">
         {/* onClick={() => isCartSidebar = true} */}
         <p className="back-btn" >
-          Go back
+          Go Home
         </p>
       </Link>
 

@@ -6,7 +6,7 @@ import Styles from "./Styles/SignInBody.module.css";
 const SignInBody = ({isRegisterForm}) => {
 
   const [ signInForm, setSignInForm ] = useState({
-    email: '',
+    identifier: '',
     password: ''
   });
 
@@ -18,13 +18,27 @@ const SignInBody = ({isRegisterForm}) => {
   };
 
   async function handleSubmit(submittedForm) {
-    console.log(`submittedForm: `, submittedForm);
+    // console.log(`submittedForm: `, submittedForm);
+    const resSubmit = await postSignIn(submittedForm);
+    console.log(`resSubmit: `, resSubmit);
+    if (resSubmit?.jwt) {
+      console.log('token set');
+      localStorage.setItem('userToken', resSubmit?.jwt);
+
+      let userObj = {
+        'id': resSubmit.user.id,
+        'email': resSubmit.user.email
+      };
+
+      localStorage.setItem('userData', JSON.stringify(userObj));
+
+    }
     resetForm();
   };
 
   function resetForm() {
     setSignInForm({
-      email: '',
+      identifier: '',
       password: ''
     })
   };
@@ -36,10 +50,10 @@ const SignInBody = ({isRegisterForm}) => {
 
           <RegInput
             className="acc-val-ipt"
-            name="email"
+            name="identifier"
             type="email"
             title="Email"
-            value={signInForm.email}
+            value={signInForm.identifier}
             onChange={handleChange}
           />
 
