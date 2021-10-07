@@ -5,7 +5,7 @@ import Styles from "./Styles/RegisterBody.module.css";
 
 const RegisterBody = ({ isRegisterForm }) => {
 
-  const [ registrForm, setRegistrForm  ] = useState({
+  const [ registerForm, setRegisterForm  ] = useState({
     firstName: '',
     lastName: '',
     email: '',
@@ -14,22 +14,22 @@ const RegisterBody = ({ isRegisterForm }) => {
   });
 
   function handleChange(e) {
-    setRegistrForm({
-      ...registrForm,
-      [e.target.name]: e.target.value
+    setRegisterForm({
+      ...registerForm,
+      [e?.target?.name]: e?.target?.value
     });
   };
 
 
-  async function handleSubmit(submittedValue) {
+  async function handleSubmit(submittedForm) {
 
-    const createdUserName = submittedValue.firstName.toLowerCase()
-      + submittedValue.lastName.toLowerCase()
+    const createdUserName = submittedForm.firstName.toLowerCase()
+      + submittedForm.lastName
       + '-' + new Date().getTime();
 
-    submittedValue.username = createdUserName;
+    submittedForm.username = createdUserName;
 
-    const resSubmit = await postRegister(submittedValue);
+    const resSubmit = await postRegister(submittedForm);
     console.log(`resSubmit: `, resSubmit);
 
     if (resSubmit?.data?.jwt) {
@@ -41,7 +41,7 @@ const RegisterBody = ({ isRegisterForm }) => {
   };
 
   function resetForm() {
-    setRegistrForm({
+    setRegisterForm({
       firstName: '',
       lastName: '',
       email: '',
@@ -65,7 +65,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               className="acc-val-ipt"
               name="firstName"
               title="First name"
-              value={registrForm.firstName}
+              value={registerForm.firstName}
               onChange={handleChange}
             />
 
@@ -73,7 +73,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               className="acc-val-ipt"
               name="lastName"
               title="Last name"
-              value={registrForm.lastName}
+              value={registerForm.lastName}
               onChange={handleChange}
             />
 
@@ -85,7 +85,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               name="email"
               type="email"
               title="Email"
-              value={registrForm.email}
+              value={registerForm.email}
               onChange={handleChange}
             />
 
@@ -94,7 +94,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               name="password"
               type="password"
               title="Password"
-              value={registrForm.password}
+              value={registerForm.password}
               onChange={handleChange}
             />
 
@@ -103,7 +103,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               name="rePassword"
               type="password"
               title="Re enter password"
-              value={registrForm.rePassword}
+              value={registerForm.rePassword}
               onChange={handleChange}
             />
           </div>
@@ -118,7 +118,7 @@ const RegisterBody = ({ isRegisterForm }) => {
             </span>
           </div> */}
 
-          <button className="button" onClick={() => handleSubmit(registrForm)}>Submit</button>
+          <button className="button" onClick={() => handleSubmit(registerForm)}>Submit</button>
         </div>
       }
     </>
