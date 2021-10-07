@@ -23,14 +23,14 @@ const SignInBody = ({isRegisterForm}) => {
     console.log(`resSubmit: `, resSubmit);
     if (resSubmit?.jwt) {
       console.log('token set');
-      localStorage.setItem('userToken', resSubmit?.jwt);
+      localStorage.setItem('__userToken', resSubmit?.jwt);
 
       let userObj = {
         'id': resSubmit.user.id,
         'email': resSubmit.user.email
       };
 
-      localStorage.setItem('userData', JSON.stringify(userObj));
+      localStorage.setItem('__userData', JSON.stringify(userObj));
 
     }
     resetForm();

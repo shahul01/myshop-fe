@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { CartContext } from '../../Helpers/Contexts/CartContext';
 import { REMOVE_PRODUCT } from '../../Helpers/Reducers/cartReducer';
 import { deleteCart } from './api';
