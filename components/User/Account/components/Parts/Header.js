@@ -1,8 +1,12 @@
-const Header = () => {
+const Header = ({setIsRegisterForm}) => {
 
   return (
     <div>
-      Register |
+      <>
+        <button onClick={() => setIsRegisterForm(true)}>Register</button>
+        <button onClick={() => setIsRegisterForm(false)}>SignIn</button>
+
+      </>
     </div>
   )
 

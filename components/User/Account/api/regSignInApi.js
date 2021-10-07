@@ -9,3 +9,9 @@ export async function postRegister(data) {
 
 }
 
+export async function postSignIn(data) {
+  const postUrl = await axios.post(`http://localhost:1337/auth/local`, data);
+  const resPost = postUrl.data;
+
+  return resData
+};

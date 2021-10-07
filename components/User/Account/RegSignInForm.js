@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "./components/Parts/Header";
 import RegisterBody from "./components/Parts/RegisterBody";
-import regSignInApi from "./api/regSignInApi";
-import useFetch from "Helpers/Hooks/useFetch";
+import SignInBody from "./components/Parts/SignInBody";
+// import regSignInApi from "./api/regSignInApi";
+// import useFetch from "Helpers/Hooks/useFetch";
 import Styles from "./RegSignInForm.module.css";
 
 const RegSignInForm = () => {
+
+  const [ isRegisterForm, setIsRegisterForm ] = useState(false);
 
   // let postData = {}
   // const {data: fetchedData, error, isPending} = useFetch(`http://localhost:1337/users/`, 'get', postData);
@@ -14,8 +17,15 @@ const RegSignInForm = () => {
     <div className={Styles["form-container"]}>
       {/* <span>Hello</span> */}
 
-      <Header/>
-      <RegisterBody />
+      <Header
+        setIsRegisterForm={setIsRegisterForm}
+      />
+      <RegisterBody
+        isRegisterForm={isRegisterForm}
+      />
+      <SignInBody
+        isRegisterForm={isRegisterForm}
+      />
 
     </div>
   )

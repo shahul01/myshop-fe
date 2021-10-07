@@ -3,7 +3,7 @@ import RegInput from "./Elements/RegInput";
 import { postRegister } from "../../api/regSignInApi.js";
 import Styles from "./Styles/RegisterBody.module.css";
 
-const RegisterBody = () => {
+const RegisterBody = ({ isRegisterForm }) => {
 
   const [ registrForm, setRegistrForm  ] = useState({
     firstName: '',
@@ -52,59 +52,76 @@ const RegisterBody = () => {
 
 
   return (
-    <div className={Styles["reg-container"]} >
+    <>
 
-      <div className={Styles["name-container"]}>
+      {isRegisterForm &&
+        <div className={Styles["reg-container"]} >
 
-        <RegInput
-          className="acc-val-ipt"
-          name="firstName"
-          title="First name"
-          value={registrForm.firstName}
-          onChange={handleChange}
-        />
+          <h2>Register</h2>
 
-        <RegInput
-          className="acc-val-ipt"
-          name="lastName"
-          title="Last name"
-          value={registrForm.lastName}
-          onChange={handleChange}
-        />
+          <div className={Styles["name-container"]}>
 
-      </div>
-      <div>
+            <RegInput
+              className="acc-val-ipt"
+              name="firstName"
+              title="First name"
+              value={registrForm.firstName}
+              onChange={handleChange}
+            />
 
-        <RegInput
-          className="acc-val-ipt"
-          name="email"
-          type="email"
-          title="Email"
-          value={registrForm.email}
-          onChange={handleChange}
-        />
+            <RegInput
+              className="acc-val-ipt"
+              name="lastName"
+              title="Last name"
+              value={registrForm.lastName}
+              onChange={handleChange}
+            />
 
-        <RegInput
-          className="acc-val-ipt"
-          name="password"
-          type="password"
-          title="Password"
-          value={registrForm.password}
-          onChange={handleChange}
-        />
+          </div>
+          <div>
 
-        <RegInput
-          className="acc-val-ipt"
-          name="rePassword"
-          type="password"
-          title="Re enter password"
-          value={registrForm.rePassword}
-          onChange={handleChange}
-        />
-      </div>
+            <RegInput
+              className="acc-val-ipt"
+              name="email"
+              type="email"
+              title="Email"
+              value={registrForm.email}
+              onChange={handleChange}
+            />
 
-      <button className="button" onClick={() => handleSubmit(registrForm)}>Submit</button>
-    </div>
+            <RegInput
+              className="acc-val-ipt"
+              name="password"
+              type="password"
+              title="Password"
+              value={registrForm.password}
+              onChange={handleChange}
+            />
+
+            <RegInput
+              className="acc-val-ipt"
+              name="rePassword"
+              type="password"
+              title="Re enter password"
+              value={registrForm.rePassword}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* <div className="agreement">
+            <button type="checkbox"></button>
+            <span>
+              I agree to
+                <a href="#">
+                  terms, agreement and privacy policy
+                </a>
+            </span>
+          </div> */}
+
+          <button className="button" onClick={() => handleSubmit(registrForm)}>Submit</button>
+        </div>
+      }
+    </>
   )
 
 
