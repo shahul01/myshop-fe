@@ -21,7 +21,7 @@ const Product = () => {
     fetchUrl = `http://localhost:1337/products?title_contains=${searchTitle}`;
   };
 
-  const {data: retrievedData, error, isPending} = useFetch(fetchUrl, 'get', null);
+  const {data: retrievedData, error, isPending} = useFetch(fetchUrl, 'GET', null);
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);

@@ -39,7 +39,7 @@ const Slug = () => {
 
   // COMMT: fetch data
   const pageUrl = `http://localhost:1337/products/${pageId}`;
-  const {data: retrievedData, error, isPending} = useFetch(pageUrl, get, null);
+  const {data: retrievedData, error, isPending} = useFetch(pageUrl, 'GET', null);
 
   const [productsList, setProductsList] = useState([]);
   const currProduct = productsList;

@@ -7,7 +7,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       // should this be array or object type?
-      let stateArr = [
+      const stateArr = [
         ...state,
         {
           id: action.cart.id,

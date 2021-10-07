@@ -20,7 +20,7 @@ export default function App() {
         </Link>
       </div> */}
 
-    <Home />
+     <Home />
     </div>
   )
 }

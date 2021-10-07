@@ -22,12 +22,14 @@ const SignInBody = ({isRegisterForm}) => {
     const resSubmit = await postSignIn(submittedForm);
     console.log(`resSubmit: `, resSubmit);
     if (resSubmit?.jwt) {
-      console.log('token set');
       localStorage.setItem('__userToken', resSubmit?.jwt);
+      console.log('token set');
 
-      let userObj = {
-        'id': resSubmit.user.id,
-        'email': resSubmit.user.email
+      const resUser = resSubmit.user;
+      const userObj = {
+        'id': resUser?.id,
+        'email': resUser?.email,
+        'username': resUser?.username
       };
 
       localStorage.setItem('__userData', JSON.stringify(userObj));

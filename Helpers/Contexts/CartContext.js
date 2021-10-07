@@ -3,32 +3,15 @@ import cartReducer, { ADD_TO_CART } from "../Reducers/cartReducer";
 import useFetch from '../Hooks/useFetch';
 
 export const CartContext = createContext();
-// export let [isRefresh, setIsRefresh] = useState(false);
 
 const CartContextProvider = (props) => {
-  let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'get', null);
-  const [ cartState, setCartState ] = useState([]);
+  let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'GET', null);
 
-  if (!cartState) return;
-  const [ cart, dispatch ] = useReducer(cartReducer, [], () => {
-    // console.log('cartState 2 :>> ', cartState);
-    return cartState;
-  });
+  const [ cart, dispatch ] = useReducer(cartReducer, []);
 
+  // COMMT: Intialise reducer w/ cart data.
   useEffect( async () => {
     if (cartFetch) {
-      // console.log('runs');
-      // console.log('isRefresh :>> ', isRefresh);
-
-      // await new Promise ((res, rej) => {
-      //   () => res(cartFetch)
-      // }).then((res) => {
-
-      //   setCartState(res);
-      //   console.log(`cartFetch`, cartFetch)
-      //   console.log('cartState :>> ', cartState);
-      // })
-
       // COMMT: w/ HMReload, same data is added unnecessarily
 
       cartFetch.forEach(currCart => {
@@ -43,8 +26,6 @@ const CartContextProvider = (props) => {
         } });
 
       })
-
-      // console.log('cart :>> ', cart);
 
     }
   }, [cartFetch]);
