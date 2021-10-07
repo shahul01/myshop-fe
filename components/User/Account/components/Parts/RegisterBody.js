@@ -22,9 +22,21 @@ const RegisterBody = () => {
 
 
   async function handleSubmit(submittedValue) {
-    submittedValue.username = submittedValue.firstName + submittedValue.lastName;
+
+    const createdUserName = submittedValue.firstName.toLowerCase()
+      + submittedValue.lastName.toLowerCase()
+      + '-' + new Date().getTime();
+
+    submittedValue.username = createdUserName;
+
     const resSubmit = await postRegister(submittedValue);
     console.log(`resSubmit: `, resSubmit);
+
+    if (resSubmit?.data?.jwt) {
+      console.log('token set');
+      localStorage.setItem('userToken',  resSubmit?.data?.jwt);
+    }
+
     resetForm();
   };
 
@@ -91,7 +103,7 @@ const RegisterBody = () => {
         />
       </div>
 
-      <button className="button" onClick={() => handleSubmit(registrForm)}>Temp Btn</button>
+      <button className="button" onClick={() => handleSubmit(registrForm)}>Submit</button>
     </div>
   )
 
