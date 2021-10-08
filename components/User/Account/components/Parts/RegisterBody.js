@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import RegInput from "./Elements/RegInput";
 import { postRegister } from "../../api/regSignInApi.js";
 import Styles from "./Styles/RegisterBody.module.css";
@@ -23,18 +23,41 @@ const RegisterBody = ({ isRegisterForm }) => {
 
   async function handleSubmit(submittedForm) {
 
+    if (submittedForm.firstName === '') return;
+
     const createdUserName = submittedForm.firstName.toLowerCase()
       + submittedForm.lastName
       + '-' + new Date().getTime();
 
-    submittedForm.username = createdUserName;
+      submittedForm.username = createdUserName;
 
-    const resSubmit = await postRegister(submittedForm);
+    const regForm = {
+      ...submittedForm,
+      username: createdUserName
+    };
+
+    const signInForm = {
+      identifier: submittedForm.email,
+      password: submittedForm.password
+    };
+
+    const resSubmit = await postRegister(regForm, signInForm);
     console.log(`resSubmit: `, resSubmit);
 
-    if (resSubmit?.data?.jwt) {
+    const resAccData = resSubmit?.signInData;
+    if (resAccData?.jwt) {
+      localStorage.setItem('__userToken', resAccData.jwt);
       console.log('token set');
-      localStorage.setItem('userToken',  resSubmit?.data?.jwt);
+
+      const resUser = resAccData.user;
+      const userObj = {
+        'id': resUser?.id,
+        'email': resUser?.email,
+        'username': resUser?.username
+      };
+
+      localStorage.setItem('__userData', JSON.stringify(userObj));
+
     }
 
     resetForm();
@@ -67,6 +90,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               title="First name"
               value={registerForm.firstName}
               onChange={handleChange}
+              required={true}
             />
 
             <RegInput
@@ -87,6 +111,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               title="Email"
               value={registerForm.email}
               onChange={handleChange}
+              required={true}
             />
 
             <RegInput
@@ -96,6 +121,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               title="Password"
               value={registerForm.password}
               onChange={handleChange}
+              required={true}
             />
 
             <RegInput
@@ -105,6 +131,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               title="Re enter password"
               value={registerForm.rePassword}
               onChange={handleChange}
+              required={true}
             />
           </div>
 

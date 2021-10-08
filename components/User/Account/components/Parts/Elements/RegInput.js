@@ -12,6 +12,7 @@ const RegInput = (props) => {
         title={props.title}
         value={props.value}
         onChange={props.onChange}
+        required={props.required}
       />
     </div>
   )

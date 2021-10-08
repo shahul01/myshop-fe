@@ -1,10 +1,15 @@
 import axios from "axios";
 
-export async function postRegister(data) {
-  const postUrl = await axios.post(`http://localhost:1337/users`, data);
-  const resPost = postUrl.data;
+export async function postRegister(regData, signInData) {
+  const postRegUrl = await axios.post(`http://localhost:1337/users`, regData);
+  const postSignInUrl = await axios.post(`http://localhost:1337/auth/local`, signInData);
 
-  // console.log('resPost :>> ', resPost);
+  const resPost = {
+    regData: postRegUrl.data,
+    signInData: postSignInUrl.data
+  };
+
+  console.log('resPost :>> ', resPost);
   return resPost;
 
 }

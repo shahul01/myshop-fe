@@ -18,6 +18,8 @@ const SignInBody = ({isRegisterForm}) => {
   };
 
   async function handleSubmit(submittedForm) {
+
+    if (submittedForm.identifier === '') return;
     // console.log(`submittedForm: `, submittedForm);
     const resSubmit = await postSignIn(submittedForm);
     console.log(`resSubmit: `, resSubmit);
@@ -48,7 +50,10 @@ const SignInBody = ({isRegisterForm}) => {
   return (
     <>
       {!isRegisterForm &&
-        <div className={Styles["signIn-container"]}>
+        <form
+            className={Styles["signIn-container"]}
+            onSubmit={() => handleSubmit(signInForm)}
+          >
 
           <RegInput
             className="acc-val-ipt"
@@ -68,9 +73,9 @@ const SignInBody = ({isRegisterForm}) => {
             onChange={handleChange}
           />
 
-          <button className="button" onClick={() => handleSubmit(signInForm)}>Sign In</button>
+          <button type="submit" className="button">Sign In</button>
 
-        </div>
+        </form>
       }
     </>
   )

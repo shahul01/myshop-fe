@@ -8,7 +8,7 @@ import Styles from "./RegSignInForm.module.css";
 
 const RegSignInForm = () => {
 
-  const [ isRegisterForm, setIsRegisterForm ] = useState(false);
+  const [ isRegisterForm, setIsRegisterForm ] = useState(true);
 
   // let postData = {}
   // const {data: fetchedData, error, isPending} = useFetch(`http://localhost:1337/users/`, 'get', postData);
