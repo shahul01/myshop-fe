@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "Helpers/Contexts/UserContext";
+import { SET_USER } from "Helpers/Reducers/userReducer";
 import RegInput from "./Elements/RegInput";
 import { postSignIn } from "../../api/regSignInApi";
+
 import Styles from "./Styles/SignInBody.module.css";
 
 const SignInBody = ({isRegisterForm}) => {
+
+  const { user, dispatch } = useContext(UserContext);
 
   const [ signInForm, setSignInForm ] = useState({
     identifier: '',
@@ -23,7 +28,12 @@ const SignInBody = ({isRegisterForm}) => {
     // console.log(`submittedForm: `, submittedForm);
     const resSubmit = await postSignIn(submittedForm);
     // console.log(`resSubmit: `, resSubmit);
-    if (resSubmit?.jwt) {
+    // console.log(`user: `, user);
+    if (user.isUserSignedIn) {
+      // alert('already signed in'); // replace with toast
+      alert(`user ${user.username} with email '${user.email} is already signed in, please sign out first.'`)
+
+    } else if (!user.isUserSignedIn && resSubmit?.jwt) {
       localStorage.setItem('__userToken', resSubmit?.jwt);
       console.log('token set');
 
@@ -35,6 +45,14 @@ const SignInBody = ({isRegisterForm}) => {
       };
 
       localStorage.setItem('__userData', JSON.stringify(userObj));
+      dispatch({
+        type: SET_USER,
+        user: {
+          userId: resUser?.id,
+          email: resUser?.email,
+          username: resUser?.username
+        }
+      })
 
     }
     resetForm();

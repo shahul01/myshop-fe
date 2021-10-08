@@ -57,6 +57,7 @@ const RegisterBody = ({ isRegisterForm }) => {
         'email': resUser.email,
         'username': resUser.username
       };
+      console.log(`userObj: `, userObj);
 
       localStorage.setItem('__userData', JSON.stringify(userObj));
       dispatch({

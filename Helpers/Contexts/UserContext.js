@@ -20,18 +20,19 @@ const UserContextProvider = (props) => {
 
   });
 
-  // COMMT: Intialise reducer w/ user data.
+  // COMMT: Intialise reducer w/ user data from local storage.
   useEffect(() => {
     if (typeof window === undefined) return;
     const localUserDataUnparsed = localStorage.getItem('__userData');
     if (!localUserDataUnparsed) return;
     const localUserData = JSON.parse(localUserDataUnparsed);
+    console.log(`localUserData: `, localUserData);
     dispatch({
       type: SET_USER, user: {
         isUserSignedIn: true,
         userId: localUserData.id,
         email: localUserData.email,
-        username: localUserData.email
+        username: localUserData.username
       }
     });
 

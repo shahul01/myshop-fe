@@ -12,7 +12,7 @@ const userReducer = (state, action) => {
     case SET_USER:
       userData = {
         isUserSignedIn: true,
-        userId: action.user.id,
+        userId: action.user.userId,
         email: action.user.email,
         username: action.user.username
       };
