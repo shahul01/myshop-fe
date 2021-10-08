@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import RegInput from "./Elements/RegInput";
 import { postRegister } from "../../api/regSignInApi.js";
+import { UserContext } from "Helpers/Contexts/UserContext";
 import Styles from "./Styles/RegisterBody.module.css";
+import { SET_USER } from "Helpers/Reducers/userReducer";
 
 const RegisterBody = ({ isRegisterForm }) => {
+
+  const { user, dispatch } = useContext(UserContext);
 
   const [ registerForm, setRegisterForm  ] = useState({
     firstName: '',
@@ -21,15 +25,13 @@ const RegisterBody = ({ isRegisterForm }) => {
   };
 
 
-  async function handleSubmit(submittedForm) {
-
+  async function handleSubmit(e, submittedForm) {
+    e.preventDefault();
     if (submittedForm.firstName === '') return;
 
     const createdUserName = submittedForm.firstName.toLowerCase()
       + submittedForm.lastName
       + '-' + new Date().getTime();
-
-      submittedForm.username = createdUserName;
 
     const regForm = {
       ...submittedForm,
@@ -51,12 +53,21 @@ const RegisterBody = ({ isRegisterForm }) => {
 
       const resUser = resAccData.user;
       const userObj = {
-        'id': resUser?.id,
-        'email': resUser?.email,
-        'username': resUser?.username
+        'id': resUser.id,
+        'email': resUser.email,
+        'username': resUser.username
       };
 
       localStorage.setItem('__userData', JSON.stringify(userObj));
+      dispatch({
+        type: SET_USER,
+        user: {
+          isUserSignedIn: true,
+          userId: resUser.id,
+          email: resUser.email,
+          username: resUser.username
+        }
+      })
 
     }
 
@@ -78,7 +89,10 @@ const RegisterBody = ({ isRegisterForm }) => {
     <>
 
       {isRegisterForm &&
-        <div className={Styles["reg-container"]} >
+        <form
+          className={Styles["reg-container"]}
+          onSubmit={(e) => handleSubmit(e, registerForm)}
+        >
 
           <h2>Register</h2>
 
@@ -145,8 +159,8 @@ const RegisterBody = ({ isRegisterForm }) => {
             </span>
           </div> */}
 
-          <button className="button" onClick={() => handleSubmit(registerForm)}>Submit</button>
-        </div>
+          <button type="submit" className="button">Register</button>
+        </form>
       }
     </>
   )

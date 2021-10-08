@@ -9,7 +9,7 @@ export async function postRegister(regData, signInData) {
     signInData: postSignInUrl.data
   };
 
-  console.log('resPost :>> ', resPost);
+  // console.log('resPost :>> ', resPost);
   return resPost;
 
 }

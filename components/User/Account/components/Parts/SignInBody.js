@@ -17,12 +17,12 @@ const SignInBody = ({isRegisterForm}) => {
     })
   };
 
-  async function handleSubmit(submittedForm) {
-
+  async function handleSubmit(e, submittedForm) {
+    e.preventDefault();
     if (submittedForm.identifier === '') return;
     // console.log(`submittedForm: `, submittedForm);
     const resSubmit = await postSignIn(submittedForm);
-    console.log(`resSubmit: `, resSubmit);
+    // console.log(`resSubmit: `, resSubmit);
     if (resSubmit?.jwt) {
       localStorage.setItem('__userToken', resSubmit?.jwt);
       console.log('token set');
@@ -52,7 +52,7 @@ const SignInBody = ({isRegisterForm}) => {
       {!isRegisterForm &&
         <form
             className={Styles["signIn-container"]}
-            onSubmit={() => handleSubmit(signInForm)}
+            onSubmit={(e) => handleSubmit(e, signInForm)}
           >
 
           <RegInput
