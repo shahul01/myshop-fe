@@ -10,7 +10,7 @@ const Navbar = () => {
 
   function handleSignOut() {
     // console.log('runs 0');
-    // signOut()
+    // signOut(user, dispatch);
 
     if (!user?.isUserSignedIn) return;
     localStorage.removeItem('__userToken');

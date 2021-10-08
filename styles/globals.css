@@ -18,6 +18,13 @@ a {
 
 
 /* */
+
+:root {
+  --theme-info-border: #E7C000;
+  --theme-error-border: #CA0000;
+}
+
+
 .App {
   min-height: 97vh;
 }

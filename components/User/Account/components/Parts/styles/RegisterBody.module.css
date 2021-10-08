@@ -12,6 +12,7 @@
 .name-container {
   display: flex;
   flex-direction: row;
+  gap: 8px;
 }
 
 .acc-val-ipt {
@@ -20,4 +21,13 @@
   width: 300px;
   outline: none;
 
+}
+
+.already-signed-in-err {
+  margin: 10vh 10vw;
+  padding: 20px;
+  border-left: 4px solid var(--theme-info-border);
+  /* border-radius: 14px; */
+  font-size: 1.2rem;
+  background-color: #111;
 }

@@ -8,8 +8,8 @@
 .already-signed-in-err {
   margin: 20vh 20vw;
   padding: 20px;
-  border-top: 1px solid red;
-  border-radius: 14px;
+  border-left: 4px solid var(--theme-error-border);
+  /* border-radius: 14px; */
   font-size: 1.2rem;
   background-color: #111;
 }

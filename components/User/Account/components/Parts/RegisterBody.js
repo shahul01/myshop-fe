@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
+import { UserContext } from "Helpers/Contexts/UserContext";
+import { SET_USER } from "Helpers/Reducers/userReducer";
 import RegInput from "./Elements/RegInput";
 import { postRegister } from "../../api/regSignInApi.js";
-import { UserContext } from "Helpers/Contexts/UserContext";
 import Styles from "./Styles/RegisterBody.module.css";
-import { SET_USER } from "Helpers/Reducers/userReducer";
 
 const RegisterBody = ({ isRegisterForm }) => {
 
@@ -151,23 +151,31 @@ const RegisterBody = ({ isRegisterForm }) => {
             />
           </div>
 
-          {/* <div className="agreement">
-            <button type="checkbox"></button>
-            <span>
-              I agree to
-                <a href="#">
-                  terms, agreement and privacy policy
-                </a>
-            </span>
-          </div> */}
+          {/*
+            COMMT: TODO:
+            <div className="agreement">
+              <button type="checkbox"></button>
+              <span>
+                I agree to
+                  <a href="#">
+                    terms, agreement and privacy policy
+                  </a>
+              </span>
+            </div>
+          */}
 
           <button type="submit" className="button">Register</button>
 
-          {/* <div>
-            COMMT: TODO:
-            you are already signed, for testing purpose though,
-            registration form can be reused without signing out.
-          </div> */}
+          {
+            user.isUserSignedIn && (
+              <div className={Styles['already-signed-in-err']}>
+                You are already signed in.
+                <br />
+                But for testing purpose though,
+                registration form can be reused without signing out.
+              </div>
+            )
+          }
         </form>
       }
     </>

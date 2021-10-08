@@ -7,7 +7,7 @@ const Account = () => {
 
   return (
     <>
-      <button class="button" onClick={() => router.push('/account/validation')}>
+      <button className="button" onClick={() => router.push('/account/validation')}>
         Go to account validation
       </button>
     </>

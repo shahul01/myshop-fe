@@ -2,8 +2,12 @@ import { useContext } from "react";
 import { UserContext } from "Helpers/Contexts/UserContext";
 import { UNSET_USER } from "Helpers/Reducers/userReducer";
 
-export function signOut() {
+// COMMT: TODO:
+// Hooks cant be called inside nested fn, find a work around
+
+export function signOut({user, dispatch}) {
   // const { user, dispatch } = useContext(UserContext);
+  console.log(`user: `, user);
   console.log('runs 1');
   if (!user?.isUserSignedIn) return;
   console.log('runs 2');

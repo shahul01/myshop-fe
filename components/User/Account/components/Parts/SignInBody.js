@@ -73,7 +73,7 @@ const SignInBody = ({isRegisterForm}) => {
     <>
       {!isRegisterForm && user?.isUserSignedIn
         ? (
-          <div className={Styles["already-signed-in-err"]} >
+          <div className={Styles['already-signed-in-err']} >
             {`
               User '${user.username}' with email '${user.email}'
               is already signed in.
