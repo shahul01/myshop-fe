@@ -26,7 +26,7 @@ const UserContextProvider = (props) => {
     const localUserDataUnparsed = localStorage.getItem('__userData');
     if (!localUserDataUnparsed) return;
     const localUserData = JSON.parse(localUserDataUnparsed);
-    console.log(`localUserData: `, localUserData);
+    // console.log(`localUserData: `, localUserData);
     dispatch({
       type: SET_USER, user: {
         isUserSignedIn: true,
@@ -39,7 +39,7 @@ const UserContextProvider = (props) => {
   }, []);
 
   // setTimeout(() => {
-    console.log(`user 2: `, user);
+    // console.log(`user 2: `, user);
   // }, 1000)
 
   return (

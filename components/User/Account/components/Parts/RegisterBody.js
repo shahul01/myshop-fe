@@ -29,9 +29,10 @@ const RegisterBody = ({ isRegisterForm }) => {
     e.preventDefault();
     if (submittedForm.firstName === '') return;
 
+    const uniqueID = new Date().getTime().toString().substring(9,13);
     const createdUserName = submittedForm.firstName.toLowerCase()
       + submittedForm.lastName
-      + '-' + new Date().getTime();
+      + '-' + uniqueID;
 
     const regForm = {
       ...submittedForm,
@@ -161,6 +162,12 @@ const RegisterBody = ({ isRegisterForm }) => {
           </div> */}
 
           <button type="submit" className="button">Register</button>
+
+          {/* <div>
+            COMMT: TODO:
+            you are already signed, for testing purpose though,
+            registration form can be reused without signing out.
+          </div> */}
         </form>
       }
     </>
