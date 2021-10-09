@@ -69,7 +69,9 @@ const RegisterBody = ({ isRegisterForm }) => {
           email: resUser.email,
           username: resUser.username
         }
-      })
+      });
+
+      // COMMT: TODO: toast - Success
 
     }
 

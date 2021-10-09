@@ -16,7 +16,7 @@ const Navbar = () => {
     signOut();
     router.push('/account/validation');
     return dispatch({type: UNSET_USER});
-
+    // COMMT: TODO: toast - Signed out
   };
 
   return (

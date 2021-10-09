@@ -11,6 +11,16 @@ const SignInBody = ({isRegisterForm}) => {
 
   const router = useRouter();
   const { user, dispatch } = useContext(UserContext);
+  let demoEmail = '';
+  let demoPass = '';
+  if (typeof window !== undefined) {
+    demoEmail = process.env.REACT_APP_DEMO_EMAIL
+    demoPass = process.env.REACT_APP_DEMO_PSSW
+    console.log(`process.env 0: `, process.env);
+    console.log(`demoEmail 0: `, demoEmail);
+  }
+  // console.log(`process.env: `, process.env);
+  console.log(`demoEmail: `, demoEmail);
 
   const [ signInForm, setSignInForm ] = useState({
     identifier: '',
@@ -24,8 +34,8 @@ const SignInBody = ({isRegisterForm}) => {
     })
   };
 
-  async function handleSubmit(e, submittedForm) {
-    e.preventDefault();
+  async function handleSubmit(isDemo, e, submittedForm) {
+    if (!isDemo) e.preventDefault();
     if (submittedForm.identifier === '') return;
     // console.log(`submittedForm: `, submittedForm);
     const resSubmit = await postSignIn(submittedForm);
@@ -68,7 +78,24 @@ const SignInBody = ({isRegisterForm}) => {
     signOut();
     router.push('/account/validation');
     dispatch({type: UNSET_USER});
-  }
+    // COMMT: TODO: toast - Signed out
+  };
+
+  function handleDemoSignIn(e) {
+    /*
+    // COMMT: If constantly updating email and password, consider
+     asking backend for already available email and password,
+     so they can be used to sign in
+    */
+
+    console.log(`demoEmail: `, demoEmail);
+    if (!demoEmail) return;
+    setSignInForm({
+      identifier: demoEmail,
+      password: demoPass
+    });
+    handleSubmit(true, e, signInForm);
+  };
 
   return (
     <>
@@ -90,7 +117,7 @@ const SignInBody = ({isRegisterForm}) => {
           ? (
             <form
                 className={Styles["sign-in-container"]}
-                onSubmit={(e) => handleSubmit(e, signInForm)}
+                onSubmit={(e) => handleSubmit(false, e, signInForm)}
               >
 
               <RegInput
@@ -112,6 +139,12 @@ const SignInBody = ({isRegisterForm}) => {
               />
 
               <button type="submit" className="button">Sign In</button>
+              <button
+                type="button" title="For testing purpose"
+                className="button" onClick={handleDemoSignIn}
+              >
+                Demo Sign In
+              </button>
 
             </form>
       ) : ''}
