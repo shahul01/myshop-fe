@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { SET_USER, UNSET_USER } from "helpers/Reducers/userReducer";
-import RegInput from "./Elements/RegInput";
+import Input from "/components/Elements/Input/Input";
 import { postSignIn } from "../../api/regSignInApi";
 import { signOut } from "helpers/Functions/UserFn";
 import Styles from "./Styles/SignInBody.module.css";
@@ -120,7 +120,7 @@ const SignInBody = ({isRegisterForm}) => {
                 onSubmit={(e) => handleSubmit(false, e, signInForm)}
               >
 
-              <RegInput
+              <Input
                 className="acc-val-ipt"
                 name="identifier"
                 type="email"
@@ -129,7 +129,7 @@ const SignInBody = ({isRegisterForm}) => {
                 onChange={handleChange}
               />
 
-              <RegInput
+              <Input
                 className="acc-val-ipt"
                 name="password"
                 type="password"

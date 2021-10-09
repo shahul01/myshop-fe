@@ -11,20 +11,21 @@ const Account = () => {
   // COMMT: TODO: make the following push work
   // if (!user.isUserSignedIn) () => return router.push('/account/validation');
   return (
-    <>
-      <button
+    <div>
+      {/* <button
         className="button"
         onClick={() => router.push('/account/validation')}
       >
         Go to Registration / Sign in page
-      </button>
+      </button> */}
+
       <button
         className="button"
         onClick={() => router.push('/account/details')}
       >
         Go to Account details
       </button>
-    </>
+    </div>
   )
 }
 export default Account;

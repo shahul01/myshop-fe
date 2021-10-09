@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { SET_USER } from "helpers/Reducers/userReducer";
-import RegInput from "./Elements/RegInput";
+import Input from "/components/Elements/Input/Input";
 import { postRegister } from "../../api/regSignInApi.js";
 import Styles from "./Styles/RegisterBody.module.css";
 
@@ -102,7 +102,7 @@ const RegisterBody = ({ isRegisterForm }) => {
 
           <div className={Styles["name-container"]}>
 
-            <RegInput
+            <Input
               className="acc-val-ipt"
               name="firstName"
               title="First name"
@@ -111,7 +111,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               required={true}
             />
 
-            <RegInput
+            <Input
               className="acc-val-ipt"
               name="lastName"
               title="Last name"
@@ -122,7 +122,7 @@ const RegisterBody = ({ isRegisterForm }) => {
           </div>
           <div>
 
-            <RegInput
+            <Input
               className="acc-val-ipt"
               name="email"
               type="email"
@@ -132,7 +132,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               required={true}
             />
 
-            <RegInput
+            <Input
               className="acc-val-ipt"
               name="password"
               type="password"
@@ -142,7 +142,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               required={true}
             />
 
-            <RegInput
+            <Input
               className="acc-val-ipt"
               name="rePassword"
               type="password"

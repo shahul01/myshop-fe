@@ -15,14 +15,6 @@
   gap: 8px;
 }
 
-.acc-val-ipt {
-  display: block;
-  height: 30px;
-  width: 300px;
-  outline: none;
-
-}
-
 .already-signed-in-err {
   margin: 10vh 10vw;
   padding: 20px;

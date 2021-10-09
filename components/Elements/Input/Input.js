@@ -1,4 +1,4 @@
-import Styles from "../Styles/RegisterBody.module.css";
+import Styles from "./Styles/Input.module.css";
 
 const RegInput = (props) => {
 
