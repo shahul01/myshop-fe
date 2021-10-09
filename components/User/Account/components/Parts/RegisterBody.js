@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { UserContext } from "Helpers/Contexts/UserContext";
-import { SET_USER } from "Helpers/Reducers/userReducer";
+import { UserContext } from "helpers/Contexts/UserContext";
+import { SET_USER } from "helpers/Reducers/userReducer";
 import RegInput from "./Elements/RegInput";
 import { postRegister } from "../../api/regSignInApi.js";
 import Styles from "./Styles/RegisterBody.module.css";

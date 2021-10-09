@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import { UserContext } from "Helpers/Contexts/UserContext";
-import { SET_USER, UNSET_USER } from "Helpers/Reducers/userReducer";
+import { UserContext } from "helpers/Contexts/UserContext";
+import { SET_USER, UNSET_USER } from "helpers/Reducers/userReducer";
 import RegInput from "./Elements/RegInput";
 import { postSignIn } from "../../api/regSignInApi";
-import { signOut } from "Helpers/Functions/UserFn";
+import { signOut } from "helpers/Functions/UserFn";
 import Styles from "./Styles/SignInBody.module.css";
 
 const SignInBody = ({isRegisterForm}) => {
@@ -16,11 +16,11 @@ const SignInBody = ({isRegisterForm}) => {
   if (typeof window !== undefined) {
     demoEmail = process.env.REACT_APP_DEMO_EMAIL
     demoPass = process.env.REACT_APP_DEMO_PSSW
-    console.log(`process.env 0: `, process.env);
-    console.log(`demoEmail 0: `, demoEmail);
+    // console.log(`process.env 0: `, process.env);
+    // console.log(`demoEmail 0: `, demoEmail);
   }
   // console.log(`process.env: `, process.env);
-  console.log(`demoEmail: `, demoEmail);
+  // console.log(`demoEmail: `, demoEmail);
 
   const [ signInForm, setSignInForm ] = useState({
     identifier: '',

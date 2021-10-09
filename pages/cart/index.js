@@ -1,6 +1,6 @@
 import Link from "next/link";
 // import {isCartSidebar} from "../../components/CartSidebar/index";
-import useFetch from "../../Helpers/Hooks/useFetch";
+import useFetch from "../../helpers/Hooks/useFetch";
 import styles from "./cart.module.css";
 
 const Cart = () => {

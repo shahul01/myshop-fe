@@ -1,7 +1,7 @@
 // import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import useFetch from "../../Helpers/Hooks/useFetch";
+import useFetch from "../../helpers/Hooks/useFetch";
 import styles from "./allProducts.module.css";
 
 export let sentPageId = 0;

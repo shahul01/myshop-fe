@@ -2,9 +2,9 @@
 // import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-import { ADD_TO_CART } from "../../Helpers/Reducers/cartReducer";
-import { CartContext } from "../../Helpers/Contexts/CartContext";
-import useFetch from "../../Helpers/Hooks/useFetch";
+import { ADD_TO_CART } from "../../helpers/Reducers/cartReducer";
+import { CartContext } from "../../helpers/Contexts/CartContext";
+import useFetch from "../../helpers/Hooks/useFetch";
 import { sentPageId } from "./index";
 import { addToCart } from "./_api";
 

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { UserContext } from "Helpers/Contexts/UserContext";
-import { UNSET_USER } from "Helpers/Reducers/userReducer";
-import { signOut } from "Helpers/Functions/UserFn";
+import { UserContext } from "helpers/Contexts/UserContext";
+import { UNSET_USER } from "helpers/Reducers/userReducer";
+import { signOut } from "helpers/Functions/UserFn";
 import Styles from "./Styles/navbar.module.css";
 
 const Navbar = () => {

@@ -1,5 +1,5 @@
-import UserContextProvider from '../Helpers/Contexts/UserContext';
-import CartContextProvider from '../Helpers/Contexts/CartContext';
+import UserContextProvider from '../helpers/Contexts/UserContext';
+import CartContextProvider from '../helpers/Contexts/CartContext';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 
