@@ -4,6 +4,7 @@ import { UserContext } from "Helpers/Contexts/UserContext";
 import { SET_USER, UNSET_USER } from "Helpers/Reducers/userReducer";
 import RegInput from "./Elements/RegInput";
 import { postSignIn } from "../../api/regSignInApi";
+import { signOut } from "Helpers/Functions/UserFn";
 import Styles from "./Styles/SignInBody.module.css";
 
 const SignInBody = ({isRegisterForm}) => {
@@ -64,8 +65,8 @@ const SignInBody = ({isRegisterForm}) => {
 
   function handleSignOut() {
     if (!user?.isUserSignedIn) return;
-    localStorage.removeItem('__userToken');
-    localStorage.removeItem('__userData');
+    signOut();
+    router.push('/account/validation');
     dispatch({type: UNSET_USER});
   }
 
