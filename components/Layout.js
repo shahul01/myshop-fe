@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <div>
       <Navbar
         isSearchBar={
-          (router?.route !== "/account/validation")
+          (router.route !== "/account/validation")
             ? true
             : false
         }
@@ -18,8 +18,8 @@ const Layout = ({ children }) => {
       <CartSidebar
         isCartSidebar={
 
-          (router?.route !== "/account/validation"
-            && router?.route !== "/cart")
+          (router.route !== "/account/validation"
+            && router.route !== "/cart")
               ? true
               : false
         }

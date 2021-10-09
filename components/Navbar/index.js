@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter, withRouter } from "next/router";
 import { useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { UNSET_USER } from "helpers/Reducers/userReducer";
@@ -9,6 +9,10 @@ const Navbar = () => {
 
   const router = useRouter();
   const { user, dispatch } = useContext(UserContext);
+
+  function handleRedirectSignIn() {
+    router.push('account/validation');
+  };
 
   function handleSignOut() {
     // signOut(user, dispatch);
@@ -21,7 +25,15 @@ const Navbar = () => {
 
   return (
     <>
-      <button className={Styles['temp-signout-btn']} onClick={handleSignOut}>Sign {!user?.isUserSignedIn ? 'in' : 'out'}</button>
+      { (!user?.isUserSignedIn && router.pathname !== '/account/validation') ? (
+          <button className={Styles['temp-signout-btn']} onClick={handleRedirectSignIn}>Go to Sign in page</button>
+        )
+        : (user?.isUserSignedIn) ? (
+          <button className={Styles['temp-signout-btn']} onClick={handleSignOut}>Sign out</button>
+        )
+        : ''
+
+      }
     </>
   )
 };
