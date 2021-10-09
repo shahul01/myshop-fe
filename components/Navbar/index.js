@@ -11,7 +11,7 @@ const Navbar = () => {
   const { user, dispatch } = useContext(UserContext);
 
   function handleRedirectSignIn() {
-    router.push('account/validation');
+      router.push('/account/validation');
   };
 
   function handleSignOut() {
@@ -25,11 +25,15 @@ const Navbar = () => {
 
   return (
     <>
-      { (!user?.isUserSignedIn && router.pathname !== '/account/validation') ? (
+      {/* // COMMT: TODO: Clean the logic */}
+      { ( user?.isUserSignedIn ) ? (
+          <button className={Styles['temp-signout-btn']} onClick={handleSignOut}>Sign out</button>
+        )
+        : ( !user?.isUserSignedIn && router.pathname !== '/account/validation' ) ? (
           <button className={Styles['temp-signout-btn']} onClick={handleRedirectSignIn}>Go to Sign in page</button>
         )
-        : (user?.isUserSignedIn) ? (
-          <button className={Styles['temp-signout-btn']} onClick={handleSignOut}>Sign out</button>
+        : ( !user?.isUserSignedIn && router.pathname.substring(/account/) && router.pathname !== '/account/validation' ) ? (
+          <button className={Styles['temp-signout-btn']} onClick={handleRedirectSignIn}>Go to Sign in page</button>
         )
         : ''
 

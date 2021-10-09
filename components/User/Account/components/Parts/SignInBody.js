@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { SET_USER, UNSET_USER } from "helpers/Reducers/userReducer";
-import Input from "/components/Elements/Input/Input";
+import Input from "../../../../Elements/Input/index";
 import { postSignIn } from "../../api/regSignInApi";
 import { signOut } from "helpers/Functions/UserFn";
 import Styles from "./Styles/SignInBody.module.css";
@@ -35,7 +35,8 @@ const SignInBody = ({isRegisterForm}) => {
   };
 
   async function handleSubmit(isDemo, e, submittedForm) {
-    if (!isDemo) e.preventDefault();
+    // if (!isDemo) e.preventDefault();
+    e.preventDefault();
     if (submittedForm.identifier === '') return;
     // console.log(`submittedForm: `, submittedForm);
     const resSubmit = await postSignIn(submittedForm);
