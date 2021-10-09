@@ -125,7 +125,7 @@ button.add-to-cart {
 .button {
   margin: 4px;
   width: 10rem;
-  height: 2rem;
+  min-height: 2rem;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
