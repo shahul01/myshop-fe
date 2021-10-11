@@ -5,6 +5,10 @@ import { postAddress } from "./_api/detailsApi";
 
 const AccDetails = () => {
 
+  // useEffect(() => {
+  //   // load address
+  // }, [])
+
   const [ addressForm, setAddressForm ] = useState({
     street: '',
     city: '',
@@ -29,7 +33,20 @@ const AccDetails = () => {
     // if (!submittedForm.street) return
 
     console.log(`submittedForm: `, submittedForm);
+    resetForm();
   };
+
+  function resetForm() {
+    setAddressForm({
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      zip: '',
+      fullName: '',
+      phoneNumber: '',
+    });
+  }
 
 
 
@@ -92,6 +109,7 @@ const AccDetails = () => {
           className = 'acc-val-ipt'
           name = 'phoneNumber'
           title = 'Phone number'
+          type='number'
           value = {addressForm.phoneNumber}
           onChange = {handleChange}
         />
