@@ -1,14 +1,11 @@
 // import styles from "./accdetails.modules.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "components/Elements/Input/index";
-import { postAddress } from "./_api/detailsApi";
+import { getAddress, postAddress } from "./_api/detailsApi";
 
 const AccDetails = () => {
 
-  // useEffect(() => {
-  //   // load address
-  // }, [])
-
+  const [address, setAddress]  = useState({});
   const [ addressForm, setAddressForm ] = useState({
     street: '',
     city: '',
@@ -19,6 +16,20 @@ const AccDetails = () => {
     phoneNumber: '',
   });
 
+  useEffect(() => {
+    // load address
+    loadAddress();
+  }, [])
+
+  async function loadAddress() {
+    let myAdr = await getAddress()
+    // setAddress(myAdr.data);
+
+
+    console.log(`myAdr: `, myAdr);
+    console.log(`loadedAdr: `, address);
+  }
+
   function handleChange(e) {
     // if (e?.target?.value) return;
 
@@ -28,9 +39,10 @@ const AccDetails = () => {
     });
   };
 
-  function handleSubmit(e, submittedForm) {
+  async function handleSubmit(e, submittedForm) {
     e.preventDefault();
-    // if (!submittedForm.street) return
+    // if (!submittedForm.fullName) return
+    await postAddress(submittedForm);
 
     console.log(`submittedForm: `, submittedForm);
     resetForm();
