@@ -42,16 +42,18 @@ const SignInBody = ({isRegisterForm}) => {
     const resSubmit = await postSignIn(submittedForm);
 
     if (user.isUserSignedIn && !resSubmit?.jwt) return;
-    localStorage.setItem('__userToken', resSubmit?.jwt);
-    console.log('token set');
+    localStorage.setItem('__userAuth', JSON.stringify(resSubmit));
+    // localStorage.setItem('__userToken', resSubmit?.jwt);
 
     const resUser = resSubmit.user;
-    const userObj = {
-      'id': resUser?.id,
-      'email': resUser?.email,
-      'username': resUser?.username
-    };
-    localStorage.setItem('__userData', JSON.stringify(userObj));
+    // const userObj = {
+    //   'id': resUser?.id,
+    //   'email': resUser?.email,
+    //   'username': resUser?.username
+    // };
+    // localStorage.setItem('__userData', JSON.stringify(userObj));
+
+    console.log('token set');
 
     dispatch({
       type: SET_USER,

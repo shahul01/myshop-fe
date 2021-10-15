@@ -50,18 +50,20 @@ const RegisterBody = ({ isRegisterForm }) => {
     const resAccData = resSubmit?.signInData;
     if (resAccData?.jwt) {
       // __userAuth
-      localStorage.setItem('__userToken', resAccData.jwt);
-      console.log('token set');
+      localStorage.setItem('__userAuth', JSON.stringify(resAccData));
+      // localStorage.setItem('__userToken', resAccData.jwt);
 
       const resUser = resAccData.user;
-      const userObj = {
-        'id': resUser.id,
-        'email': resUser.email,
-        'username': resUser.username
-      };
-      console.log(`userObj: `, userObj);
+      // const userObj = {
+      //   'id': resUser.id,
+      //   'email': resUser.email,
+      //   'username': resUser.username
+      // };
+      // console.log(`userObj: `, userObj);
+      // localStorage.setItem('__userData', JSON.stringify(userObj));
 
-      localStorage.setItem('__userData', JSON.stringify(userObj));
+      console.log('token set');
+
       dispatch({
         type: SET_USER,
         user: {
@@ -174,7 +176,7 @@ const RegisterBody = ({ isRegisterForm }) => {
               <div className={Styles['already-signed-in-err']}>
                 You are already signed in.
                 <br />
-                But for testing purpose though,
+                But for testing purpose,
                 registration form can be reused without signing out.
               </div>
             )

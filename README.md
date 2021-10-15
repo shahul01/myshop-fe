@@ -1,8 +1,8 @@
-<br />
-# MyShop - an eCommerce app to buy all sorts of products, built with ReactJS.
+# MyShop - eCommerce app built with ReactJS.
 
 <br />
-##TechStacks used :
+
+## TechStacks used :
 
 ### &nbsp;&nbsp; Next JS
 #### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;React + Server Side Rendering, Routing etc.
@@ -38,10 +38,11 @@
 <br />
 
 <!-- ![main](./images/readme/main.png) -->
-#### All Products
+#### Home
 ![products](./images/readme/prod.png)
-
----
 
 #### Selected Product
 ![selectedProduct](./images/readme/selectedProd.png)
+
+<!-- #### Payment page -->
+<!-- #### Login page -->

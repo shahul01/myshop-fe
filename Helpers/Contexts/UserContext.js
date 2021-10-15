@@ -23,7 +23,8 @@ const UserContextProvider = (props) => {
   // COMMT: Intialise reducer w/ user data from local storage.
   useEffect(() => {
     if (typeof window === undefined) return;
-    const localUserDataUnparsed = localStorage.getItem('__userData');
+    // const localUserDataUnparsed = localStorage.getItem('__userData');
+    const localUserDataUnparsed = localStorage.getItem('__userAuth');
     if (!localUserDataUnparsed) return;
     const localUserData = JSON.parse(localUserDataUnparsed);
     // console.log(`localUserData: `, localUserData);
