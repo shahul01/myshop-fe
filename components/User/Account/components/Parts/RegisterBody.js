@@ -49,6 +49,7 @@ const RegisterBody = ({ isRegisterForm }) => {
 
     const resAccData = resSubmit?.signInData;
     if (resAccData?.jwt) {
+      // __userAuth
       localStorage.setItem('__userToken', resAccData.jwt);
       console.log('token set');
 
