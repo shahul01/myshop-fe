@@ -1,20 +1,20 @@
+<br />
 # MyShop - an eCommerce app to buy all sorts of products, built with ReactJS.
 
-<br /><br />
+<br />
+##TechStacks used :
+
+### &nbsp;&nbsp; Next JS
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;React + Server Side Rendering, Routing etc.
+### &nbsp;&nbsp; API used
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Strapi(Backend), Stripe(Payment).
+### &nbsp;&nbsp; State management
+#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reducer + Context + State
+
+<br />
 <details>
-<summary>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TechStacks used:
+<summary>More</summary>
 
-</summary>
-<br />
-
-#### Next JS
-&nbsp;&nbsp;&nbsp;**React + Server Side Rendering, Routing etc.**
-#### API used
-&nbsp;&nbsp;&nbsp;**Strapi(Backend), Stripe(Payment).**
-#### State management
-&nbsp;&nbsp;&nbsp;**Reducer + Context + State**
-<br />
 #### Hooks used
 &nbsp;&nbsp;&nbsp;useReduce(Redux like), useContext, useState, useEffect.
 #### Custom Hooks used
@@ -30,11 +30,11 @@
 
 
 <!-- Follow D:/Sh.../How to Get a Job as a ReactJS Developer in 2021.txt -->
-<br /><br /><br />
+<!-- <br /> -->
 
 ---
 
-###Images
+### Images
 <br />
 
 <!-- ![main](./images/readme/main.png) -->
