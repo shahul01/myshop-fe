@@ -7,6 +7,7 @@ const Account = () => {
 
   const router = useRouter();
   const { user, dispatch } = useContext(UserContext);
+  // console.log(`user: `, user);
 
   // COMMT: TODO: make the following push work
   // if (!user.isUserSignedIn) () => return router.push('/account/validation');
