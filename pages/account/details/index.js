@@ -23,12 +23,11 @@ const AccDetails = () => {
 
   async function loadAddress() {
     let myAdr = await getAddress()
-    // setAddress(myAdr.data);
-
+    setAddress(myAdr);
 
     console.log(`myAdr: `, myAdr);
-    console.log(`loadedAdr: `, address);
-  }
+    // console.log(`loadedAdr: `, address);
+  };
 
   function handleChange(e) {
     // if (e?.target?.value) return;
@@ -42,9 +41,10 @@ const AccDetails = () => {
   async function handleSubmit(e, submittedForm) {
     e.preventDefault();
     // if (!submittedForm.fullName) return
-    await postAddress(submittedForm);
-
+    const resPost = await postAddress(submittedForm);
     console.log(`submittedForm: `, submittedForm);
+    console.log(`resPost: `, resPost);
+
     resetForm();
   };
 

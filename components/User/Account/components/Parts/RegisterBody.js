@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState, useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { SET_USER } from "helpers/Reducers/userReducer";
@@ -7,8 +8,8 @@ import Styles from "./Styles/RegisterBody.module.css";
 
 const RegisterBody = ({ isRegisterForm }) => {
 
+  const router = useRouter();
   const { user, dispatch } = useContext(UserContext);
-
   const [ registerForm, setRegisterForm  ] = useState({
     firstName: '',
     lastName: '',
@@ -74,11 +75,15 @@ const RegisterBody = ({ isRegisterForm }) => {
         }
       });
 
-      // COMMT: TODO: toast - Success
 
     }
 
     resetForm();
+    //  COMMT: TODO: toast - success and redirecting..
+    setTimeout(() => {
+      router.push('/');
+
+    }, 2000 );
   };
 
   function resetForm() {

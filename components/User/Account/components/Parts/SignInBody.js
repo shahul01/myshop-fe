@@ -64,9 +64,12 @@ const SignInBody = ({isRegisterForm}) => {
       }
     })
 
-    //  COMMT: TODO: toast - success and redirecting..
-    router.push('/');
     resetForm();
+    //  COMMT: TODO: toast - success and redirecting..
+    setTimeout(() => {
+      router.push('/');
+
+    }, 2000 );
   };
 
   function resetForm() {
