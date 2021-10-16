@@ -27,7 +27,7 @@ const UserContextProvider = (props) => {
     const localUserDataUnparsed = localStorage.getItem('__userAuth');
     if (!localUserDataUnparsed) return;
     const localUserData = JSON.parse(localUserDataUnparsed);
-    console.log(`localUserData: `, localUserData);
+    // console.log(`localUserData: `, localUserData);
     if (!localUserData?.user?.id) return;
     dispatch({
       type: SET_USER, user: {

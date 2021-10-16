@@ -1,16 +1,19 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 // import { UserContext } from "helpers/Contexts/UserContext";
 import getLocalUser from "helpers/Functions/getLocalUser";
 import Input from "components/Elements/Input/index";
 import { getAddress, postAddress } from "./_api/detailsApi";
 // import styles from "./accdetails.modules.css";
 
+
 const AccDetails = () => {
 
 
   // const { user, dispatch } = useContext(UserContext);
-  let user = {};
-  const [ address, setAddress ]  = useState({});
+
+  let userAxiosGet = {};
+  const [isPut, setIsPut] = useState(false);
+  const [ userAxiosPost, setUserAxiosPost ] = useState({});
   const [ addressForm, setAddressForm ] = useState({
     street: '',
     city: '',
@@ -22,25 +25,31 @@ const AccDetails = () => {
   });
 
   useEffect( async () => {
+    await setUserAxiosPost(getLocalUser())
     await getUser();
     await loadAddress();
+    console.log('use effect runs');
   }, []);
 
   async function getUser() {
-    user = await getLocalUser();
-    // console.log(`user: `, user);
+    const tempUser = await getLocalUser();
+    if (!tempUser) return;
+    userAxiosGet = tempUser
+    console.log(`userAxiosGet: `, userAxiosGet);
+    return userAxiosGet;
   };
 
   async function loadAddress() {
-    let myAdr = await getAddress(user?.user?.id);
-    if (myAdr) {
+    console.log(`userAxiosGet: `, userAxiosGet);
+    // console.log(`userAxiosPost: `, userAxiosPost);
+    if(!userAxiosGet?.user?.id) return;
+    let myAdr = await getAddress(userAxiosGet?.user?.id);
+    // let myAdr = await getAddress(userAxiosPost?.user?.id);
+    if (myAdr.length >= 1) {
       setAddressForm(myAdr[0]);
-
+      setIsPut(true);
     };
 
-    // console.log(`user: `, user);
-    console.log(`myAdr: `, myAdr);
-    console.log(`loadedAdr: `, address);
   };
 
   function handleChange(e) {
@@ -55,11 +64,22 @@ const AccDetails = () => {
   async function handleSubmit(e, submittedForm) {
     e.preventDefault();
     // if (!submittedForm.fullName) return
-    const resPost = await postAddress(submittedForm);
-    console.log(`submittedForm: `, submittedForm);
-    console.log(`resPost: `, resPost);
+    const toSubmitForm = {
+      ...submittedForm,
+      users_permissions_user: userAxiosPost?.user?.id
+    };
+    // console.log(`userAxiosPost: `, userAxiosPost);
+    // const resPost = await postAddress(submittedForm);
+    if(!isPut) {
+      const resPost = await postAddress(toSubmitForm);
+      console.log(`resPost: `, resPost);
 
-    resetForm();
+    } else {
+      // put
+    }
+
+    loadAddress();
+    // resetForm();
   };
 
   function resetForm() {
@@ -73,7 +93,6 @@ const AccDetails = () => {
       phoneNumber: '',
     });
   }
-
 
 
   return (
