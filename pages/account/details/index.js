@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import Input from "components/Elements/Input/index";
-import { getAddress, postAddress } from "./_api/detailsApi";
+import { getAddress, postAddress, putAddress } from "./_api/detailsApi";
 // import styles from "./accdetails.modules.css";
 
 
@@ -51,9 +51,10 @@ const AccDetails = () => {
     };
     if(!isPut) {
       const resPost = await postAddress(toSubmitForm);
-      console.log(`resPost: `, resPost);
+      // console.log(`resPost: `, resPost);
 
     } else {
+      const resPut = await putAddress(toSubmitForm)
       // put
     }
 

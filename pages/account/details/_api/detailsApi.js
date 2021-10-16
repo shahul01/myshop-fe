@@ -12,6 +12,13 @@ export async function getAddress(userId) {
 export async function postAddress(addressData) {
   const baseUrl = await server.post(`user-details`, addressData);
   const resData = baseUrl.data;
-  console.log(`resData: `, resData);
+  // console.log(`resData: `, resData);
   return resData;
 }
+
+export async function putAddress(addressData) {
+  const baseUrl = await server.put(`user-details/${addressData.id}`, addressData);
+  const resData =  baseUrl.data;
+
+  return resData;
+};
