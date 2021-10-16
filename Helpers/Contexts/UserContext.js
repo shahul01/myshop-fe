@@ -27,16 +27,16 @@ const UserContextProvider = (props) => {
     const localUserDataUnparsed = localStorage.getItem('__userAuth');
     if (!localUserDataUnparsed) return;
     const localUserData = JSON.parse(localUserDataUnparsed);
-    // console.log(`localUserData: `, localUserData);
-    if (!localUserData?.user?.id) return;
+    // if (!localUserData?.user?.id) return;
     dispatch({
       type: SET_USER, user: {
         isUserSignedIn: true,
-        userId: localUserData.user.id,
-        email: localUserData.user.email,
-        username: localUserData.user.username
+        userId: localUserData?.user?.id,
+        email: localUserData?.user?.email,
+        username: localUserData?.user?.username
       }
     });
+    // console.log(`user 1: `, user);
 
   }, []);
 
