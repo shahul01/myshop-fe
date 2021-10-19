@@ -5,7 +5,7 @@ import { SET_USER, UNSET_USER } from "helpers/Reducers/userReducer";
 import Input from "../../../../Elements/Input/index";
 import { postSignIn } from "../../api/regSignInApi";
 import { signOut } from "helpers/Functions/UserFn";
-import Styles from "./Styles/SignInBody.module.css";
+import styles from "./styles/signInBody.module.css";
 
 const SignInBody = ({isRegisterForm}) => {
 
@@ -109,14 +109,14 @@ const SignInBody = ({isRegisterForm}) => {
     console.log(`user?.isUserSignedIn: `, user)}
       {!isRegisterForm && user?.isUserSignedIn && user.username !== undefined
         ? (
-          <div className={Styles['already-signed-in-err']} >
+          <div className={styles['already-signed-in-err']} >
             {`
               User '${user.username}' with email '${user.email}'
               is already signed in.
             `}
             <br /><br />
             If it is not you, please
-            <span className={Styles['sign-out-text']} onClick={handleSignOut
+            <span className={styles['sign-out-text']} onClick={handleSignOut
               }> sign out.
             </span>
           </div>
@@ -124,7 +124,7 @@ const SignInBody = ({isRegisterForm}) => {
       : (!isRegisterForm && !user?.isUserSignedIn)
           ? (
             <form
-                className={Styles["sign-in-container"]}
+                className={styles["sign-in-container"]}
                 onSubmit={(e) => handleSubmit(false, e, signInForm)}
               >
 
