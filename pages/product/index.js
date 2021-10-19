@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../helpers/Hooks/useFetch";
-import styles from "./allProducts.module.css";
+import styles from "./styles/allProducts.module.css";
 
 export let sentPageId = 0;
 

@@ -6,7 +6,7 @@ import { ADD_TO_CART } from "../../helpers/Reducers/cartReducer";
 import { CartContext } from "../../helpers/Contexts/CartContext";
 import useFetch from "../../helpers/Hooks/useFetch";
 import { sentPageId } from "./index";
-import { addToCart } from "./_api";
+import { addToCart } from "./api/api";
 
 const Slug = () => {
 
@@ -72,7 +72,7 @@ const Slug = () => {
     });
 
 
-  }
+  };
 
 
   return (

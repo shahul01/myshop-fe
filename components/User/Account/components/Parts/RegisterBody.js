@@ -4,7 +4,7 @@ import { UserContext } from "helpers/Contexts/UserContext";
 import { SET_USER } from "helpers/Reducers/userReducer";
 import Input from "../../../../Elements/Input/index";
 import { postRegister } from "../../api/regSignInApi.js";
-import Styles from "./Styles/RegisterBody.module.css";
+import styles from "./styles/registerBody.module.css";
 
 const RegisterBody = ({ isRegisterForm }) => {
 
@@ -102,13 +102,13 @@ const RegisterBody = ({ isRegisterForm }) => {
 
       {isRegisterForm &&
         <form
-          className={Styles["reg-container"]}
+          className={styles["reg-container"]}
           onSubmit={(e) => handleSubmit(e, registerForm)}
         >
 
           <h2>Register</h2>
 
-          <div className={Styles["name-container"]}>
+          <div className={styles["name-container"]}>
 
             <Input
               className="acc-val-ipt"
@@ -178,7 +178,7 @@ const RegisterBody = ({ isRegisterForm }) => {
 
           {
             user.isUserSignedIn && (
-              <div className={Styles['already-signed-in-err']}>
+              <div className={styles['already-signed-in-err']}>
                 You are already signed in.
                 <br />
                 But for testing purpose,

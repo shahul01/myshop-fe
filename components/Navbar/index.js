@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { UNSET_USER } from "helpers/Reducers/userReducer";
 import { signOut } from "helpers/Functions/UserFn";
-import Styles from "./Styles/navbar.module.css";
+import styles from "./styles/navbar.module.css";
 
 const Navbar = () => {
 
@@ -27,13 +27,13 @@ const Navbar = () => {
     <>
       {/* // COMMT: TODO: Clean the logic */}
       { ( user?.isUserSignedIn ) ? (
-          <button className={Styles['temp-signout-btn']} onClick={handleSignOut}>Sign out</button>
+          <button className={styles['temp-signout-btn']} onClick={handleSignOut}>Sign out</button>
         )
         : ( !user?.isUserSignedIn && router.pathname !== '/account/validation' ) ? (
-          <button className={Styles['temp-signout-btn']} onClick={handleRedirectSignIn}>Go to Sign in page</button>
+          <button className={styles['temp-signout-btn']} onClick={handleRedirectSignIn}>Go to Sign in page</button>
         )
         : ( !user?.isUserSignedIn && router.pathname.substring(/account/) && router.pathname !== '/account/validation' ) ? (
-          <button className={Styles['temp-signout-btn']} onClick={handleRedirectSignIn}>Go to Sign in page</button>
+          <button className={styles['temp-signout-btn']} onClick={handleRedirectSignIn}>Go to Sign in page</button>
         )
         : ''
 

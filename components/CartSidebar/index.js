@@ -2,8 +2,8 @@ import Link from "next/link";
 import { useContext } from 'react';
 import { CartContext } from '../../helpers/Contexts/CartContext';
 import { REMOVE_PRODUCT } from '../../helpers/Reducers/cartReducer';
-import { deleteCart } from './api';
-import styles from "./cartSidebar.module.css";
+import { deleteCart } from './api/cartSidebarApi';
+import styles from "./styles/cartSidebar.module.css";
 
 const CartSidebar = (props) => {
 

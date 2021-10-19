@@ -1,12 +1,12 @@
-import Styles from "./Styles/Input.module.css";
+import styles from "./styles/Input.module.css";
 
 const RegInput = (props) => {
 
   return (
-    <div className={Styles["reg-input-container"]}>
+    <div className={styles["reg-input-container"]}>
       <p>{props.title}</p>
       <input
-        className={Styles[props.className]}
+        className={styles[props.className]}
         name={props.name} /* Important Part */
         type={props.type}
         title={props.title}

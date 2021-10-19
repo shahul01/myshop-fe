@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import Input from "components/Elements/Input/index";
-import { getAddress, postAddress, putAddress } from "./_api/detailsApi";
-// import styles from "./accdetails.modules.css";
+import { getAddress, postAddress, putAddress } from "./api/detailsApi";
+// import styles from "./styles/accdetails.modules.css";
 
 
 const AccDetails = () => {
@@ -18,15 +18,25 @@ const AccDetails = () => {
     zip: '',
     fullName: '',
     phoneNumber: '',
+    id: 0
   });
 
+  // COMMT: useful code - updates data / calls fn when 2nd dependency gets data later.
+  /* Eg:
+
+    useEffect(() => {
+      newData = contextData
+    }, [contextData]);
+
+  */
   useEffect(() => {
     loadAddress();
   }, [user])
 
   async function loadAddress() {
-    setIsLoadDom(false);
+    // COMMT: context was giving val but I passed wrong guard clause, which I knew after console logging
     if(!user?.userId) return;
+    setIsLoadDom(false);
     let myAdr = await getAddress(user?.userId);
     if (myAdr.length >= 1) {
       setAddressForm(myAdr[0]);
@@ -51,28 +61,13 @@ const AccDetails = () => {
     };
     if(!isPut) {
       const resPost = await postAddress(toSubmitForm);
-      // console.log(`resPost: `, resPost);
 
     } else {
       const resPut = await putAddress(toSubmitForm)
-      // put
     }
 
     loadAddress();
-    // resetForm();
   };
-
-  function resetForm() {
-    setAddressForm({
-      street: '',
-      city: '',
-      state: '',
-      country: '',
-      zip: '',
-      fullName: '',
-      phoneNumber: '',
-    });
-  }
 
   return (
     <div>
