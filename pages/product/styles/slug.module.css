@@ -2,6 +2,10 @@
   padding: 14px;
 }
 
+.details-container {
+  max-width: calc(97vw - var(--cart-sidebar-width));
+}
+
 .img-details-container {
   display: flex;
   width: 68vw;
@@ -14,5 +18,9 @@
 }
 
 .main-details {
+
+}
+
+.description {
 
 }

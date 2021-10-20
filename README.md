@@ -44,5 +44,5 @@
 #### Selected Product
 ![selectedProduct](./images/readme/selectedProd.png)
 
-<!-- #### Payment page -->
+<!-- #### Payment/Stripe page -->
 <!-- #### Login page -->

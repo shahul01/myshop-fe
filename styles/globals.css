@@ -22,6 +22,7 @@ a {
 :root {
   --theme-info-border: #E7C000;
   --theme-error-border: #CA0000;
+  --cart-sidebar-width: 200px;
 }
 
 

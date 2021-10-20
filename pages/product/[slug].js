@@ -40,13 +40,15 @@ const Slug = () => {
   const pageUrl = `http://localhost:1337/products/${pageId}`;
   const {data: retrievedData, error, isPending} = useFetch(pageUrl, 'GET', null);
 
-  const [productsList, setProductsList] = useState([]);
-  const currProduct = productsList;
+  const [product, setProduct] = useState([]);
+  // const currProduct = product;
   const { dispatch } = useContext(CartContext);
 
+  console.log(`product: `, product);
 
   useEffect( () => {
-    if (retrievedData) setProductsList(retrievedData);
+    if (retrievedData) setProduct(retrievedData);
+
   }, [retrievedData]);
 
   function handleAddToCart(product) {
@@ -82,21 +84,25 @@ const Slug = () => {
         </a>
       </Link>
 
-      {retrievedData && (
-        <div>
+      {(retrievedData && product?.id >= 1) ? (
+
+        <div className={styles['details-container']}>
 
           <div className={styles['img-details-container']}>
+
             <div className={styles['img-sets-container']}>
-              <img src={currProduct?.imgSrc} alt={currProduct?.title} className="item-image"/>
+              <img src={product.imgSrc} alt={product.title} className="item-image"/>
             </div>
 
             <div className={styles['main-details']}>
-              <h1>Title: {currProduct?.title}</h1>
-              <h3>Price: {currProduct?.price}</h3>
+              <h1>Title: {product.title}</h1>
+              <p>{product.ratings} Stars</p>
+              <h3>Price: {product.price}</h3>
+              <p>Seller: {product.seller}</p>
 
               <button
                   className='add-to-cart'
-                  onClick={() => handleAddToCart(currProduct)}
+                  onClick={() => handleAddToCart(product)}
                 >
                 Add to Cart
               </button>
@@ -105,8 +111,16 @@ const Slug = () => {
 
           </div>
 
+
+          <p className={styles['description']}>
+              {product.description}
+          </p>
         </div>
 
+      ) : (
+        <div>
+          Loading...
+        </div>
       )}
 
     </div>
