@@ -1,5 +1,3 @@
-// import axios from "axios";
-// import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 import { ADD_TO_CART } from "../../helpers/Reducers/cartReducer";
@@ -7,6 +5,7 @@ import { CartContext } from "../../helpers/Contexts/CartContext";
 import useFetch from "../../helpers/Hooks/useFetch";
 import { sentPageId } from "./index";
 import { addToCart } from "./api/api";
+import styles from "./styles/slug.module.css";
 
 const Slug = () => {
 
@@ -16,7 +15,7 @@ const Slug = () => {
   let histArr = [];
   let hist = {};
 
-  // LclStrg SET
+  // LclStrg SET - historyProduct
   useEffect(() => {
     if (sentPageId === 0 || typeof window === 'undefined') return;
     newHistoryProduct = { 'clickedDetails': sentPageId };
@@ -76,7 +75,7 @@ const Slug = () => {
 
 
   return (
-    <div className='product-details-page'>
+    <div className={styles['product-details-page']}>
       <Link href="/product">
         <a className="back-btn">
           Go back
@@ -86,16 +85,25 @@ const Slug = () => {
       {retrievedData && (
         <div>
 
-          <img src={currProduct?.imgSrc} alt={currProduct?.title} className="item-image"/>
-          <h1>Title: {currProduct?.title}</h1>
-          <h3>Price: {currProduct?.price}</h3>
+          <div className={styles['img-details-container']}>
+            <div className={styles['img-sets-container']}>
+              <img src={currProduct?.imgSrc} alt={currProduct?.title} className="item-image"/>
+            </div>
 
-          <button
-            className='add-to-cart'
-            onClick={() => handleAddToCart(currProduct)}
-          >
-            Add to Cart
-          </button>
+            <div className={styles['main-details']}>
+              <h1>Title: {currProduct?.title}</h1>
+              <h3>Price: {currProduct?.price}</h3>
+
+              <button
+                  className='add-to-cart'
+                  onClick={() => handleAddToCart(currProduct)}
+                >
+                Add to Cart
+              </button>
+
+            </div>
+
+          </div>
 
         </div>
 
