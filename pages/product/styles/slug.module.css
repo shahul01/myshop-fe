@@ -13,9 +13,14 @@
 
 }
 
-.img-sets-container * {
+.img-sets-container {
   max-width: 40vw;
-  max-height: 200px;
+  /* max-height: 200px; */
+}
+
+.image-gallery-slide {
+  min-height: 480px;
+  max-width: 500px;
 }
 
 .main-details {

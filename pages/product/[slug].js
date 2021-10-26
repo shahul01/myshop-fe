@@ -101,7 +101,7 @@ const Slug = () => {
         ...imageData,
         {
           "original": 'http://localhost:1337' + currImage.url,
-          // "thumbnail" : 'http://localhost:1337' + currImage.formats.thumbnail.url
+          "thumbnail" : 'http://localhost:1337' + currImage.formats.thumbnail.url
         }
       ]);
 
