@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
+// import ImageGallery from "react-image-gallery";
+import ImageGallery from "components/ImageGallery/ImageGallery";
 import { ADD_TO_CART } from "../../helpers/Reducers/cartReducer";
 import { CartContext } from "../../helpers/Contexts/CartContext";
 import useFetch from "../../helpers/Hooks/useFetch";
@@ -41,15 +43,27 @@ const Slug = () => {
   const {data: retrievedData, error, isPending} = useFetch(pageUrl, 'GET', null);
 
   const [product, setProduct] = useState([]);
-  // const currProduct = product;
+  const [imageData, setImageData] = useState([]);
   const { dispatch } = useContext(CartContext);
 
-  console.log(`product: `, product);
+  // console.log(`product: `, product);
 
   useEffect( () => {
     if (retrievedData) setProduct(retrievedData);
 
   }, [retrievedData]);
+
+  useEffect(() => {
+    // console.log(`product: `, product);
+    console.log('uE runs');
+    updateImageData();
+
+  }, [product]);
+
+  useEffect(() => {
+    console.log('imageData', imageData);
+
+  }, [imageData]);
 
   function handleAddToCart(product) {
     // COMMT: is there any way to auto refresh cart w/o dispatch once data submitted ?
@@ -75,6 +89,26 @@ const Slug = () => {
 
   };
 
+  function updateImageData() {
+
+    if (imageData?.length === product?.images?.length) return;
+
+    product?.images?.forEach( currImage => {
+      // console.log(`currImage: `, currImage);
+
+      setImageData(imageData => [
+        ...imageData,
+        {
+          "original": 'http://localhost:1337' + currImage.url,
+          // "thumbnail" : 'http://localhost:1337' + currImage.formats.thumbnail.url
+        }
+      ]);
+
+
+    });
+
+  };
+
 
   return (
     <div className={styles['product-details-page']}>
@@ -91,13 +125,18 @@ const Slug = () => {
           <div className={styles['img-details-container']}>
 
             <div className={styles['img-sets-container']}>
-              <img src={product.imgSrc} alt={product.title} className="item-image"/>
+              {/* <img src={product.imgSrc} alt={product.title} className="item-image"/> */}
+
+              <ImageGallery
+                items={imageData}
+              />
+
             </div>
 
             <div className={styles['main-details']}>
-              <h1>Title: {product.title}</h1>
+              <h1>{product.title}</h1>
               <p>{product.ratings} Stars</p>
-              <h3>Price: {product.price}</h3>
+              <h3>$ {product.price}</h3>
               <p>Seller: {product.seller}</p>
 
               <button

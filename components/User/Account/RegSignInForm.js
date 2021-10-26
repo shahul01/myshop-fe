@@ -4,7 +4,7 @@ import RegisterBody from "./components/Parts/RegisterBody";
 import SignInBody from "./components/Parts/SignInBody";
 // import regSignInApi from "./api/regSignInApi";
 // import useFetch from "Helpers/Hooks/useFetch";
-import Styles from "./RegSignInForm.module.css";
+import styles from "./styles/regSignInForm.module.css";
 
 const RegSignInForm = () => {
 
@@ -14,7 +14,7 @@ const RegSignInForm = () => {
   // const {data: fetchedData, error, isPending} = useFetch(`http://localhost:1337/users/`, 'get', postData);
 
   return (
-    <div className={Styles["form-container"]}>
+    <div className={styles["form-container"]}>
       {/* <span>Hello</span> */}
 
       <Header

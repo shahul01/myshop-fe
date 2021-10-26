@@ -127,3 +127,34 @@ button.add-to-cart {
   cursor: pointer;
   outline: none;
 }
+
+
+
+/* Image gallery */
+
+
+.image-gallery-slide-wrapper {
+  /* if isFullScreen { */
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+
+  /* }
+  else {
+    max-width: 800px !important;
+
+  } */
+}
+
+.image-gallery-image {
+  /* if !isFullScreen { */
+    max-height: 300px !important;
+  /* } */
+}
+
+.image-gallery-thumbnails-container {
+  text-align: initial !important;
+  overflow-x: auto !important;
+  /* if !isFullScreen { */
+    max-width: 400px !important;
+  /* } */
+}

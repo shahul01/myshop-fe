@@ -13,8 +13,9 @@
 
 }
 
-.img-sets-container {
-
+.img-sets-container * {
+  max-width: 40vw;
+  max-height: 200px;
 }
 
 .main-details {
