@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-// import ImageGallery from "react-image-gallery";
-import ImageGallery from "components/ImageGallery/ImageGallery";
+// import ImageGallery from "components/ImageGallery/ImageGallery";
+import ImageGallery from "react-image-gallery";
 import { ADD_TO_CART } from "../../helpers/Reducers/cartReducer";
 import { CartContext } from "../../helpers/Contexts/CartContext";
 import useFetch from "../../helpers/Hooks/useFetch";
 import { sentPageId } from "./index";
 import { addToCart } from "./api/api";
+import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "./styles/slug.module.css";
 
 const Slug = () => {
