@@ -30,3 +30,44 @@
 .description {
 
 }
+
+.reviews-container {
+
+}
+
+.reviews-container > h4 {
+
+  margin: 1.8rem 0px 0.8rem 0px;
+  font-size: 1.4rem;
+
+}
+
+.review {
+  margin-bottom: 14px;
+}
+
+.review-title {
+  /* margin: 0.4rem 0; */
+  margin: 0.1rem 0;
+  font-size: 1.08rem;
+}
+
+.review-body {
+  padding: 0px 0.8rem;
+}
+
+.review-body * {
+  margin-top: 0.34rem;
+}
+
+.review-name {
+
+}
+
+.review-rating {
+  margin-left: 8px;
+}
+
+.review-review {
+  /* padding: 0px 0.8rem; */
+}

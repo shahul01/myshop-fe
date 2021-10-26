@@ -55,16 +55,16 @@ const Slug = () => {
   }, [retrievedData]);
 
   useEffect(() => {
-    // console.log(`product: `, product);
-    console.log('uE runs');
+    console.log(`product: `, product);
+    // console.log('uE runs');
     updateImageData();
 
   }, [product]);
 
-  useEffect(() => {
-    console.log('imageData', imageData);
+  // useEffect(() => {
+  //   console.log('imageData', imageData);
 
-  }, [imageData]);
+  // }, [imageData]);
 
   function handleAddToCart(product) {
     // COMMT: is there any way to auto refresh cart w/o dispatch once data submitted ?
@@ -155,6 +155,37 @@ const Slug = () => {
           <p className={styles['description']}>
               {product.description}
           </p>
+
+          <div className={styles['reviews-container']}>
+            <h4>User Reviews</h4>
+
+            {product?.reviews?.map(currReview => (
+
+              <div
+                className={styles['review']}
+                key={currReview.id}
+                >
+                <h5 className={styles['review-title']}>
+                  {currReview.title}
+                </h5>
+                <div className={styles['review-body']}>
+                  <span className={styles['review-name']}>
+                    {currReview.name}
+                  </span>
+                  <span className={styles['review-rating']}>
+                    {currReview.rating} Stars
+                  </span>
+                  <div className={styles['review-review']}>
+                    {currReview.review}
+                  </div>
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
         </div>
 
       ) : (
