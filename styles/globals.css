@@ -26,43 +26,6 @@ a {
 }
 
 
-.App {
-  min-height: 97vh;
-}
-
-.item-container {
-  display: flex;
-  /* justify-content: center; */
-  gap: 10px;
-  /* cursor: pointer; */
-  margin-bottom: 40px;
-  justify-content: center;
-}
-
-.center-this {
-  display: flex;
-  justify-content: center;
-}
-
-.item {
-  cursor: pointer;
-}
-
-.title,
-.price
-{
-  position: relative;
-  left: 40px;
-  top: 10px;
-
-}
-
-.item-image {
-  height: 200px;
-  max-width: 200px;
-  margin-top: 14px;
-  /* display: flex; */
-}
 
 hr {
   width: 70%;

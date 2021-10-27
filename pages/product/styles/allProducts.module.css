@@ -1,3 +1,7 @@
+.App {
+  min-height: 97vh;
+}
+
 .title-area {
   display: flex;
   justify-content: space-around;
@@ -19,4 +23,66 @@
   height: 46px;
   outline: none;
   font-size: 1.4rem;
+}
+
+.item-container {
+  display: flex;
+  /* justify-content: center; */
+  gap: 10px;
+  /* cursor: pointer; */
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+/* .center-this {
+  display: flex;
+  justify-content: center;
+} */
+
+.item {
+  cursor: pointer;
+}
+
+.item-image {
+  height: 200px;
+  max-width: 200px;
+  margin-top: 14px;
+  /* display: flex; */
+}
+
+.title {
+  margin: 0px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* word-wrap: break-word; */
+}
+
+/* .title,
+.price
+{
+  position: relative;
+  left: 40px;
+  top: 10px;
+
+} */
+
+.product-overview {
+  display: flex;
+  /* gap: 10px; */
+  justify-content: space-between;
+  margin: 0px 8px;
+  align-items: center;
+  height: 1.3rem;
+
+}
+
+.product-overview p {
+  margin: 4px 0px;
+}
+
+.ratings span {
+  /* font-size: 1.2rem; */
+  margin: 0 0 0 0.2rem;
 }
