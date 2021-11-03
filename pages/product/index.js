@@ -33,7 +33,7 @@ const Product = () => {
   };
 
   return (
-    <div className={styles['App']}>
+    <div className="App">
 
       {/* <Head>
         <title>MyShop</title>
@@ -52,24 +52,18 @@ const Product = () => {
         </div>
 
       </div>
-      <div className={styles['item-container']}>
+      <div className="item-container">
 
         {retrievedData && productsList.map((currProduct) => {
           return (
             <div
-              key={currProduct.productId} className={styles['item']}
+              key={currProduct.productId} className="item"
               onClick={() => handleGoToProductDetail(currProduct.id, currProduct.productId)}
               >
 
-              <img src={currProduct.imgSrc} alt={currProduct.title} className={styles['item-image']}/>
-              <p className={styles['title']}>{currProduct.title}</p>
-              <div className={styles['product-overview']}>
-                <p className={styles['price']}>$ {currProduct.price}</p>
-                <p className={styles['ratings']}>{currProduct.ratings}
-                  <span>☆</span>
-                </p>
-
-              </div>
+              <img src={currProduct.imgSrc} alt={currProduct.title} className="item-image"/>
+              <p className="title">{currProduct.title}</p>
+              <p className="price">{currProduct.price}</p>
 
             </div>
           );

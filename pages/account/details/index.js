@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import Input from "components/Elements/Input/index";
-import { getAddress, postAddress, putAddress } from "./api/detailsApi";
-// import styles from "./styles/accdetails.modules.css";
+import { getAddress, postAddress, putAddress } from "./_api/detailsApi";
+// import styles from "./accdetails.modules.css";
 
 
 const AccDetails = () => {

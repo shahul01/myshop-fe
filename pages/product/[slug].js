@@ -1,14 +1,12 @@
+// import axios from "axios";
+// import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-// import ImageGallery from "components/ImageGallery/ImageGallery";
-import ImageGallery from "react-image-gallery";
 import { ADD_TO_CART } from "../../helpers/Reducers/cartReducer";
 import { CartContext } from "../../helpers/Contexts/CartContext";
 import useFetch from "../../helpers/Hooks/useFetch";
 import { sentPageId } from "./index";
-import { addToCart } from "./api/api";
-import "react-image-gallery/styles/css/image-gallery.css";
-import styles from "./styles/slug.module.css";
+import { addToCart } from "./_api";
 
 const Slug = () => {
 
@@ -18,7 +16,7 @@ const Slug = () => {
   let histArr = [];
   let hist = {};
 
-  // LclStrg SET - historyProduct
+  // LclStrg SET
   useEffect(() => {
     if (sentPageId === 0 || typeof window === 'undefined') return;
     newHistoryProduct = { 'clickedDetails': sentPageId };
@@ -43,28 +41,14 @@ const Slug = () => {
   const pageUrl = `http://localhost:1337/products/${pageId}`;
   const {data: retrievedData, error, isPending} = useFetch(pageUrl, 'GET', null);
 
-  const [product, setProduct] = useState([]);
-  const [imageData, setImageData] = useState([]);
+  const [productsList, setProductsList] = useState([]);
+  const currProduct = productsList;
   const { dispatch } = useContext(CartContext);
 
-  // console.log(`product: `, product);
 
   useEffect( () => {
-    if (retrievedData) setProduct(retrievedData);
-
+    if (retrievedData) setProductsList(retrievedData);
   }, [retrievedData]);
-
-  useEffect(() => {
-    console.log(`product: `, product);
-    // console.log('uE runs');
-    updateImageData();
-
-  }, [product]);
-
-  // useEffect(() => {
-  //   console.log('imageData', imageData);
-
-  // }, [imageData]);
 
   function handleAddToCart(product) {
     // COMMT: is there any way to auto refresh cart w/o dispatch once data submitted ?
@@ -88,110 +72,33 @@ const Slug = () => {
     });
 
 
-  };
-
-  function updateImageData() {
-
-    if (imageData?.length === product?.images?.length) return;
-
-    product?.images?.forEach( currImage => {
-      // console.log(`currImage: `, currImage);
-
-      setImageData(imageData => [
-        ...imageData,
-        {
-          "original": 'http://localhost:1337' + currImage.url,
-          "thumbnail" : 'http://localhost:1337' + currImage.formats.thumbnail.url
-        }
-      ]);
-
-
-    });
-
-  };
+  }
 
 
   return (
-    <div className={styles['product-details-page']}>
+    <div className='product-details-page'>
       <Link href="/product">
         <a className="back-btn">
           Go back
         </a>
       </Link>
 
-      {(retrievedData && product?.id >= 1) ? (
-
-        <div className={styles['details-container']}>
-
-          <div className={styles['img-details-container']}>
-
-            <div className={styles['img-sets-container']}>
-              {/* <img src={product.imgSrc} alt={product.title} className="item-image"/> */}
-
-              <ImageGallery
-                items={imageData}
-              />
-
-            </div>
-
-            <div className={styles['main-details']}>
-              <h1>{product.title}</h1>
-              <p>{product.ratings} Stars</p>
-              <h3>$ {product.price}</h3>
-              <p>Seller: {product.seller}</p>
-
-              <button
-                  className='add-to-cart'
-                  onClick={() => handleAddToCart(product)}
-                >
-                Add to Cart
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <p className={styles['description']}>
-              {product.description}
-          </p>
-
-          <div className={styles['reviews-container']}>
-            <h4>User Reviews</h4>
-
-            {product?.reviews?.map(currReview => (
-
-              <div
-                className={styles['review']}
-                key={currReview.id}
-                >
-                <h5 className={styles['review-title']}>
-                  {currReview.title}
-                </h5>
-                <div className={styles['review-body']}>
-                  <span className={styles['review-name']}>
-                    {currReview.name}
-                  </span>
-                  <span className={styles['review-rating']}>
-                    {currReview.rating} Stars
-                  </span>
-                  <div className={styles['review-review']}>
-                    {currReview.review}
-                  </div>
-                </div>
-
-              </div>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      ) : (
+      {retrievedData && (
         <div>
-          Loading...
+
+          <img src={currProduct?.imgSrc} alt={currProduct?.title} className="item-image"/>
+          <h1>Title: {currProduct?.title}</h1>
+          <h3>Price: {currProduct?.price}</h3>
+
+          <button
+            className='add-to-cart'
+            onClick={() => handleAddToCart(currProduct)}
+          >
+            Add to Cart
+          </button>
+
         </div>
+
       )}
 
     </div>
