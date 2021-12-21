@@ -16,7 +16,7 @@ const Slug = () => {
   let histArr = [];
   let hist = {};
 
-  // LclStrg SET
+  // Localstorage SET
   useEffect(() => {
     if (sentPageId === 0 || typeof window === 'undefined') return;
     newHistoryProduct = { 'clickedDetails': sentPageId };
@@ -30,7 +30,7 @@ const Slug = () => {
   if (sentPageId >= 1) {
     pageId = sentPageId;
   } else if (sentPageId === 0 && typeof window !== 'undefined') {
-    // LclStrg GET
+    // Localstorage GET
     histArrUnparsed = localStorage.getItem('historyProduct');
     histArr = JSON.parse(histArrUnparsed);
     hist = histArr[histArr.length - 1];

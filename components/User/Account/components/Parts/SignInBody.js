@@ -5,7 +5,7 @@ import { SET_USER, UNSET_USER } from "helpers/Reducers/userReducer";
 import Input from "../../../../Elements/Input/index";
 import { postSignIn } from "../../api/regSignInApi";
 import { signOut } from "helpers/Functions/UserFn";
-import styles from "./styles/signInBody.module";
+import styles from "./styles/signInBody.module.css";
 
 const SignInBody = ({isRegisterForm}) => {
 
