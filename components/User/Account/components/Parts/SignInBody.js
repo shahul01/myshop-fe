@@ -124,7 +124,7 @@ const SignInBody = ({isRegisterForm}) => {
       : (!isRegisterForm && !user?.isUserSignedIn)
           ? (
             <form
-                className={styles["sign-in-container"]}
+                className={styles['sign-in-container']}
                 onSubmit={(e) => handleSubmit(false, e, signInForm)}
               >
 

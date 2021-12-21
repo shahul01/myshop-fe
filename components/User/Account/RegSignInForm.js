@@ -14,7 +14,7 @@ const RegSignInForm = () => {
   // const {data: fetchedData, error, isPending} = useFetch(`http://localhost:1337/users/`, 'get', postData);
 
   return (
-    <div className={styles["form-container"]}>
+    <div className={styles['form-container']}>
       {/* <span>Hello</span> */}
 
       <Header

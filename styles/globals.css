@@ -109,3 +109,11 @@ button.add-to-cart {
 {
   background-color: #aaa !important;
 }
+
+.acc-val-ipt {
+  display: block;
+  height: 30px;
+  width: 300px;
+  outline: none;
+
+}

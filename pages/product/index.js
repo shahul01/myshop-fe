@@ -1,3 +1,5 @@
+// `PRODUCTS` page
+
 // import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -33,7 +35,7 @@ const Product = () => {
   };
 
   return (
-    <div className="App">
+    <div className={styles['app']}>
 
       {/* <Head>
         <title>MyShop</title>
@@ -52,18 +54,24 @@ const Product = () => {
         </div>
 
       </div>
-      <div className="item-container">
+      <div className={styles['item-container']}>
 
         {retrievedData && productsList.map((currProduct) => {
           return (
             <div
-              key={currProduct.productId} className="item"
+              key={currProduct.productId} className={styles['item']}
               onClick={() => handleGoToProductDetail(currProduct.id, currProduct.productId)}
               >
 
-              <img src={currProduct.imgSrc} alt={currProduct.title} className="item-image"/>
-              <p className="title">{currProduct.title}</p>
-              <p className="price">{currProduct.price}</p>
+              <img src={currProduct.imgSrc} alt={currProduct.title} className={styles['item-image']}/>
+              <p className={styles['title']}>{currProduct.title}</p>
+              <div className={styles['product-overview']}>
+                <p className={styles['price']}>$ {currProduct.price}</p>
+                <p className={styles['ratings']}>{currProduct.ratings}
+                  <span>☆</span>
+                </p>
+
+              </div>
 
             </div>
           );

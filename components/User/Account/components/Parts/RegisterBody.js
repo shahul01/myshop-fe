@@ -102,13 +102,13 @@ const RegisterBody = ({ isRegisterForm }) => {
 
       {isRegisterForm &&
         <form
-          className={styles["reg-container"]}
+          className={styles['reg-container']}
           onSubmit={(e) => handleSubmit(e, registerForm)}
         >
 
           <h2>Register</h2>
 
-          <div className={styles["name-container"]}>
+          <div className={styles['name-container']}>
 
             <Input
               className="acc-val-ipt"
