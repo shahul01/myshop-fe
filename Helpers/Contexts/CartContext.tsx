@@ -1,8 +1,11 @@
-import { createContext, useReducer, useState, useEffect } from 'react';
+import { createContext, useReducer, useState, useEffect } from "react";
 import cartReducer, { ADD_TO_CART } from "../Reducers/cartReducer";
-import useFetch from '../Hooks/useFetch';
+import useFetch from "../Hooks/useFetch";
+// import { ICart } from "../../global";
 
-export const CartContext = createContext();
+
+
+export const CartContext = createContext<ICart[] | null>(null);
 
 const CartContextProvider = (props) => {
   let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'GET', null);

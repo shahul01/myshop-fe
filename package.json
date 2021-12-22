@@ -9,6 +9,7 @@
     "jserv": "helpers/json-server --watch json-server/db.json --port 8000",
     "lint": "next lint"
   },
+  "typings": "global.d.ts",
   "dependencies": {
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
