@@ -8,7 +8,6 @@ const CartContextProvider = (props) => {
   let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'GET', null);
 
   const [ cart, dispatch ] = useReducer(cartReducer, []);
-
   // COMMT: Intialise reducer w/ cart data.
   useEffect( async () => {
     if (cartFetch) {

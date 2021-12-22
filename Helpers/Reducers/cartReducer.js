@@ -1,9 +1,7 @@
-// import uuid from 'uuid/v4';
-// import { v4 as uuid } from 'uuid';
-import uuid from 'uuidv4';
+import { v4 as uuid } from "uuid";
 
-export const ADD_TO_CART = 'ADD_TO_CART';
-export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 
 const cartReducer = (state, action) => {
   switch (action.type) {
