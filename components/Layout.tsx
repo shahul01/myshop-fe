@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import CartSidebar from "./CartSidebar/index.tsx";
+import CartSidebar from "./CartSidebar/index";
 import Navbar from "./Navbar/index";
 
 const Layout = ({ children }) => {

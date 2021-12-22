@@ -11,8 +11,9 @@ const CartSidebar = (props) => {
 
   // const [ isCartSidebar, setIsCartSidebar ] = useState(true);
   const { cart, dispatch } = useContext(CartContext);
+  // console.log('cart :>> ', cart);
 
-  async function handleDelete(id) {
+  async function handleDelete(id: number) {
     // COMMT: made this a promise so it deletes from cart only if there is no error in fetch delete.
     new Promise((res, req) => {
 
@@ -23,11 +24,11 @@ const CartSidebar = (props) => {
 
   };
 
-  const getPrice = cart?.map(currCart => {
+  const getPrice = cart?.map((currCart: ICart) => {
     totalPrice += currCart.price;
   });
 
-  const cartList = cart?.map(currCart => (
+  const cartList = cart?.map((currCart: ICart) => (
     <div key={currCart.key} className={styles['cart-product']} title={currCart.title} >
 
       <span

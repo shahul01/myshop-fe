@@ -14,6 +14,7 @@ const CartContextProvider = (props) => {
   // COMMT: Intialise reducer w/ cart data.
   useEffect( async () => {
     if (cartFetch) {
+      cart = [];
       // COMMT: w/ HMReload, same data is added unnecessarily
 
       cartFetch.forEach(currCart => {

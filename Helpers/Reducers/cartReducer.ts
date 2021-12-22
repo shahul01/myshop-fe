@@ -3,7 +3,12 @@ import { v4 as uuid } from "uuid";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 
-const cartReducer = (state, action) => {
+interface ICartAction {
+  type: string;
+  cart: ICart;
+}
+
+const cartReducer = (state: ICart[], action: ICartAction) => {
   switch (action.type) {
     case ADD_TO_CART:
       // should this be array or object type?

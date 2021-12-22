@@ -4,4 +4,5 @@ interface ICart {
   key: string;
   price: number;
   productId: number;
+  title: string
 }
