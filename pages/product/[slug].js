@@ -1,4 +1,4 @@
-// `PRODUCT DETAILS` Page 
+// `PRODUCT DETAILS` Page
 
 // import axios from "axios";
 // import { useRouter } from "next/router";
@@ -133,6 +133,9 @@ const Slug = () => {
               {/* <img src={productsList.imgSrc} alt={productsList.title} className="item-image"/> */}
 
               <ImageGallery
+                showNav={false}
+                thumbnailPosition='left'
+                showPlayButton={false}
                 items={imageData}
               />
 
@@ -155,10 +158,12 @@ const Slug = () => {
 
           </div>
 
-
-          <p className={styles['description']}>
-              {productsList.description}
-          </p>
+          <div>
+            <h2>Description</h2>
+            <p className={styles['description']}>
+                {productsList.description}
+            </p>
+          </div>
 
           <div className={styles['reviews-container']}>
             <h4>User Reviews</h4>

@@ -16,6 +16,7 @@
 .img-sets-container {
   max-width: 40vw;
   /* max-height: 200px; */
+  min-height: 500px;
 }
 
 .image-gallery-slide {

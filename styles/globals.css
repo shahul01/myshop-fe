@@ -25,7 +25,9 @@ a {
   --cart-sidebar-width: 200px;
 }
 
-
+.layout {
+  position: relative;
+}
 
 hr {
   width: 70%;
@@ -92,6 +94,15 @@ button.add-to-cart {
 }
 
 
+.acc-val-ipt {
+  display: block;
+  height: 30px;
+  width: 300px;
+  outline: none;
+
+}
+
+
 
 /* Image gallery */
 
@@ -110,10 +121,7 @@ button.add-to-cart {
   background-color: #aaa !important;
 }
 
-.acc-val-ipt {
-  display: block;
-  height: 30px;
-  width: 300px;
-  outline: none;
-
+.image-gallery-image {
+  min-height: 200px !important;
+  max-width: 30vw !important;
 }

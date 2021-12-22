@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   const router = useRouter();
 
   return (
-    <div>
+    <div class="layout">
       <Navbar
         isSearchBar={
           (router.route !== "/account/validation")
