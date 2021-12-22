@@ -152,7 +152,7 @@ const Slug = () => {
                 >
                 Add to Cart
               </button>
-              
+
               <p>Seller: {productsList.seller}</p>
 
             </div>
