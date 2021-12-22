@@ -57,7 +57,7 @@ const Slug = () => {
   }, [retrievedData]);
 
   useEffect(() => {
-    console.log(`productsList: `, productsList);
+    // console.log(`productsList: `, productsList);
     // console.log('uE runs');
     updateImageData();
 
@@ -109,7 +109,7 @@ const Slug = () => {
 
 
     });
-    console.log(`imageData: `, imageData);
+    // console.log(`imageData: `, imageData);
 
   };
 
@@ -145,7 +145,6 @@ const Slug = () => {
               <h1>{productsList.title}</h1>
               <p>{productsList.ratings} Stars</p>
               <h3>$ {productsList.price}</h3>
-              <p>Seller: {productsList.seller}</p>
 
               <button
                   className='add-to-cart'
@@ -153,6 +152,8 @@ const Slug = () => {
                 >
                 Add to Cart
               </button>
+              
+              <p>Seller: {productsList.seller}</p>
 
             </div>
 
