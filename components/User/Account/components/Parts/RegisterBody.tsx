@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { SET_USER } from "helpers/Reducers/userReducer";
 import Input from "../../../../Elements/Input/index";
-import { postRegister } from "../../api/regSignInApi.js";
+import { postRegister } from "../../api/regSignInApi";
 import styles from "./styles/registerBody.module.css";
 
 const RegisterBody = ({ isRegisterForm }) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function addToCart(data) {
+export async function addToCart(data: ICart) {
   const addUrl = await axios.post(`http://localhost:1337/carts/`, data);
   const resAddData = addUrl.data;
 

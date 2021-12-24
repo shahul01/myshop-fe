@@ -10,7 +10,7 @@ const AccDetails = () => {
   const { user } = useContext(UserContext);
   const [isPut, setIsPut] = useState(false);
   const [ isLoadDom, setIsLoadDom ] = useState(false);
-  const [ addressForm, setAddressForm ] = useState({
+  const [ addressForm, setAddressForm ] = useState<IAddressForm>({
     street: '',
     city: '',
     state: '',
@@ -45,17 +45,17 @@ const AccDetails = () => {
     setIsLoadDom(true);
   };
 
-  function handleChange(e) {
+  function handleChange(e: MouseEvent) {
     setAddressForm({
       ...addressForm,
       [e.target.name]: e.target.value
     });
   };
 
-  async function handleSubmit(e, submittedForm) {
+  async function handleSubmit(e:MouseEvent, submittedForm: IAddressForm) {
     e.preventDefault();
     if (!submittedForm.fullName || !user?.userId) return
-    const toSubmitForm = {
+    const toSubmitForm: IAddressForm = {
       ...submittedForm,
       users_permissions_user: user.userId
     };

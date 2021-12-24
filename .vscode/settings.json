@@ -2,9 +2,14 @@
   "print.colourScheme": "nnfx",
   "workbench.colorTheme": "Night Owl",
   "cSpell.words": [
+    "addressess",
     "PSSW",
     "registr",
+    "TJSON",
     "uuidv"
+  ],
+  "terminal.integrated.commandsToSkipShell": [
+    "vscode-cmd-aliases.execute"
   ]
 
 

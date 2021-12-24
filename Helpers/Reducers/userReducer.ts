@@ -1,18 +1,6 @@
 export const SET_USER = 'SET_USER';
 export const UNSET_USER = 'UNSET_USER';
 
-interface IUserData {
-  isUserSignedIn: boolean;
-  userId: string;
-  email: string;
-  username: string;
-}
-
-interface IUserDataAction {
-  type: string
-  user: IUserData;
-}
-
 const userReducer = (state: IUserData, action: IUserDataAction) => {
   let userData = {
     isUserSignedIn: false,

@@ -1,5 +1,6 @@
 # MyShop
-### eCommerce app built with ReactJS [Work in progress].
+### eCommerce app built with ReactJS.
+### Work in progress.
 
 
 <br />
@@ -27,7 +28,7 @@
 &nbsp;&nbsp;&nbsp;CSS - modules per file.
 
   <!-- HOC, portals, react render (Check out 1tab) -->
-  
+
 </details>
 
 

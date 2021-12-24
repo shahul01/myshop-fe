@@ -105,8 +105,7 @@ const SignInBody = ({isRegisterForm}) => {
 
   return (
     <>
-      {
-    console.log(`user?.isUserSignedIn: `, user)}
+      {/* {console.log(`user?.isUserSignedIn: `, user)} */}
       {!isRegisterForm && user?.isUserSignedIn && user.username !== undefined
         ? (
           <div className={styles['already-signed-in-err']} >

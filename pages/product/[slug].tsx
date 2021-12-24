@@ -15,11 +15,13 @@ import styles from "./styles/slug.module.css";
 
 const Slug = () => {
 
+  type TJSONString = string|null;
+
   let pageId = 0;
-  let newHistoryProduct = {};
-  let histArrUnparsed;
-  let histArr = [];
-  let hist = {};
+  let newHistoryProduct: IHistProduct = {};
+  let histArrUnparsed: TJSONString;
+  let histArr: IHistProduct[]|TJSONString = [];
+  let hist: IHistProduct = {};
 
   // Localstorage SET
   useEffect(() => {
@@ -46,14 +48,16 @@ const Slug = () => {
   const pageUrl = `http://localhost:1337/products/${pageId}`;
   const {data: retrievedData, error, isPending} = useFetch(pageUrl, 'GET', null);
 
-  const [productsList, setProductsList] = useState([]);
+  // const [productsList, setProductsList] = useState<IProductAction[]>([]);
+  const [productsList, setProductsList] = useState<IModelProduct|IProductAction|object>({});
   // const currProduct = productsList;
   const [imageData, setImageData] = useState([]);
-  const { dispatch } = useContext(CartContext);
+  const { dispatch }:{dispatch:ICart} = useContext(CartContext);
 
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
+    console.log('productsList :>> ', productsList);
   }, [retrievedData]);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ export let sentPageId = 0;
 const Product = () => {
 
   const router = useRouter();
-  const [ productsList, setProductsList ] = useState([]);
+  const [ productsList, setProductsList ] = useState<IModelProduct[]>([]);
 
   // COMMT: TODO: Add ability to search price, tags etc
   // COMMT: TODO: Add auto correct to search etc
@@ -29,7 +29,7 @@ const Product = () => {
     if (retrievedData) setProductsList(retrievedData);
   }, [retrievedData])
 
-  function handleGoToProductDetail(id, productId) {
+  function handleGoToProductDetail(id:number, productId:number) {
     sentPageId = id;
     router.push(`/product/${productId}`)
   };
@@ -56,7 +56,7 @@ const Product = () => {
       </div>
       <div className={styles['item-container']}>
 
-        {retrievedData && productsList.map((currProduct) => {
+        {retrievedData && productsList.map((currProduct:IModelProduct) => {
           return (
             <div
               key={currProduct.productId} className={styles['item']}
