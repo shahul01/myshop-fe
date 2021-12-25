@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { SET_USER, UNSET_USER } from "helpers/Reducers/userReducer";
 import Input from "../../../../Elements/Input/index";
@@ -11,21 +11,26 @@ const SignInBody = ({isRegisterForm}) => {
 
   const router = useRouter();
   const { user, dispatch } = useContext(UserContext);
-  let demoEmail = '';
-  let demoPass = '';
-  if (typeof window !== undefined) {
-    demoEmail = process.env.REACT_APP_DEMO_EMAIL
-    demoPass = process.env.REACT_APP_DEMO_PSSW
-    // console.log(`process.env 0: `, process.env);
-    // console.log(`demoEmail 0: `, demoEmail);
-  }
-  // console.log(`process.env: `, process.env);
-  // console.log(`demoEmail: `, demoEmail);
-
+  const [ demoEmail, setDemoEmail ] = useState('');
+  const [ isDemoUpdated, setIsDemoUpdated ] = useState(false);
+  const [ demoPass, setDemoPass ] = useState('');
   const [ signInForm, setSignInForm ] = useState({
     identifier: '',
     password: ''
   });
+
+  useEffect(() => {
+    setDemoEmail(process?.env?.NEXT_PUBLIC_DEMO_EMAIL);
+    setDemoPass(process?.env?.NEXT_PUBLIC_DEMO_PSSW);
+
+  }, []);
+
+  useEffect(() => {
+    // Fixes async side effect of useState
+    if (signInForm.identifier !== demoEmail) return;
+    handleSubmit(true, null, signInForm);
+
+  }, [isDemoUpdated]);
 
   function handleChange(e) {
     setSignInForm({
@@ -36,25 +41,16 @@ const SignInBody = ({isRegisterForm}) => {
 
   async function handleSubmit(isDemo, e, submittedForm) {
     // if (!isDemo) e.preventDefault();
-    e.preventDefault();
+    e?.preventDefault();
     if (submittedForm.identifier === '') return;
-    // console.log(`submittedForm: `, submittedForm);
+    console.log(`submittedForm: `, submittedForm);
     const resSubmit = await postSignIn(submittedForm);
 
     if (user.isUserSignedIn && !resSubmit?.jwt) return;
     localStorage.setItem('__userAuth', JSON.stringify(resSubmit));
-    // localStorage.setItem('__userToken', resSubmit?.jwt);
-
-    const resUser = resSubmit.user;
-    // const userObj = {
-    //   'id': resUser?.id,
-    //   'email': resUser?.email,
-    //   'username': resUser?.username
-    // };
-    // localStorage.setItem('__userData', JSON.stringify(userObj));
-
     console.log('token set');
 
+    const resUser = resSubmit.user;
     dispatch({
       type: SET_USER,
       user: {
@@ -87,26 +83,27 @@ const SignInBody = ({isRegisterForm}) => {
     // COMMT: TODO: toast - Signed out
   };
 
-  function handleDemoSignIn(e) {
+  async function handleDemoSignIn(e) {
     /*
     // COMMT: If constantly updating email and password, consider
      asking backend for already available email and password,
      so they can be used to sign in
     */
-
-    console.log(`demoEmail: `, demoEmail);
+    // console.log('demoEmail :>> ', demoEmail);
     if (!demoEmail) return;
+
     setSignInForm({
       identifier: demoEmail,
       password: demoPass
     });
-    handleSubmit(true, e, signInForm);
+    setIsDemoUpdated(true);
+
   };
 
   return (
     <>
       {/* {console.log(`user?.isUserSignedIn: `, user)} */}
-      {!isRegisterForm && user?.isUserSignedIn && user.username !== undefined
+      {!isRegisterForm && user?.isUserSignedIn && user.username
         ? (
           <div className={styles['already-signed-in-err']} >
             {`
@@ -147,7 +144,7 @@ const SignInBody = ({isRegisterForm}) => {
 
               <button type="submit" className="button">Sign In</button>
               <button
-                type="button" title="For testing purpose"
+                type="button" title="For Demo purpose"
                 className="button" onClick={handleDemoSignIn}
               >
                 Demo Sign In
