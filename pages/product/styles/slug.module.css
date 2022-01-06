@@ -30,7 +30,7 @@
 }
 
 .main-details {
-
+  width: 35rem;
 }
 
 .main-details > * {
@@ -39,6 +39,7 @@
 
 .main-details h1 {
   line-height: 2.5rem;
+  margin-top: 0;
 }
 
 .main-details .ratings img {
@@ -53,22 +54,30 @@
   font-size: 0.8rem;
 }
 
-.description {
+.description-container {
+  margin-top: 4rem;
+}
 
+.description-container .description {
+  padding: 1rem;
+}
+
+.reviews-title-data-container {
+
+}
+
+.reviews-title-data-container > h4 {
+  margin: 1.8rem 0px 0px 0px;
+  font-size: 1.4rem;
 }
 
 .reviews-container {
-
+  padding: 1rem;
 }
 
-.reviews-container > h4 {
-  margin: 1.8rem 0px 0.8rem 0px;
-  font-size: 1.4rem;
-
-}
 
 .review {
-  margin-bottom: 14px;
+  margin-bottom: 1rem;
 }
 
 .review-title {

@@ -147,14 +147,14 @@ const Slug = () => {
               <p className={styles['ratings']} title={productsList.ratings} >
                 {/* <span>Ratings: </span> */}
                 {
-                  ([...Array(Math.round(productsList.ratings))?.fill('star')].map((el, i) => {
+                  ([...Array(Math.round((productsList.ratings)||0))?.fill('goldstar')].map((el, i) => {
                     return <span key={i}>
                       <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/FA_star.svg" alt="Stars" />
                     </span>
                   }))
                 }
                 {
-                  ([...Array( 5-Math.round(productsList.ratings) )?.fill('☆')].map((el) => {
+                  ([...Array( 5-Math.round((productsList.ratings)||0) )?.fill('☆')].map((el) => {
                     return <span className={styles['empty-star']}>{el}</span>
                   }))
                 }
@@ -178,42 +178,55 @@ const Slug = () => {
 
           </div>
 
-          <div>
+          <div className={styles['description-container']}>
             <h2>Description</h2>
             <p className={styles['description']}>
-                {productsList.description}
+              {productsList.description}
             </p>
           </div>
 
-          <div className={styles['reviews-container']}>
+          <div className={styles['reviews-title-data-container']}>
             <h4>User Reviews</h4>
 
-            {productsList?.reviews?.map(currReview => (
+            <div className={styles['reviews-container']}>
+              {productsList?.reviews?.map(currReview => (
 
-              <div
-                className={styles['review']}
-                key={currReview.id}
-                >
-                <h5 className={styles['review-title']}>
-                  {currReview.title}
-                </h5>
-                <div className={styles['review-body']}>
-                  <span className={styles['review-name']}>
-                    {currReview.name}
-                  </span>
-                  <span className={styles['review-rating']}>
-                    {currReview.rating} Stars
-                  </span>
-                  <div className={styles['review-review']}>
-                    {currReview.review}
+                <div
+                  className={styles['review']}
+                  key={currReview.reviewId}
+                  >
+                  <h5 className={styles['review-title']}>
+                    {currReview.title}
+                  </h5>
+                  <div className={styles['review-body']}>
+                    <span className={styles['review-name']}>
+                      {currReview.username}
+                    </span>
+                    <span className={styles['review-rating']} title={currReview.rating}>
+                      {
+                        ([...Array((currReview.rating||0))?.fill('goldstar')].map((el, i) => {
+                          return <span key={i}>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/FA_star.svg" alt="Stars" />
+                          </span>
+                        }))
+                      }
+                      {
+                        ([...Array( 5-(currReview.rating||0) )?.fill('☆')].map((el) => {
+                          return <span className={styles['empty-star']}>{el}</span>
+                        }))
+                      }
+                    </span>
+                    <div className={styles['review-review']}>
+                      {currReview.review}
+                    </div>
                   </div>
+
                 </div>
 
-              </div>
+                ))}
 
-            ))}
-
-          </div>
+                </div>
+            </div>
 
         </div>
 
