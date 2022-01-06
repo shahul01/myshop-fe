@@ -23,6 +23,7 @@ const Slug = () => {
   let histArr: IHistProduct[]|TJSONString = [];
   let hist: IHistProduct = {};
 
+  // COMMT: refactor localstorage codes
   // Localstorage SET
   useEffect(() => {
     if (sentPageId === 0 || typeof window === 'undefined') return;
@@ -57,19 +58,15 @@ const Slug = () => {
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
-    console.log('productsList :>> ', productsList);
+    // console.log('productsList :>> ', productsList);
   }, [retrievedData]);
 
   useEffect(() => {
-    // console.log(`productsList: `, productsList);
-    // console.log('uE runs');
     updateImageData();
-
   }, [productsList]);
 
   // useEffect(() => {
   //   console.log('imageData', imageData);
-
   // }, [imageData]);
 
   function handleAddToCart(productsList) {
@@ -86,7 +83,7 @@ const Slug = () => {
           id: res.id,
           productId: productsList.productId,
           title: productsList.title,
-          imgSrc: productsList.imgSrc,
+          imgSrc: productsList.images[0],
           price: productsList.price,
         }
       })
@@ -106,8 +103,8 @@ const Slug = () => {
       setImageData(imageData => [
         ...imageData,
         {
-          "original": 'http://localhost:1337' + currImage.url,
-          "thumbnail" : 'http://localhost:1337' + currImage.formats.thumbnail.url
+          "original": currImage,
+          "thumbnail" : currImage
         }
       ]);
 
@@ -147,7 +144,27 @@ const Slug = () => {
 
             <div className={styles['main-details']}>
               <h1>{productsList.title}</h1>
-              <p>{productsList.ratings} Stars</p>
+              <p className={styles['ratings']} title={productsList.ratings} >
+                {/* <span>Ratings: </span> */}
+                {
+                  ([...Array(Math.round(productsList.ratings))?.fill('star')].map((el, i) => {
+                    return <span key={i}>
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/FA_star.svg" alt="Stars" />
+                    </span>
+                  }))
+                }
+                {
+                  ([...Array( 5-Math.round(productsList.ratings) )?.fill('☆')].map((el) => {
+                    return <span className={styles['empty-star']}>{el}</span>
+                  }))
+                }
+                {
+                  <span className={styles['rating-votes']}>
+                    ( {new Intl.NumberFormat().format(productsList.ratingVotes)} votes )
+                  </span>
+                }
+
+              </p>
               <h3>$ {productsList.price}</h3>
 
               <button
@@ -156,8 +173,6 @@ const Slug = () => {
                 >
                 Add to Cart
               </button>
-
-              <p>Seller: {productsList.seller}</p>
 
             </div>
 

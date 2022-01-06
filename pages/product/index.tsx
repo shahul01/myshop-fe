@@ -21,13 +21,14 @@ const Product = () => {
 
   if (searchTitle.length >= 1) {
     fetchUrl = `http://localhost:1337/products?title_contains=${searchTitle}`;
+
   };
 
   const {data: retrievedData, error, isPending} = useFetch(fetchUrl, 'GET', null);
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
-  }, [retrievedData])
+  }, [retrievedData]);
 
   function handleGoToProductDetail(id:number, productId:number) {
     sentPageId = id;
@@ -63,6 +64,7 @@ const Product = () => {
             <div
               key={currProduct.productId} className={styles['item']}
               onClick={() => handleGoToProductDetail(currProduct.id, currProduct.productId)}
+              title={currProduct.title}
               >
 
               <img src={currProduct.images[0]} alt={currProduct.title} className={styles['item-image']}/>

@@ -8,20 +8,25 @@
 
 .img-details-container {
   display: flex;
-  width: 68vw;
+  /* width: 68vw; */
   justify-content: space-between;
-
+  gap: 1rem;
+  margin: 1rem 0;
 }
 
 .img-sets-container {
   max-width: 40vw;
   /* max-height: 200px; */
-  min-height: 500px;
+  /* min-height: 400px; */
 }
 
 .image-gallery-slide {
   min-height: 480px;
   max-width: 500px;
+}
+
+.image-gallery-slide img {
+  min-width: 100px;
 }
 
 .main-details {
@@ -30,7 +35,22 @@
 
 .main-details > * {
   margin: 0.5rem 0;
+}
 
+.main-details h1 {
+  line-height: 2.5rem;
+}
+
+.main-details .ratings img {
+  margin-right: 3px;
+}
+
+.main-details .empty-star {
+  margin-right: 3px;
+}
+
+.main-details .rating-votes {
+  font-size: 0.8rem;
 }
 
 .description {
@@ -42,7 +62,6 @@
 }
 
 .reviews-container > h4 {
-
   margin: 1.8rem 0px 0.8rem 0px;
   font-size: 1.4rem;
 
