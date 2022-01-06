@@ -1,6 +1,7 @@
 // `PRODUCTS` page
 
 // import Head from "next/head";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../helpers/Hooks/useFetch";
@@ -40,9 +41,9 @@ const Product = () => {
   return (
     <div className={styles['app']}>
 
-      {/* <Head>
-        <title>MyShop</title>
-      </Head> */}
+      <Head>
+        <title>All products - MyShop</title>
+      </Head>
 
       {/* // COMMT: Make this a component */}
       <div className={styles['title-area']}>

@@ -15,8 +15,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: Roboto, Tahoma, Verdana, Arial, sans-serif;
-  background-color: #333;
-  color: #ccc;
+  background-color: #fff;
+  color: #000;
   line-height: 1.7rem;
   font-size: 1.13rem;
 }
@@ -124,10 +124,22 @@ button.add-to-cart {
 .image-gallery-fullscreen-button,
 .image-gallery-play-button
 {
-  background-color: #aaa !important;
+  background-color: #ddd !important;
+  color: #333 !important;
 }
 
 .image-gallery-image {
   min-height: 200px !important;
   max-width: 400px !important;
 }
+
+.image-gallery,
+.image-gallery-slide
+{
+  background-color: #fff !important;
+}
+
+.image-gallery-content {
+  background-color: #ddd !important;
+}
+

@@ -2,6 +2,7 @@
 
 // import axios from "axios";
 // import { useRouter } from "next/router";
+import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 import ImageGallery from "react-image-gallery";
@@ -118,6 +119,7 @@ const Slug = () => {
   return (
 
     <div className={styles['product-details-page']}>
+
       <Link href="/product">
         <a className="back-btn">
           Go back
@@ -127,6 +129,10 @@ const Slug = () => {
       {(retrievedData && productsList?.id >= 1) ? (
 
         <div className={styles['details-container']}>
+
+          <Head>
+            <title>{productsList.title} - MyShop</title>
+          </Head>
 
           <div className={styles['img-details-container']}>
 
@@ -200,7 +206,7 @@ const Slug = () => {
                   </h5>
                   <div className={styles['review-body']}>
                     <span className={styles['review-name']}>
-                      {currReview.username}
+                      By {currReview.username}
                     </span>
                     <span className={styles['review-rating']} title={currReview.rating}>
                       {
@@ -232,7 +238,10 @@ const Slug = () => {
 
       ) : (
         <div>
-          Loading...
+          <Head>
+            <title>Product - MyShop</title>
+          </Head>
+          <div>Loading...</div>
         </div>
       )}
 
