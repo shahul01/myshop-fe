@@ -27,11 +27,13 @@
 
 .item-container {
   display: flex;
+  flex-direction: column;
   /* justify-content: center; */
   gap: 10px;
   /* cursor: pointer; */
   margin-bottom: 40px;
-  justify-content: center;
+  max-width: 200px;
+
 }
 
 /* .center-this {

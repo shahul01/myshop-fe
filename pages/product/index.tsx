@@ -31,7 +31,9 @@ const Product = () => {
 
   function handleGoToProductDetail(id:number, productId:number) {
     sentPageId = id;
-    router.push(`/product/${productId}`)
+    // find a diff way to redirect
+    // router.push(`/product/${productId}`)
+    router.push(`/product/${id}`)
   };
 
   return (
@@ -56,14 +58,14 @@ const Product = () => {
       </div>
       <div className={styles['item-container']}>
 
-        {retrievedData && productsList.map((currProduct:IModelProduct) => {
+        {retrievedData && productsList?.map((currProduct:IModelProduct) => {
           return (
             <div
               key={currProduct.productId} className={styles['item']}
               onClick={() => handleGoToProductDetail(currProduct.id, currProduct.productId)}
               >
 
-              <img src={currProduct.imgSrc} alt={currProduct.title} className={styles['item-image']}/>
+              <img src={currProduct.images[0]} alt={currProduct.title} className={styles['item-image']}/>
               <p className={styles['title']}>{currProduct.title}</p>
               <div className={styles['product-overview']}>
                 <p className={styles['price']}>$ {currProduct.price}</p>

@@ -8,11 +8,11 @@
 ## TechStacks used :
 
 ### &nbsp;&nbsp; Next JS
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;React + Server Side Rendering, Routing etc.
+- React + Server Side Rendering, Routing etc.
 ### &nbsp;&nbsp; API used
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Strapi(Backend), Stripe(Payment).
+- Strapi(Backend), Stripe(Payment).
 ### &nbsp;&nbsp; State management
-#### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reducer + Context + State
+- Reducer + Context + State
 
 <br />
 <details>

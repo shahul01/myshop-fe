@@ -78,25 +78,26 @@ interface ICartAction {
 }
 
 interface IModelReview {
-  id: number;
+  reviewId: string;
+  asin: string;
   username: string;
   title: string;
+  avatar: string;
   rating: number;
   review: string;
-  votes: number;
 }
 
 interface IModelProduct extends IModel {
+  asin: string;
   title: string;
-  imgSrc: string;
   price: number;
-  productId: number;
-  users_permission_user: IModelUser|null;
+  productId: string;
   ratings: number;
-  seller: string;
+  featureBullets: string;
   description: string;
   ratingVotes: number;
   reviews: IModelReview[];
+  images: string[];
 }
 
 interface IProductAction {
