@@ -27,13 +27,11 @@
 
 .item-container {
   display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  gap: 10px;
-  /* cursor: pointer; */
-  margin-bottom: 40px;
-  max-width: 200px;
-
+  flex-flow: row wrap;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  max-width: calc(100% - var(--cart-sidebar-width));
 }
 
 /* .center-this {
@@ -47,9 +45,10 @@
 
 .item-image {
   height: 200px;
+  width: 200px;
   max-width: 200px;
   margin-top: 14px;
-  /* display: flex; */
+  object-fit: scale-down; /* contain */
 }
 
 .title {
