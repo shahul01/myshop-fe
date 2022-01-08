@@ -50,18 +50,6 @@ const Product = () => {
       </Head>
 
       {/* // COMMT: Make this a component */}
-      <div className={styles['title-area']}>
-        <span className={styles['title-name']}>My Shop</span>
-        <div className={styles['search-box-container']}>
-          <input
-            className={styles['search-box']}
-            placeholder="Search"
-            value={searchTitle}
-            onChange={(e) => setSearchTitle(e.target?.value)}
-          />
-        </div>
-
-      </div>
       <div className={styles['item-container']}>
 
         {retrievedData && productsList?.map((currProduct:IModelProduct) => {

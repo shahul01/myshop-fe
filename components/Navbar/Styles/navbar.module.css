@@ -1,4 +1,49 @@
-.temp-signout-btn {
-  float: right;
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  /* background-color: #ccc; */
+}
 
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+}
+
+.title-name {
+  font-size: 1.9rem;
+}
+
+.search-box-container {
+  z-index: 1;
+}
+
+.search-box {
+  /* margin: 0px 4px 14px 14px; */
+  padding: 4px;
+  width: 70vw;
+  height: 46px;
+  outline: none;
+  font-size: 1.4rem;
+}
+
+.temp-signout-btn {
+  /* float: right; */
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.line {
+  background: linear-gradient( to bottom, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, .05) 30%, transparent 100% );
+  height: 12px;
+  width: 100%;
+  /* outline: 1px solid red; */
 }
