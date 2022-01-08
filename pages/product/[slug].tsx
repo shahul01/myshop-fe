@@ -155,7 +155,8 @@ const Slug = () => {
                 {
                   ([...Array(Math.round((productsList.ratings)||0))?.fill('goldstar')].map((el, i) => {
                     return <span key={i}>
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/FA_star.svg" alt="Stars" />
+                      {/* <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/FA_star.svg" alt="Stars" /> */}
+                      <img src={'../../assets/images/svg/IconRatingStar.svg'} alt="Stars" />
                     </span>
                   }))
                 }
@@ -212,7 +213,7 @@ const Slug = () => {
                       {
                         ([...Array((currReview.rating||0))?.fill('goldstar')].map((el, i) => {
                           return <span key={i}>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/FA_star.svg" alt="Stars" />
+                            <img src={'../../assets/images/svg/IconRatingStar.svg'} alt="Stars" />
                           </span>
                         }))
                       }

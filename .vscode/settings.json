@@ -1,5 +1,4 @@
 {
-  "print.colourScheme": "nnfx",
   "workbench.colorTheme": "Night Owl",
   "cSpell.words": [
     "addressess",
@@ -8,9 +7,7 @@
     "TJSON",
     "uuidv"
   ],
-  "terminal.integrated.commandsToSkipShell": [
-    "vscode-cmd-aliases.execute"
-  ]
+  "print.colourScheme": "nnfx"
 
 
 }

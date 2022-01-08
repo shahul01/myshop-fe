@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useFetch from "../../helpers/Hooks/useFetch";
 import styles from "./styles/allProducts.module.css";
+import logoS from "../../images/svg/logoS.svg";
 
 export let sentPageId = 0;
 
@@ -39,7 +40,10 @@ const Product = () => {
   };
 
   return (
-    <div className={styles['app']}>
+    <div
+      // style={{background: `url(/assets/images/png/logoS.png)`}}
+      className={styles['app']}
+      >
 
       <Head>
         <title>All products - MyShop</title>

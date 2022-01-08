@@ -19,13 +19,13 @@
 <summary>More</summary>
 
 #### Hooks used
-&nbsp;&nbsp;&nbsp;useReduce(Redux like), useContext, useState, useEffect.
+- useReduce(Redux like), useContext, useState, useEffect.
 #### Custom Hooks used
-&nbsp;&nbsp;&nbsp;useFetch.
+- useFetch.
 #### API caller
-&nbsp;&nbsp;&nbsp;Axios, Fetch.
+- Axios, Fetch.
 #### Styling
-&nbsp;&nbsp;&nbsp;CSS - modules per file.
+- CSS - modules per file.
 
   <!-- HOC, portals, react render (Check out 1tab) -->
 
@@ -42,10 +42,10 @@
 
 <!-- ![main](./images/readme/main.png) -->
 #### Home
-![products](./images/readme/prod.png)
+![products](./public/assets/images/readme/prod.png)
 
 #### Selected Product
-![selectedProduct](./images/readme/selectedProd.png)
+![selectedProduct](./public/assets/images/readme/selectedProd.png)
 
 <!-- #### Payment/Stripe page -->
 <!-- #### Login page -->
