@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter, withRouter } from "next/router";
 import { useContext } from "react";
 import { UserContext } from "helpers/Contexts/UserContext";
@@ -27,7 +28,9 @@ const Navbar = () => {
   return (
     <div className={styles['navbar']}>
       <div className={styles['content']}>
-        <span className={styles['title-name']}>My Shop</span>
+        <div className={styles['title-container']}>
+          <Link href="/" className={styles['title-name']}>My Shop</Link>
+        </div>
         <div className={styles['search-box-container']}>
           <input
             className={styles['search-box']}

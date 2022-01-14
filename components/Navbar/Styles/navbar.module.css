@@ -15,8 +15,10 @@
   height: 80px;
 }
 
-.title-name {
+.title-container * {
   font-size: 1.9rem;
+  user-select: none;
+  cursor: poiunter;
 }
 
 .search-box-container {
