@@ -77,6 +77,15 @@ interface ICartAction {
   cart: ICart;
 }
 
+interface ISearchText {
+  textData: string;
+}
+
+interface ISearchTextAction {
+  type: 'UPDATE_SEARCH';
+  data: ISearchText;
+}
+
 interface IModelReview {
   reviewId: string;
   asin: string;

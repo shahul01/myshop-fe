@@ -33,10 +33,10 @@
   justify-content: center;
   align-items: flex-end;
 
-  position: absolute;
+  /* position: absolute;
   bottom: 20px;
+  right: 60px; */
   /* left: calc(80% - 11rem); */
-  right: 60px;
   z-index: 2;
 }
 

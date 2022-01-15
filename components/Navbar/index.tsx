@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter, withRouter } from "next/router";
 import { useContext } from "react";
+import { SearchContext } from "helpers/Contexts/SearchContext";
+import { UPDATE_SEARCH } from "helpers/Reducers/searchReducer";
 import { UserContext } from "helpers/Contexts/UserContext";
 import { UNSET_USER } from "helpers/Reducers/userReducer";
 import { signOut } from "helpers/Functions/UserFn";
@@ -9,19 +11,28 @@ import styles from "./styles/navbar.module.css";
 const Navbar = () => {
 
   const router = useRouter();
-  const { user, dispatch } = useContext(UserContext);
-  console.log('user :>> ', user);
+  const { user, dispatchUser } = useContext(UserContext);
+  const { searchText, dispatchSearchText } = useContext(SearchContext);
+  // console.log('user :>> ', user);
+  console.log(`searchText`, searchText);
+
+  function handleChangeSearch(e) {
+    dispatchSearchText({
+      type: UPDATE_SEARCH,
+      searchText: e?.target?.value
+    });
+  };
 
   function handleRedirectSignIn() {
       router.push('/account/validation');
   };
 
   function handleSignOut() {
-    // signOut(user, dispatch);
+    // signOut(user, dispatchUser);
     if (!user?.isUserSignedIn) return;
     signOut();
     router.push('/account/validation');
-    return dispatch({type: UNSET_USER});
+    return dispatchUser({type: UNSET_USER});
     // COMMT: TODO: toast - Signed out
   };
 
@@ -35,8 +46,8 @@ const Navbar = () => {
           <input
             className={styles['search-box']}
             placeholder="Search"
-            // value={searchTitle}
-            // onChange={(e) => setSearchTitle(e.target?.value)}
+            value={searchText?.textData}
+            onChange={handleChangeSearch}
           />
         </div>
         <div className="avatar">

@@ -8,11 +8,11 @@ const Cart = () => {
   const { data: cartData, isPending, error }: {data: ICart[], isPending: boolean, error: boolean|null}= useFetch(`http://localhost:1337/carts`, 'GET', null);
 
   let cartList = cartData?.map(currData => (
-    <div className={styles['cart-body']} key={currData.id}>
-      <img className={styles['body-img']} src={currData.imgSrc} alt={currData.title} />
+    <div className={styles['cart-body']} key={currData?.id}>
+      <img className={styles['body-img']} src={currData?.images?.[0]} alt={currData?.title} />
       <div className={styles['cart-detail']}>
-        <h1 className={styles['prod-title']}>{currData.title}</h1>
-        <h4 className={styles['prod-price']}>{currData.price}</h4>
+        <h1 className={styles['prod-title']}>{currData?.title}</h1>
+        <h4 className={styles['prod-price']}>{currData?.price}</h4>
       </div>
 
     </div>

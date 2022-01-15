@@ -1,14 +1,14 @@
 import { createContext, useReducer, useEffect  } from 'react';
-import userReducer, { SET_USER } from "../Reducers/userReducer";
+import userReducer, { SET_USER } from "helpers/Reducers/userReducer";
 // import useFetch from "../Hooks/useFetch";
 
 export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
 
-  // let { data: userFetch, error, isPending } = useFetch('http://localhost:1337/')
-
   const [ user, dispatch ] = useReducer(userReducer, {}, () => {
+
+    // let { data: userFetch, error, isPending } = useFetch('http://localhost:1337/')
     // if (typeof window !== undefined) {
     //   const localUserData = localStorage.getItem('__userData');
     //   console.log(`localUserData: `, localUserData);

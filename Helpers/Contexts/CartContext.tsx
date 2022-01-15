@@ -1,16 +1,14 @@
 import { createContext, useReducer, useState, useEffect } from "react";
-import cartReducer, { ADD_TO_CART } from "../Reducers/cartReducer";
-import useFetch from "../Hooks/useFetch";
+import cartReducer, { ADD_TO_CART } from "helpers/Reducers/cartReducer";
+import useFetch from "helpers/Hooks/useFetch";
 // import { ICart } from "../../global";
-
-
 
 export const CartContext = createContext<ICart[] | null>(null);
 
 const CartContextProvider = (props) => {
-  let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'GET', null);
-
   const [ cart, dispatch ] = useReducer(cartReducer, []);
+
+  let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'GET', null);
   // COMMT: Intialise reducer w/ cart data.
   useEffect( async () => {
     if (cartFetch) {
