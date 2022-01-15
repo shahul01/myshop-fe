@@ -59,7 +59,7 @@ const CartSidebar = (props) => {
 
           <div className={styles['footer']}>
             <div className={styles['total-price']}>
-              Price: {totalPrice}
+              Price: {Number(totalPrice).toFixed(2)}
             </div>
 
             <Link href="/cart" >

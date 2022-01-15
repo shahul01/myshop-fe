@@ -21,7 +21,14 @@ instance.interceptors.request.use((req) => {
   // }
 
   const token = getAuthToken();
-  if (token) req.headers['Authorization'] = token;
+  if (token) {
+    const headers = req?.headers;
+    if (typeof(headers?.['Authorization']) !== 'undefined') {
+      headers['Authorization'] = token
+    }
+
+  }
+    ;
 
   return req;
 

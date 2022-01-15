@@ -24,7 +24,7 @@ const CartContextProvider = (props) => {
           id: currCart?.id,
           productId: currCart?.productId,
           title: currCart?.title,
-          imgSrc: currCart?.imgSrc,
+          imgSrc: currCart?.images?.[0],
           price: currCart?.price
         } });
 

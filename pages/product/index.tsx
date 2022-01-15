@@ -19,7 +19,7 @@ const Product = () => {
   // COMMT: TODO: Add auto correct to search etc
 
   const  [ searchTitle, setSearchTitle ] = useState("");
-  let fetchUrl = `http://localhost:1337/products/`;
+  let fetchUrl = `http://localhost:1337/products/?_sort=id`;
 
   if (searchTitle.length >= 1) {
     fetchUrl = `http://localhost:1337/products?title_contains=${searchTitle}`;
