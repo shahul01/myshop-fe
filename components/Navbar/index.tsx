@@ -14,17 +14,18 @@ const Navbar = () => {
   const { user, dispatchUser } = useContext(UserContext);
   const { searchText, dispatchSearchText } = useContext(SearchContext);
   // console.log('user :>> ', user);
-  console.log(`searchText`, searchText);
+  console.log(`searchText (nav)`, searchText);
 
   function handleChangeSearch(e) {
     dispatchSearchText({
       type: UPDATE_SEARCH,
       searchText: e?.target?.value
     });
+    // console.log('e?.target?.value :>> ', e?.target?.value);
   };
 
   function handleRedirectSignIn() {
-      router.push('/account/validation');
+    router.push('/account/validation');
   };
 
   function handleSignOut() {

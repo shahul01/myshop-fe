@@ -19,7 +19,7 @@ const CartSidebar = (props) => {
 
       res( deleteCart(id) );
     }).then((res) => {
-      dispatch({type: REMOVE_PRODUCT, id:res.id});
+      dispatch({type: REMOVE_PRODUCT, id:res?.id});
     });
 
   };

@@ -12,6 +12,6 @@ const SearchContextProvider = (props) => {
       {props.children}
     </SearchContext.Provider>
   )
-}
+};
 
-export default SearchContextProvider
+export default SearchContextProvider;
