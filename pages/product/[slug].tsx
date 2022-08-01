@@ -82,10 +82,10 @@ const Slug = () => {
         type: ADD_TO_CART,
         cart: {
           id: res.id,
-          productId: productsList.productId,
-          title: productsList.title,
-          imgSrc: productsList.images[0],
-          price: productsList.price,
+          productId: productsList?.productId,
+          title: productsList?.title,
+          imgSrc: productsList?.images[0],
+          price: productsList?.price,
         }
       })
 
@@ -131,13 +131,13 @@ const Slug = () => {
         <div className={styles['details-container']}>
 
           <Head>
-            <title>{productsList.title} - MyShop</title>
+            <title>{productsList?.title} - MyShop</title>
           </Head>
 
           <div className={styles['img-details-container']}>
 
             <div className={styles['img-sets-container']}>
-              {/* <img src={productsList.imgSrc} alt={productsList.title} className="item-image"/> */}
+              {/* <img src={productsList?.imgSrc} alt={productsList?.title} className="item-image"/> */}
 
               <ImageGallery
                 showNav={false}
@@ -149,11 +149,11 @@ const Slug = () => {
             </div>
 
             <div className={styles['main-details']}>
-              <h1>{productsList.title}</h1>
-              <p className={styles['ratings']} title={productsList.ratings} >
+              <h1>{productsList?.title}</h1>
+              <p className={styles['ratings']} title={productsList?.ratings} >
                 {/* <span>Ratings: </span> */}
                 {
-                  ([...Array(Math.round((productsList.ratings)||0))?.fill('goldstar')].map((el, i) => {
+                  ([...Array(Math.round((productsList?.ratings)||0))?.fill('goldstar')].map((el, i) => {
                     return <span key={i}>
                       {/* <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/FA_star.svg" alt="Stars" /> */}
                       <img src={'../../assets/images/svg/IconRatingStar.svg'} alt="Stars" />
@@ -161,18 +161,18 @@ const Slug = () => {
                   }))
                 }
                 {
-                  ([...Array( 5-Math.round((productsList.ratings)||0) )?.fill('☆')].map((el) => {
+                  ([...Array( 5-Math.round((productsList?.ratings)||0) )?.fill('☆')].map((el) => {
                     return <span className={styles['empty-star']}>{el}</span>
                   }))
                 }
                 {
                   <span className={styles['rating-votes']}>
-                    ( {new Intl.NumberFormat().format(productsList.ratingVotes)} votes )
+                    ( {new Intl.NumberFormat().format(productsList?.ratingVotes)} votes )
                   </span>
                 }
 
               </p>
-              <h3>$ {productsList.price}</h3>
+              <h3>$ {productsList?.price}</h3>
 
               <button
                   className='add-to-cart'
@@ -188,7 +188,7 @@ const Slug = () => {
           <div className={styles['description-container']}>
             <h2>Description</h2>
             <p className={styles['description']}>
-              {productsList.description}
+              {productsList?.description}
             </p>
           </div>
 
@@ -200,31 +200,31 @@ const Slug = () => {
 
                 <div
                   className={styles['review']}
-                  key={currReview.reviewId}
+                  key={currReview?.reviewId}
                   >
                   <h5 className={styles['review-title']}>
-                    {currReview.title}
+                    {currReview?.title}
                   </h5>
                   <div className={styles['review-body']}>
                     <span className={styles['review-name']}>
-                      By {currReview.username}
+                      By {currReview?.username}
                     </span>
-                    <span className={styles['review-rating']} title={currReview.rating}>
+                    <span className={styles['review-rating']} title={currReview?.rating}>
                       {
-                        ([...Array((currReview.rating||0))?.fill('goldstar')].map((el, i) => {
+                        ([...Array((currReview?.rating||0))?.fill('goldstar')].map((el, i) => {
                           return <span key={i}>
                             <img src={'../../assets/images/svg/IconRatingStar.svg'} alt="Stars" />
                           </span>
                         }))
                       }
                       {
-                        ([...Array( 5-(currReview.rating||0) )?.fill('☆')].map((el) => {
+                        ([...Array( 5-(currReview?.rating||0) )?.fill('☆')].map((el) => {
                           return <span className={styles['empty-star']}>{el}</span>
                         }))
                       }
                     </span>
                     <div className={styles['review-review']}>
-                      {currReview.review}
+                      {currReview?.review}
                     </div>
                   </div>
 

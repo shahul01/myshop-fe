@@ -25,20 +25,20 @@ const CartSidebar = (props) => {
   };
 
   const getPrice = cart?.map((currCart: ICart) => {
-    totalPrice += currCart.price;
+    totalPrice += currCart?.price;
   });
 
   const cartList = cart?.map((currCart: ICart) => (
-    <div key={currCart.key} className={styles['cart-product']} title={currCart.title} >
+    <div key={currCart?.key} className={styles['cart-product']} title={currCart?.title} >
 
       <span
-        onClick={() => handleDelete(currCart.id)}
+        onClick={() => handleDelete(currCart?.id)}
         >
         X
       </span>
       <img
-        src={currCart.imgSrc}
-        alt={currCart.title}
+        src={currCart?.imgSrc}
+        alt={currCart?.title}
         className={styles['img']}
       />
     </div>
@@ -59,7 +59,7 @@ const CartSidebar = (props) => {
 
           <div className={styles['footer']}>
             <div className={styles['total-price']}>
-              Price: {Number(totalPrice).toFixed(2)}
+              Price: {Number(totalPrice)?.toFixed(2)}
             </div>
 
             <Link href="/cart" >

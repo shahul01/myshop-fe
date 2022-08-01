@@ -14,7 +14,7 @@ const Navbar = () => {
   const { user, dispatchUser } = useContext(UserContext);
   const { searchText, dispatchSearchText } = useContext(SearchContext);
   // console.log('user :>> ', user);
-  console.log(`searchText (nav)`, searchText);
+  // console.log(`searchText (nav)`, searchText);
 
   function handleChangeSearch(e) {
     dispatchSearchText({

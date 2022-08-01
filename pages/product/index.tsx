@@ -27,10 +27,10 @@ const Product = () => {
 
     if (searchTitle?.length === 0) {
       setFetchUrl(`http://localhost:1337/products`);
-      console.log('XDXDXD');
+      console.log('1');
     } else if (searchTitle?.length >= 1) {
       setFetchUrl(`http://localhost:1337/products?title_contains=${searchTitle}`);
-      console.log('😀😀😀');
+      console.log('2');
     };
 
   }, [searchTitle]);
@@ -63,7 +63,7 @@ const Product = () => {
 
   function handleGoToProductDetail(id:number, productId:number) {
     sentPageId = id;
-    // find a diff way to redirect
+    // COMMT: TODO: find a diff way to redirect
     // router.push(`/product/${productId}`)
     router.push(`/product/${id}`)
   };
@@ -78,22 +78,22 @@ const Product = () => {
         <title>All products - MyShop</title>
       </Head>
 
-      {/* // COMMT: Make this a component */}
+      {/* // COMMT: TODO: Make this a component */}
       <div className={styles['item-container']}>
 
         {retrievedData && productsList?.map((currProduct:IModelProduct) => {
           return (
             <div
-              key={currProduct.productId} className={styles['item']}
-              onClick={() => handleGoToProductDetail(currProduct.id, currProduct.productId)}
-              title={currProduct.title}
+              key={currProduct?.productId} className={styles['item']}
+              onClick={() => handleGoToProductDetail(currProduct?.id, currProduct?.productId)}
+              title={currProduct?.title}
               >
 
-              <img src={currProduct.images[0]} alt={currProduct.title} className={styles['item-image']}/>
-              <p className={styles['title']}>{currProduct.title}</p>
+              <img src={currProduct?.images?.[0]} alt={currProduct?.title} className={styles['item-image']}/>
+              <p className={styles['title']}>{currProduct?.title}</p>
               <div className={styles['product-overview']}>
-                <p className={styles['price']}>$ {currProduct.price}</p>
-                <p className={styles['ratings']}>{currProduct.ratings}
+                <p className={styles['price']}>$ {currProduct?.price}</p>
+                <p className={styles['ratings']}>{currProduct?.ratings}
                   <span>☆</span>
                 </p>
 
