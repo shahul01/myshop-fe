@@ -13,6 +13,7 @@
   gap: 0.5rem;
   padding: 0.5rem;
   max-width: calc(100% - var(--cart-sidebar-width));
+  background-color: #eee;
 }
 
 /* .center-this {
@@ -22,6 +23,13 @@
 
 .item {
   cursor: pointer;
+  border-radius: 0.7rem;
+  background-color: #fff;
+}
+
+.item:hover {
+  transform: scale(1.05);
+  transition: transform 400ms;
 }
 
 .item-image {

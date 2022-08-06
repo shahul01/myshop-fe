@@ -11,8 +11,8 @@ import styles from "./styles/navbar.module.css";
 const Navbar = () => {
 
   const router = useRouter();
-  const { user, dispatchUser } = useContext(UserContext);
-  const { searchText, dispatchSearchText } = useContext(SearchContext);
+  const { user, dispatch:dispatchUser } = useContext(UserContext);
+  const { searchText, dispatch: dispatchSearchText } = useContext(SearchContext);
   // console.log('user :>> ', user);
   // console.log(`searchText (nav)`, searchText);
 
@@ -33,7 +33,8 @@ const Navbar = () => {
     if (!user?.isUserSignedIn) return;
     signOut();
     router.push('/account/validation');
-    return dispatchUser({type: UNSET_USER});
+    dispatchUser({type: UNSET_USER});
+    return;
     // COMMT: TODO: toast - Signed out
   };
 
@@ -48,7 +49,7 @@ const Navbar = () => {
             className={styles['search-box']}
             placeholder="Search"
             value={searchText?.textData}
-            onChange={handleChangeSearch}
+            onKeyUp={handleChangeSearch}
           />
         </div>
         <div className="avatar">

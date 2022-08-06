@@ -12,9 +12,9 @@ const userReducer = (state: IUserData, action: IUserDataAction) => {
     case SET_USER:
       userData = {
         isUserSignedIn: true,
-        userId: action.user.userId,
-        email: action.user.email,
-        username: action.user.username
+        userId: action.user?.userId,
+        email: action.user?.email,
+        username: action.user?.username
       };
       return userData;
 

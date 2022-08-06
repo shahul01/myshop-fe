@@ -5,10 +5,10 @@ const initialState = { searchText: '' };
 export const SearchContext = createContext<ISearchText | null>(null);
 
 const SearchContextProvider = (props) => {
-  const [ searchText, dispatchSearchText ] = useReducer(searchReducer, initialState)
+  const [ searchText, dispatch ] = useReducer(searchReducer, initialState)
 
   return (
-    <SearchContext.Provider value={{ searchText, dispatchSearchText }}>
+    <SearchContext.Provider value={{ searchText, dispatch }}>
       {props.children}
     </SearchContext.Provider>
   )
