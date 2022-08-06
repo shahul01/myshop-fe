@@ -69,7 +69,8 @@ interface ICart {
   key: string;
   price: number;
   productId: number;
-  title: string
+  title: string;
+  repeatItem: number;
 }
 
 interface ICartAction {

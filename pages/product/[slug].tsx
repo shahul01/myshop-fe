@@ -31,7 +31,7 @@ const Slug = () => {
     newHistoryProduct = { 'clickedDetails': sentPageId };
     histArrUnparsed = localStorage.getItem('historyProduct');
     if (histArrUnparsed) histArr = JSON.parse(histArrUnparsed);
-    histArr.push(newHistoryProduct);
+    histArr?.push(newHistoryProduct);
     localStorage.setItem('historyProduct', JSON.stringify(histArr) );
   }, []);
 
@@ -42,20 +42,19 @@ const Slug = () => {
     // Localstorage GET
     histArrUnparsed = localStorage.getItem('historyProduct');
     histArr = JSON.parse(histArrUnparsed);
-    hist = histArr[histArr.length - 1];
+    hist = histArr[histArr?.length - 1];
     pageId = hist?.clickedDetails;
   };
 
-  // COMMT: fetch data
+  // COMMT: fetch(get) data
   const pageUrl = `http://localhost:1337/products/${pageId}`;
-  const {data: retrievedData, error, isPending} = useFetch(pageUrl, 'GET', null);
+  const { data: retrievedData, error, isPending } = useFetch(pageUrl, 'GET', null);
 
   // const [productsList, setProductsList] = useState<IProductAction[]>([]);
-  const [productsList, setProductsList] = useState<IModelProduct|IProductAction|object>({});
+  const [ productsList, setProductsList ] = useState<IModelProduct|IProductAction|object>({});
   // const currProduct = productsList;
-  const [imageData, setImageData] = useState([]);
-  const { dispatch }:{dispatch:ICart} = useContext(CartContext);
-
+  const [ imageData, setImageData ] = useState([]);
+  const { cart, dispatch }:{dispatch:ICart} = useContext(CartContext);
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
@@ -70,20 +69,30 @@ const Slug = () => {
   //   console.log('imageData', imageData);
   // }, [imageData]);
 
+  function itemCartNum() {
+    const isItemInCart = cart?.filter(el => el?.productId === productsList?.productId );
+    if (isItemInCart && cart?.repeatItem) {
+      return cart?.repeatItem;
+    } else {
+      return 1;
+    };
+  };
+
   function handleAddToCart(productsList) {
     // COMMT: is there any way to auto refresh cart w/o dispatch once data submitted ?
     new Promise((res, req) => {
 
-      res( addToCart(productsList) );
+      res( addToCart({...productsList, repeatItem: itemCartNum()}) );
 
     }).then((res) => {
       dispatch({
 
         type: ADD_TO_CART,
         cart: {
-          id: res.id,
+          id: res?.id,
           productId: productsList?.productId,
           title: productsList?.title,
+          repeatItem: itemCartNum(),
           imgSrc: productsList?.images[0],
           price: productsList?.price,
         }

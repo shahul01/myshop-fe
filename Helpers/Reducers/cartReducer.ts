@@ -10,11 +10,12 @@ const cartReducer = (state: ICart[], action: ICartAction) => {
       const stateArr = [
         ...state,
         {
-          id: action.cart.id,
-          productId: action.cart.productId,
-          title: action.cart.title,
-          imgSrc: action.cart.imgSrc,
-          price: action.cart.price,
+          id: action.cart?.id,
+          productId: action.cart?.productId,
+          title: action.cart?.title,
+          repeatItem: action.cart?.repeatItem,
+          imgSrc: action.cart?.imgSrc,
+          price: action.cart?.price,
           key: uuid()
         }
       ];

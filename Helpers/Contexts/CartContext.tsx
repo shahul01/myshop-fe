@@ -10,21 +10,22 @@ const CartContextProvider = (props) => {
 
   let { data: cartFetch, error, isPending } = useFetch('http://localhost:1337/carts/', 'GET', null);
   // COMMT: Intialise reducer w/ cart data.
-  useEffect( async () => {
+  useEffect(  () => {
     if (cartFetch) {
       cart = [];
       // COMMT: w/ HMReload, same data is added unnecessarily
 
-      cartFetch.forEach(currCart => {
+      cartFetch?.forEach((currCart:ICart) => {
         // console.log(`currCart`, currCart)
 
         dispatch({ type: ADD_TO_CART, cart: {
           id: currCart?.id,
           productId: currCart?.productId,
           title: currCart?.title,
+          repeatItem: currCart?.repeatItem,
           imgSrc: currCart?.images?.[0],
           price: currCart?.price
-        } });
+        } as ICart });
 
       })
 
