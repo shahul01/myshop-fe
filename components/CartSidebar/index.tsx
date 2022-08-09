@@ -62,9 +62,9 @@ const CartSidebar = (props) => {
               Price: {Number(totalPrice)?.toFixed(2)}
             </div>
 
-            <Link href="/cart" >
+            <Link href="/cart">
               {/* onClick={() => isCartSidebar = false} */}
-              <button className="basic-material-btn" >
+              <button className="basic-material-btn" disabled={!cart?.length} >
                 Proceed
               </button>
             </Link>

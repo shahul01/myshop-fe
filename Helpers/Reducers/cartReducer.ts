@@ -1,13 +1,14 @@
 import { v4 as uuid } from "uuid";
 
 export const ADD_TO_CART = "ADD_TO_CART";
+export const INCREMENT_PRODUCT = "INCREMENT_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 
 const cartReducer = (state: ICart[], action: ICartAction) => {
   switch (action.type) {
     case ADD_TO_CART:
       // should this be array or object type?
-      const stateArr = [
+      const addedState = [
         ...state,
         {
           id: action.cart?.id,
@@ -20,11 +21,25 @@ const cartReducer = (state: ICart[], action: ICartAction) => {
         }
       ];
 
-      // console.log('stateArr :>> ', stateArr);
-      return stateArr;
+      // console.log('addedState :>> ', addedState);
+      return addedState;
+
+    case INCREMENT_PRODUCT:
+      const prodIncrementedCart = state?.map(currProd => {
+        console.log('###INCR_PROD', currProd?.id, action?.id);
+        if (currProd?.id === action?.id) {
+          currProd?.repeatItem === action?.repeatItem
+        };
+        return currProd;
+      });
+
+      console.log(`###prodIncrementedCart: `, prodIncrementedCart);
+
+      return prodIncrementedCart;
+
 
     case REMOVE_PRODUCT:
-      return state.filter(currCart => currCart.id !== action.id);
+      return state?.filter(currProd => currProd?.id !== action?.id);
 
     default:
       return state;

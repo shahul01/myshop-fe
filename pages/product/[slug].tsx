@@ -6,11 +6,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 import ImageGallery from "react-image-gallery";
-import { ADD_TO_CART } from "../../helpers/Reducers/cartReducer";
+import { ADD_TO_CART, INCREMENT_PRODUCT } from "../../helpers/Reducers/cartReducer";
 import { CartContext } from "../../helpers/Contexts/CartContext";
 import useFetch from "../../helpers/Hooks/useFetch";
 import { sentPageId } from "./index";
-import { addToCart } from "./_api";
+import { addToCart, incrCartNumber } from "./_api";
 import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "./styles/slug.module.css";
 
@@ -42,7 +42,7 @@ const Slug = () => {
     // Localstorage GET
     histArrUnparsed = localStorage.getItem('historyProduct');
     histArr = JSON.parse(histArrUnparsed);
-    hist = histArr[histArr?.length - 1];
+    hist = histArr?.[histArr?.length - 1];
     pageId = hist?.clickedDetails;
   };
 
@@ -69,36 +69,63 @@ const Slug = () => {
   //   console.log('imageData', imageData);
   // }, [imageData]);
 
-  function itemCartNum() {
-    const isItemInCart = cart?.filter(el => el?.productId === productsList?.productId );
-    if (isItemInCart && cart?.repeatItem) {
-      return cart?.repeatItem;
+  function productCartPrevQty():number {
+    const currProdInCart = cart?.filter(el => el?.productId === productsList?.productId );
+    // console.log('cart, prod :>> ', {cart: cart?.productId}, {pr: productsList?.productId}, currProdInCart);
+    console.log('cart :>> ', cart);
+    // console.log('cart?.productId :>> ', cart[0]?.productId);
+    // console.log('productsList?.productId', productsList?.productId);
+    console.log('true?:>> ', cart[0]?.productId === productsList?.productId);
+    console.log('currProdInCart', currProdInCart);
+    if (currProdInCart?.length && currProdInCart?.[0]?.repeatItem) {
+      // COMMT: If product already present
+      console.log('1 sel');
+      return currProdInCart?.repeatItem;
     } else {
-      return 1;
+      // COMMT: If there is no such product
+      console.log('0 sel');
+      return 0;
     };
   };
 
-  function handleAddToCart(productsList) {
+  async function handleAddToCart(productsList) {
     // COMMT: is there any way to auto refresh cart w/o dispatch once data submitted ?
-    new Promise((res, req) => {
 
-      res( addToCart({...productsList, repeatItem: itemCartNum()}) );
+    let response = {};
 
-    }).then((res) => {
+    if (productCartPrevQty() === 0) {
+      response = await addToCart({
+        ...productsList, repeatItem: productCartPrevQty()+1
+      });
       dispatch({
-
         type: ADD_TO_CART,
         cart: {
-          id: res?.id,
+          id: response?.id,
           productId: productsList?.productId,
           title: productsList?.title,
-          repeatItem: itemCartNum(),
-          imgSrc: productsList?.images[0],
+          repeatItem: productCartPrevQty()+1,
+          imgSrc: productsList?.images?.[0],
           price: productsList?.price,
         }
+      });
+    } else if (productCartPrevQty() >= 1) {
+      console.log('item 2');
+      response = await incrCartNumber({
+        ...productsList, repeatItem: productCartPrevQty()+1
+      });
+      dispatch({
+        type: INCREMENT_PRODUCT,
+        cart: {
+          id: response?.id,
+          repeatItem: productCartPrevQty()+1
+        }
       })
+    };
 
-    });
+    console.log('response :>> ', response);
+    console.log('cart :>> ', cart);
+
+
 
 
   };
@@ -170,8 +197,8 @@ const Slug = () => {
                   }))
                 }
                 {
-                  ([...Array( 5-Math.round((productsList?.ratings)||0) )?.fill('☆')].map((el) => {
-                    return <span className={styles['empty-star']}>{el}</span>
+                  ([...Array( 5-Math.round((productsList?.ratings)||0) )?.fill('☆')].map((el, i) => {
+                    return <span key={i} className={styles['empty-star']}>{el}</span>
                   }))
                 }
                 {
@@ -227,8 +254,8 @@ const Slug = () => {
                         }))
                       }
                       {
-                        ([...Array( 5-(currReview?.rating||0) )?.fill('☆')].map((el) => {
-                          return <span className={styles['empty-star']}>{el}</span>
+                        ([...Array( 5-(currReview?.rating||0) )?.fill('☆')].map((el, i) => {
+                          return <span key={i} className={styles['empty-star']}>{el}</span>
                         }))
                       }
                     </span>
@@ -257,7 +284,7 @@ const Slug = () => {
 
     </div>
 
-  )
-}
+  );
+};
 
 export default Slug;
