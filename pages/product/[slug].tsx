@@ -50,11 +50,12 @@ const Slug = () => {
   const pageUrl = `http://localhost:1337/products/${pageId}`;
   const { data: retrievedData, error, isPending } = useFetch(pageUrl, 'GET', null);
 
+  const { cart, dispatch }:{dispatch:ICart} = useContext(CartContext);
   // const [productsList, setProductsList] = useState<IProductAction[]>([]);
   const [ productsList, setProductsList ] = useState<IModelProduct|IProductAction|object>({});
-  // const currProduct = productsList;
+  const [ prodCartPrevQty, setProdCartPrevQty] = useState(0);
+  const [ localCounter, setLocalCounter ] = useState(0);
   const [ imageData, setImageData ] = useState([]);
-  const { cart, dispatch }:{dispatch:ICart} = useContext(CartContext);
 
   useEffect( () => {
     if (retrievedData) setProductsList(retrievedData);
@@ -65,25 +66,23 @@ const Slug = () => {
     updateImageData();
   }, [productsList]);
 
+  useEffect(() => {
+    getProdCartPrevQty();
+  }, [cart, localCounter]);
+
   // useEffect(() => {
-  //   console.log('imageData', imageData);
   // }, [imageData]);
 
-  function productCartPrevQty():number {
-    const currProdInCart = cart?.filter(el => el?.productId === productsList?.productId );
+  function getProdCartPrevQty():number {
+    const currProdInCart = cart?.filter(currCartCtx => currCartCtx?.productId === productsList?.productId );
     // console.log('cart, prod :>> ', {cart: cart?.productId}, {pr: productsList?.productId}, currProdInCart);
-    console.log('cart :>> ', cart);
-    // console.log('cart?.productId :>> ', cart[0]?.productId);
-    // console.log('productsList?.productId', productsList?.productId);
-    console.log('true?:>> ', cart[0]?.productId === productsList?.productId);
-    console.log('currProdInCart', currProdInCart);
+    // console.log('true?:>> ', cart[0]?.productId === productsList?.productId);
+    // console.log('currProdInCart', currProdInCart);
     if (currProdInCart?.length && currProdInCart?.[0]?.repeatItem) {
       // COMMT: If product already present
-      console.log('1 sel');
-      return currProdInCart?.repeatItem;
+      return setProdCartPrevQty(currProdInCart?.[0]?.repeatItem);
     } else {
       // COMMT: If there is no such product
-      console.log('0 sel');
       return 0;
     };
   };
@@ -92,10 +91,10 @@ const Slug = () => {
     // COMMT: is there any way to auto refresh cart w/o dispatch once data submitted ?
 
     let response = {};
-
-    if (productCartPrevQty() === 0) {
+    setLocalCounter(prev => prev+1);
+    if (prodCartPrevQty === 0) {
       response = await addToCart({
-        ...productsList, repeatItem: productCartPrevQty()+1
+        ...productsList, repeatItem: prodCartPrevQty+1
       });
       dispatch({
         type: ADD_TO_CART,
@@ -103,27 +102,26 @@ const Slug = () => {
           id: response?.id,
           productId: productsList?.productId,
           title: productsList?.title,
-          repeatItem: productCartPrevQty()+1,
+          repeatItem: prodCartPrevQty+1,
           imgSrc: productsList?.images?.[0],
           price: productsList?.price,
         }
       });
-    } else if (productCartPrevQty() >= 1) {
-      console.log('item 2');
+    } else if (prodCartPrevQty >= 1) {
       response = await incrCartNumber({
-        ...productsList, repeatItem: productCartPrevQty()+1
+        productId: productsList?.productId,
+        repeatItem: prodCartPrevQty+1,
       });
       dispatch({
         type: INCREMENT_PRODUCT,
         cart: {
           id: response?.id,
-          repeatItem: productCartPrevQty()+1
+          productId: productsList?.productId,
+          repeatItem: prodCartPrevQty+1,
         }
-      })
+      });
     };
 
-    console.log('response :>> ', response);
-    console.log('cart :>> ', cart);
 
 
 

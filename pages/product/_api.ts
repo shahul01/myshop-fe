@@ -11,16 +11,15 @@ export async function addToCart(data: ICart) {
 };
 
 // COMMT: increments cart number
-export async function incrCartNumber(data) {
+export async function incrCartNumber(product) {
   let id = 0;
   const getUrl = await axios.get(`http://localhost:1337/carts/`);
-  const currProduct = getUrl.filter(el => el.productId === data.productId);
-  id = currProduct?.id;
-  if (id === 0) return;
-  const incrUrl = await axios.put(`http://localhost:1337/carts/${id}`, data);
-  const resIncrData = incrUrl.data;
+  const matchedProd = getUrl?.data?.filter(currProd => currProd?.productId === product?.productId);
+  id = matchedProd?.[0]?.id;
+  if (id === 0 || id === undefined) return console.error('Not incremented Product');
+  const incrUrl = await axios.put(`http://localhost:1337/carts/${id}`, {'repeatItem': product?.repeatItem});
+  const resIncrData = incrUrl?.data;
 
-  // console.log(`resIncrData: `, resIncrData);
   return resIncrData;
 
 };

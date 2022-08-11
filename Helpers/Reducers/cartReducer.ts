@@ -7,7 +7,7 @@ export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 const cartReducer = (state: ICart[], action: ICartAction) => {
   switch (action.type) {
     case ADD_TO_CART:
-      // should this be array or object type?
+      // COMMT: should this be array or object type?
       const addedState = [
         ...state,
         {
@@ -26,16 +26,14 @@ const cartReducer = (state: ICart[], action: ICartAction) => {
 
     case INCREMENT_PRODUCT:
       const prodIncrementedCart = state?.map(currProd => {
-        console.log('###INCR_PROD', currProd?.id, action?.id);
-        if (currProd?.id === action?.id) {
-          currProd?.repeatItem === action?.repeatItem
+        if (currProd?.productId === action?.cart?.productId) {
+          currProd?.repeatItem === action?.cart?.repeatItem
         };
         return currProd;
       });
 
-      console.log(`###prodIncrementedCart: `, prodIncrementedCart);
 
-      return prodIncrementedCart;
+      return state = prodIncrementedCart;
 
 
     case REMOVE_PRODUCT:
