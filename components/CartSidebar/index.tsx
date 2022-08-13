@@ -13,8 +13,12 @@ const CartSidebar = (props) => {
   const { cart, dispatch } = useContext(CartContext);
   // console.log('cart :>> ', cart);
 
+
   async function handleDelete(id: number) {
     // COMMT: made this a promise so it deletes from cart only if there is no error in fetch delete.
+
+    // TODO: when deleted, set prodCartPrevQty to 0
+
     new Promise((res, req) => {
 
       res( deleteCart(id) );

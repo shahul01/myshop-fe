@@ -53,6 +53,7 @@ const Slug = () => {
   const { cart, dispatch }:{dispatch:ICart} = useContext(CartContext);
   // const [productsList, setProductsList] = useState<IProductAction[]>([]);
   const [ productsList, setProductsList ] = useState<IModelProduct|IProductAction|object>({});
+  // const [ prodCartPrevQty, setProdCartPrevQty] = useState(0);
   const [ prodCartPrevQty, setProdCartPrevQty] = useState(0);
   const [ localCounter, setLocalCounter ] = useState(0);
   const [ imageData, setImageData ] = useState([]);
@@ -67,34 +68,34 @@ const Slug = () => {
   }, [productsList]);
 
   useEffect(() => {
-    getProdCartPrevQty();
-  }, [cart, localCounter]);
+    // console.log('rptItem :>> ', cart?.[0]?.repeatItem);
+  }, [cart]);
 
   // useEffect(() => {
+  //   console.log('imageData', imageData);
   // }, [imageData]);
 
-  function getProdCartPrevQty():number {
-    const currProdInCart = cart?.filter(currCartCtx => currCartCtx?.productId === productsList?.productId );
-    // console.log('cart, prod :>> ', {cart: cart?.productId}, {pr: productsList?.productId}, currProdInCart);
-    // console.log('true?:>> ', cart[0]?.productId === productsList?.productId);
-    // console.log('currProdInCart', currProdInCart);
-    if (currProdInCart?.length && currProdInCart?.[0]?.repeatItem) {
+  function getProdCartPrevQty():void|number {
+    const currProdInCart = cart?.filter((currCartCtx:ICart) => currCartCtx?.productId === productsList?.productId )?.[0];
+    console.log('cart', cart);
+    console.log('currProdInCart :>> ', currProdInCart);
+    if (currProdInCart?.length && currProdInCart?.repeatItem) {
       // COMMT: If product already present
-      return setProdCartPrevQty(currProdInCart?.[0]?.repeatItem);
+      return setProdCartPrevQty(prev => currProdInCart?.repeatItem+1);
     } else {
       // COMMT: If there is no such product
       return 0;
     };
   };
 
-  async function handleAddToCart(productsList) {
+  async function handleAddToCart(productsList:IModelProduct) {
     // COMMT: is there any way to auto refresh cart w/o dispatch once data submitted ?
-
+    console.log('prodCartPrevQty', prodCartPrevQty)
+    getProdCartPrevQty();
     let response = {};
-    setLocalCounter(prev => prev+1);
     if (prodCartPrevQty === 0) {
       response = await addToCart({
-        ...productsList, repeatItem: prodCartPrevQty+1
+        ...productsList, repeatItem: localCounter+1
       });
       dispatch({
         type: ADD_TO_CART,
@@ -102,7 +103,7 @@ const Slug = () => {
           id: response?.id,
           productId: productsList?.productId,
           title: productsList?.title,
-          repeatItem: prodCartPrevQty+1,
+          repeatItem: localCounter+1,
           imgSrc: productsList?.images?.[0],
           price: productsList?.price,
         }
@@ -110,23 +111,23 @@ const Slug = () => {
     } else if (prodCartPrevQty >= 1) {
       response = await incrCartNumber({
         productId: productsList?.productId,
-        repeatItem: prodCartPrevQty+1,
+        repeatItem: localCounter+1,
       });
       dispatch({
         type: INCREMENT_PRODUCT,
         cart: {
           id: response?.id,
           productId: productsList?.productId,
-          repeatItem: prodCartPrevQty+1,
+          repeatItem: localCounter+1,
         }
       });
     };
 
-
-
-
+    setLocalCounter(prev => prev+1);
 
   };
+
+
 
   function updateImageData() {
 

@@ -21,7 +21,6 @@ const cartReducer = (state: ICart[], action: ICartAction) => {
         }
       ];
 
-      // console.log('addedState :>> ', addedState);
       return addedState;
 
     case INCREMENT_PRODUCT:
@@ -32,16 +31,15 @@ const cartReducer = (state: ICart[], action: ICartAction) => {
         return currProd;
       });
 
-
       return state = prodIncrementedCart;
-
 
     case REMOVE_PRODUCT:
       return state?.filter(currProd => currProd?.id !== action?.id);
 
     default:
       return state;
-  }
-}
+
+  };
+};
 
 export default cartReducer;
